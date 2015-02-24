@@ -1,0 +1,22 @@
+; METAL FILL GENERATION RSF FILE
+
+avParameters(
+  ?overwrite t
+  ?avrpt t
+  ?outputErrorLib modifyExistingLibrary
+  ?ignoreMissingOutLayer t
+) ; avParameters completed
+
+outFile( "DFII" "LibraryName" "./" backward
+     outLayer( met1_fill  "Metal1" type("fill"))
+     outLayer( met2_fill  "Metal2" type("fill"))
+     outLayer( met3_fill  "Metal3" type("fill"))
+     outLayer( met4_fill  "Metal4" type("fill"))
+     outLayer( met5_fill  "Metal5" type("fill"))
+     outLayer( met6_fill  "Metal6" type("fill"))
+     outLayer( met7_fill  "Metal7" type("fill"))
+     outLayer( met8_fill  "Metal8" type("fill"))
+     outLayer( met9_fill  "Metal9" type("fill"))
+     outLayer( met10_fill  "Metal10" type("fill"))
+     outLayer( met11_fill  "Metal11" type("fill"))
+)

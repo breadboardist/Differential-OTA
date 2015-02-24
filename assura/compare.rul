@@ -1,0 +1,219 @@
+;/*************************************************************************
+;
+; GENERIC PDK Process Assura LVS Rules 
+;
+;************************************************************************/
+
+avCompareRules(
+  printf("\n*************************************************************** \n\n")
+  printf("  GENERIC PDK Assura Compare Rules file \n")
+  printf("  Cadence Design Systems shall not be liable for the accuracy \n")
+  printf("  of this LVS rule file or its ability to capture errors. \n")
+  printf("  The user is responsible for thoroughly testing and \n")
+  printf("  implementing its features. \n")
+  printf("\n*************************************************************** \n\n")
+
+  filterReduceStatistics( (preExpand t) )
+; ****************************************************
+; SNA devices filter
+  layout( filterDevice( "TIE") )
+; ****************************************************
+; Remove Center Tap Pin from Inductor layout
+  layout( deleteCellPin("ind_s" "CTAP") )
+  schematic( swapPins("ind_s(IND)" "(p PLUS MINUS)" ) )
+
+  bind( cell("ind_s" "ind_s" ) )
+  bind( cell( "ind_a" "ind_a" ) )
+
+ mimcapAREA_lvsTol = 1
+; *****************************************************************
+ procedure( parallelMIMCAP( dev1 dev2 )
+  prog( ( )
+   newdev = ncons(nil)
+  
+   M1 = M2 = float(1)
+   A1 = A2 = float(0)  
+
+   if( dev1->area then A1 = float( dev1->area ) )
+   if( dev1->m then M1 = float( dev1->m ) )
+   if( dev2->area then A2 = float( dev2->area ) )
+   if( dev2->m then M2 = float( dev2->m ) )
+
+; correct for m-factor here
+    newAREA = float((A1 * M1) + (A2 * M2))
+
+    newdev->area = newAREA
+    newdev->m = float(1)
+
+; Report combining to the log file
+
+      printf( "\n" )
+      printf( "** Parallel mimcap combined \n" )
+      printf("   1st device: area= %g m= %g\n" A1 M1 )
+      printf("   2nd device: area= %g m= %g\n" A2 M2 )
+      printf("    Resulting: area= %g m= 1 \n" newAREA )
+
+      return(newdev)
+
+   ) ;prog
+ ) ;procedure( parallelMIMCAP )
+; *****************************************************************
+ procedure( compareMIMCAP( dev1 dev2 )
+  prog( ( )
+   M1 = M2 = float(1)
+   A1 = A2 = float(0)  
+
+   if( dev1->area then A1 = float( dev1->area ) )
+   if( dev1->m then M1 = float( dev1->m ) )
+   if( dev2->area then A2 = float( dev2->area ) )
+   if( dev2->m then M2 = float( dev2->m ) )
+
+; correct for m-factor here
+   Area1 = float(A1 * M1) 
+   Area2 = float(A2 * M2)   
+
+; test
+   diffArea = 0;
+   AREAerr = nil
+   if( Area2 == 0 then diffArea = 100 else diffArea = 100 * (abs( Area1 - Area2 ) / Area2 ) )
+   when( diffArea > mimcapAREA_lvsTol AREAerr = t )
+    
+; no errors return nil
+   when( !AREAerr return(nil) )
+
+; Report error
+      if( AREAerr then sprintf( msg "area %g vs %g differs by %g%% \n" Area2 Area1 diffArea ))
+      return( msg )
+
+   ) ;prog
+ ) ;procedure( compareMIMCAP )
+; *****************************************************************
+ procedure( parallelIND( dev1 dev2 )
+  prog( ( )
+   newdev = ncons(nil)
+  
+   M1 = M2 = M3 = float(1)
+   S1 = S2 = W1 = W2 = R1 = R2 = N1 = N2 = float(0)
+                                                                                                    
+   if( dev1->nr then N1 = float( dev1->nr ) )
+   if( dev1->space then S1 = float( dev1->space ) )
+   if( dev1->width then W1 = float( dev1->width ) )
+   if( dev1->rad then R1 = float( dev1->rad ) )
+   if( dev1->m then M1 = float( dev1->m ) )
+   if( dev2->nr then
+     if( stringp( dev2->nr ) then N2 = atof( dev2->nr )
+     else N2 = float( dev2->nr ) )
+   )
+   if( dev2->space then S2 = float( dev2->space ) )
+   if( dev2->width then
+     if( stringp( dev2->width ) then
+       W2 = atof( dev2->width )
+       W2 = W2 * 1e-6
+     else W2 = float( dev2->width ) )
+   )
+   if( dev2->rad then R2 = float( dev2->rad ) )
+   if( dev2->m then M2 = float( dev2->m ) )
+
+   if( N1 == N2 && R1 == R2 && S1 == S2 && W1 == W2 then
+     newdev->nr = dev1->nr
+     newdev->rad = dev1->rad
+     newdev->width = dev1->width
+     newdev->space = dev1->space
+     M3 = newdev->m = M1 + M2
+     printf( "\n" )
+     printf( "** Parallel IND combined \n" )
+     printf("   1st device: nr= %g rad= %g space= %g width= %g m= %g\n" N1 R1 S1 W1 M1 )
+     printf("   2nd device: nr= %g rad= %g space= %g width= %g m= %g\n" N2 R2 S2 W2 M2 )
+     printf("   Resulting: nr= %g rad= %g space= %g width= %g m= %g\n" N1 R1 S1 W1 M3 )
+     return(newdev)
+    else 
+     return(nil)
+    )
+   ) ;prog
+ ) ;procedure( parallelIND )
+; *****************************************************************
+ procedure( compareIND( dev1 dev2 )
+  prog( ( )
+   M1 = M2 = float(1)
+   S1 = S2 = W1 = W2 = R1 = R2 = N1 = N2 = float(0)
+ 
+   if( dev1->nr then
+     if( stringp( dev1->nr ) then N1 = atof( dev1->nr )
+     else N1 = float( dev1->nr ) )
+   )
+   if( dev1->space then S1 = float( dev1->space ) )
+   if( dev1->width then
+     if( stringp( dev1->width ) then
+       W1 = atof( dev1->width )
+       W1 = W1 * 1e-6
+     else W1 = float( dev1->width ) )
+   )                                                                                                   
+   if( dev1->rad then R1 = float( dev1->rad ) )
+   if( dev1->m then M1 = float( dev1->m ) )
+
+   if( dev2->nr then
+     if( stringp( dev2->nr ) then N2 = atof( dev2->nr )
+     else N2 = float( dev2->nr ) )
+   )
+   if( dev2->space then S2 = float( dev2->space ) )
+   if( dev2->width then
+     if( stringp( dev2->width ) then
+       W2 = atof( dev2->width )
+       W2 = W2 * 1e-6
+     else W2 = float( dev2->width ) )
+   )
+   if( dev2->rad then R2 = float( dev2->rad ) )
+   if( dev2->m then M2 = float( dev2->m ) )
+
+; test
+   Nerr = Serr = Werr = Rerr = Merr = nil
+   diffN = diffS = diffW = diffR = diffM = 0
+   if( N2 == 0 then Nerr = t else diffN = 100 * (abs( N1 - N2 ) / N2 ) )
+   when( diffN > indN_lvsTol Nerr = t )
+   if( S2 == 0 then Serr = t else diffS = 100 * (abs( S1 - S2 ) / S2 ) )
+   when( diffS > indS_lvsTol Serr = t )
+   if( W2 == 0 then Werr = t else diffW = 100 * (abs( W1 - W2 ) / W2 ) )
+   when( diffW > indW_lvsTol Werr = t )
+   if( R2 == 0 then Rerr = t else diffR = 100 * (abs( R1 - R2 ) / R2 ) )
+   when( diffR > indR_lvsTol Rerr = t )
+   if( M2 == 0 then Merr = t else diffM = 100 * (abs( M1 - M2 ) / M2 ) )
+   when( diffM > indM_lvsTol Merr = t )
+    
+; no errors return nil
+   when( !Nerr && !Serr && !Werr && !Rerr  && !Merr return(nil) )
+
+; Report errors
+      msg1 = msg2 = msg3 = msg4 = msg5 = ""
+      if( Nerr then sprintf( msg1 "nr %g vs %g differs by %g%% \n" N2 N1 diffN ))
+      if( Serr then sprintf( msg2 "space %g vs %g differs by %g%% \n" S2 S1 diffS ))
+      if( Werr then sprintf( msg3 "width %g vs %g differs by %g%% \n" W2 W1 diffW ))
+      if( Rerr then sprintf( msg4 "rad %g vs %g differs by %g%% \n" R2 R1 diffR ))
+      if( Merr then sprintf( msg5 "m %g vs %g differs by %g%% \n" M2 M1 diffM ))
+      sprintf( msg "%s%s%s%s%s" msg1 msg2 msg3 msg4 msg5 )
+      return( msg )
+
+   ) ;prog
+ ) ;procedure( compareIND )
+; *****************************************************************
+
+; *****************************************************************
+; capArea_lvsTol = 0 
+; mergeParallel( "mimcap" merge parallelMIMCAP )
+; compareParameter( "mimcap" compareMIMCAP )
+compareParameter( CAP percent( "w" 0 "l" 0 ) )
+
+ indN_lvsTol = indS_lvsTol = indW_lvsTol = indR_lvsTol = indM_lvsTol = 0
+ mergeParallel( "ind_a" merge parallelIND )
+ compareParameter( "ind_a" compareIND )
+ mergeParallel( "ind_s" merge parallelIND )
+ compareParameter( "ind_s" compareIND )
+
+ compareParameter( BJT percent( "area" 0 ) )
+
+ compareParameter( DIO percent( "area" 0 "pj" 0 ) )
+
+ compareParameter( MOS percent( "l" 0 "w" 0 ) )
+
+ compareParameter( RES percent( "w" 0 "l" 0 ) )
+
+) ; end avCompareRules

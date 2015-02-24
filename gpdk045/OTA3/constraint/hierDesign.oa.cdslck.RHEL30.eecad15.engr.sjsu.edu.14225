@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      nang9016
+HostName                       eecad15.engr.sjsu.edu
+ProcessIdentifier              14225
+ProcessCreationTime_UTC        1399146352
+ProcessCreationTime_Readable   Sat May  3 12:45:52 2014 PDT
+AppIdentifier                  OA File System Design Manager
+OSType                         unix
+ReasonForPlacingEditLock       OpenAccess edit lock
+FilePathUsedToEditLock         /home/na/nang9016/newcad/gpdk045_RFIC/gpdk045/OTA3/constraint/hierDesign.oa.cdslck
+TimeEditLocked                 Sat May  3 13:28:47 2014 PDT

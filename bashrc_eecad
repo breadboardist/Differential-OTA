@@ -1,0 +1,72 @@
+# .bashrc
+
+# User specific aliases and functions
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+###############################################################################
+# The following environment variables are written by Dr. Hamedi in 11/15/2012
+# to provide access to the latest Cadence and ADS tools in eecad Linux machines.
+
+# This is written in bash environment.  If you are using cshell or other linux
+# environments, then you need to modify the language in this file accordingly.
+# Put this file in your working directory and activate it using this command
+# source bashrc_eecad
+
+# note: Dr. Parent and Mr. Jones have root access to eecad machines.  If they
+# modify the installation folders, you must change following paths accordingly.
+# Please contact them to report any error.
+
+# Define General Variables Here:
+###############################################################################
+
+export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
+
+export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib:/usr/X11R6/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/lib64:/usr/lib64:/usr/local/lib64:/usr/X11R6/lib64:$LD_LIBRARY_PATH
+
+###############################################################################
+# run virtuoso for Cadence
+# Define Cadence Environment Variables Here:
+###############################################################################
+
+export CDSHOME=/apps/cadence/IC615
+export CDS_ROOT=$CDSHOME
+export CDS_INST_DIR=$CDSHOME
+export CDS_SITE=$CDSHOME/tools/dfII/local
+export CDS_INSTALL_DIR=$CDSHOME/tools/dfII
+export CDK_DIR=$CDSHOME/tools/dfII/local
+
+export IUS=$CDSHOME/IUS
+export CDS_VHDL=$IUS/tools/leapfrog
+
+export ASSURAHOME=$CDS/ASSURA41
+export ASSURA_MASTER_KEY=true
+
+export MMSIM_ROOT=/apps/cadence/MMSIM0701179
+
+export SPECTRE_FEATURE_FILE=$MMSIM_ROOT/tools/spectre/etc/files/spectre.dat
+export CDS_Netlisting_Mode=Analog
+export CLS_CDSD_COMPATIBILITY_LOCKING=No
+
+export CDS_LIC_FILE=5280@innersanctum.engr.sjsu.edu:/apps/cadence/license-current
+export CDSLMD_LICENSE_FILE=5280@innersanctum.engr.sjsu.edu:/apps/cadence/license-current
+
+export PATH=$CDS_ROOT/tools/bin:$CDS_ROOT/tools/dfII/bin:$MMSIM_ROOT/tools/bin:$CDS_INSTALL_DIR/verilogIn/bin:$PATH
+
+export LD_LIBRARY_PATH=$IUS/tools/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$IC/tools.lnx86/lib:$LD_LIBRARY_PATH
+
+###############################################################################
+# run ads -> specify a network license server -> 27001@innersanctum.engr.sjsu.edu
+# Define ADS Environment Variables Here:
+###############################################################################
+
+export HPEESOF_DIR=/apps/ADS2011_05
+
+export AGILEESOFD_LICENSE_FILE=27001@innersanctum.engr.sjsu.edu:/apps/ADS/3142144_666303.lic
+
+export PATH=$HPEESOF_DIR/bin:$PATH

@@ -1,0 +1,19 @@
+-- Base gpdk045 library definition file	
+DEFINE analogLib $CDS_INST_DIR/tools/dfII/etc/cdslib/artist/analogLib
+DEFINE functional $CDS_INST_DIR/tools/dfII/etc/cdslib/artist/functional
+DEFINE basic $CDS_INST_DIR/tools/dfII/etc/cdslib/basic
+DEFINE US_8ths $CDS_INST_DIR/tools/dfII/etc/cdslib/sheets/US_8ths
+
+DEFINE ahdlLib $CDS_INST_DIR/tools/dfII/samples/artist/ahdlLib
+DEFINE bmslib $CDS_INST_DIR/tools/dfII/samples/artist/bmslib
+DEFINE passiveLib $CDS_INST_DIR/tools/dfII/samples/artist/passiveLib
+DEFINE pllLib $CDS_INST_DIR/tools/dfII/samples/artist/pllLib
+DEFINE rfExamples $CDS_INST_DIR/tools/dfII/samples/artist/rfExamples
+DEFINE aExamples $CDS_INST_DIR/tools/dfII/samples/artist/aExamples
+DEFINE rfLib $CDS_INST_DIR/tools/dfII/samples/artist/rfLib
+DEFINE sample $CDS_INST_DIR/tools/dfII/samples/cdslib/sample
+
+DEFINE avTech /htek/cads/cadence/ASSURA32/tools/assura/etc/avtech/avTech
+
+DEFINE gpdk045 ./gpdk045
+DEFINE shiva /home/na/nang9016/newcad/gpdk045_RFIC/shiva

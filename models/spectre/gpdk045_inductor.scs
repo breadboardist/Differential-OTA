@@ -1,0 +1,76 @@
+simulator lang=spectre
+library gpdk045
+
+
+section tt_ind
+parameters indfactor=1
+include "gpdk045_inductor.scs" section=ind
+endsection tt_ind
+
+section ss_ind
+parameters indfactor=1.15
+include "gpdk045_inductor.scs" section=ind
+endsection ss_ind
+
+
+section ff_ind
+parameters indfactor=0.85
+include "gpdk045_inductor.scs" section=ind
+endsection ff_ind
+
+section mc_ind
+include "gpdk045_inductor.scs" section=stat_ind
+parameters    par_indfactor             =    var_indfactor        
+parameters    indfactor                 =   1+0.05*par_indfactor                      
+include "gpdk045_inductor.scs" section=ind
+endsection mc_ind
+
+section stat_ind        
+parameters      random_indfactor        = 0
+parameters     var_indfactor            =     random_indfactor   
+statistics {
+   process {     
+            vary    random_indfactor               dist=gauss std=1/1  
+                    }
+    }   
+endsection stat_ind
+
+section  ind
+//*******************************************************
+//     inductor parameters used to calculated the Inductor 
+//             nr = Number of Turns 
+//              w = Width
+//              s = Space 
+//              r = inner radius 
+//*******************************************************
+subckt ind_a (n1 n2 gnd)
+parameters w=2u s=1.5u r=10u nr=8.5
++k1= 2.34 k2=2.75 u0=4e-7*3.14
+c1  (n1 n2) capacitor c=1e-15*(w*w*1e12)*nr
+r1 (n1 2) resistor r=0.021*(8*r*1e6*nr+(nr*(nr-1)/2)*(w+s)*1e6)/(w*1e6)
+l1 (2 n2) inductor l=(k1*u0*nr*nr*(0.5*((2*r+(nr+0.5)*w+(nr-0.5)* s)+(2*r))))/(1+k2*(((2*r+(nr+0.5)*w+(nr-0.5)*s)-(2*r))/((2*r+(nr+0.5)*w+(nr-0.5)*s)+(2*r))))
+c2 (n1 3) capacitor c=8e-14*(w*1e6*(8*r*1e6*nr+(nr*(nr-1)/2)*(w+s)*1e6))
+c3 (n2 4) capacitor c=8e-14*(w*1e6*(8*r*1e6*nr+(nr*(nr-1)/2)*(w+s)*1e6))
+c4 (3 gnd) capacitor c=5e-18*(w*1e6*(8*r*1e6*nr+(nr*(nr-1)/2)*(w+s)*1e6))
+c5 (4 gnd) capacitor c=5e-18*(w*1e6*(8*r*1e6*nr+(nr*(nr-1)/2)*(w+s)*1e6))
+r2 (3 gnd) resistor r=2e5/(w*1e6*(8*r*1e6*nr+(nr*(nr-1)/2)*(w+s)*1e6))
+r3 (4 gnd) resistor r=2e5/(w*1e6*(8*r*1e6*nr+(nr*(nr-1)/2)*(w+s)*1e6))
+ends ind_a
+
+subckt ind_s (n1 n2 gnd)
+parameters w=2u s=1.5u r=10u nr=8.5
++k1= 2.34 k2=2.75 u0=4e-7*3.14
+c1  (n1 n2) capacitor c=1e-15*(w*w*1e12)*nr
+r1 (n1 2) resistor r=0.021*(8*r*1e6*nr+(nr*(nr-1)/2)*(w+s)*1e6)/(w*1e6)
+l1 (2 n2) inductor l=(k1*u0*nr*nr*(0.5*((2*r+(nr+0.5)*w+(nr-0.5)* s)+(2*r))))/(1+k2*(((2*r+(nr+0.5)*w+(nr-0.5)*s)-(2*r))/((2*r+(nr+0.5)*w+(nr-0.5)*s)+(2*r))))
+c2 (n1 3) capacitor c=8e-14*(w*1e6*(8*r*1e6*nr+(nr*(nr-1)/2)*(w+s)*1e6))
+c3 (n2 4) capacitor c=8e-14*(w*1e6*(8*r*1e6*nr+(nr*(nr-1)/2)*(w+s)*1e6))
+c4 (3 gnd) capacitor c=5e-18*(w*1e6*(8*r*1e6*nr+(nr*(nr-1)/2)*(w+s)*1e6))
+c5 (4 gnd) capacitor c=5e-18*(w*1e6*(8*r*1e6*nr+(nr*(nr-1)/2)*(w+s)*1e6))
+r2 (3 gnd) resistor r=2e5/(w*1e6*(8*r*1e6*nr+(nr*(nr-1)/2)*(w+s)*1e6))
+r3 (4 gnd) resistor r=2e5/(w*1e6*(8*r*1e6*nr+(nr*(nr-1)/2)*(w+s)*1e6))
+ends ind_s
+
+endsection ind 
+ 
+endlibrary gpdk045 

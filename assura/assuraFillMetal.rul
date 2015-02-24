@@ -1,0 +1,785 @@
+drcExtractRules(
+
+layerDefs("GDS2"
+
+    Bondpad=layer( 36 type(0) )
+    Bondpad_pin=pinLayer( 36 type(0) )
+
+    CapMetal=layer( 14 type(0) )
+    CapMetal_pin=pinLayer( 14 type(0) )
+
+    Cont=layer( 6 type(0) )
+
+    ESDdummy=layer( 74 type(0) )
+
+    IND2dummy=layer( 17 type(0) )
+
+    IND3dummy=layer( 70 type(0) )
+
+    INDdummy=layer( 16 type(0) )
+    INDdummy_pin=pinLayer( 16 type(0) )
+
+    M1Resdum=layer( 75 type(0) )
+
+    M2Resdum=layer( 76 type(0) )
+
+    M3Resdum=layer( 77 type(0) )
+
+    M4Resdum=layer( 78 type(0) )
+
+    M5Resdum=layer( 79 type(0) )
+
+    M6Resdum=layer( 80 type(0) )
+
+    M7Resdum=layer( 81 type(0) )
+
+    M8Resdum=layer( 82 type(0) )
+
+    M9Resdum=layer( 83 type(0) )
+
+    M10Resdum=layer( 93 type(0) )
+
+    M11Resdum=layer( 103 type(0) )
+
+    Metal1_d=layer( 7 type(0) )
+    Metal1_d_pin=pinLayer( 7 type(0) )
+    Metal1_d_text=textToPin( 7 type(3) )
+    Metal1_d_pintext=text( 7 type(3) )
+
+    Metal1_f=layer( 7 type(5) )
+
+    Metal1_n=layer( 7 type(4) )
+
+    Metal1_p=layer( 7 type(1) )
+    Metal1_p_pin=pinLayer( 7 type(1) )
+    Metal1_p_text=textToPin( 7 type(3) )
+    Metal1_p_pintext=text( 7 type(3) )
+
+    Metal1_slot=layer( 7 type(2) )
+
+    Metal2_d=layer( 9 type(0) )
+    Metal2_d_pin=pinLayer( 9 type(0) )
+    Metal2_d_text=textToPin( 9 type(3) )
+    Metal2_d_pintext=text( 9 type(3) )
+
+    Metal2_f=layer( 9 type(5) )
+
+    Metal2_n=layer( 9 type(4) )
+
+    Metal2_p=layer( 9 type(1) )
+    Metal2_p_pin=pinLayer( 9 type(1) )
+    Metal2_p_text=textToPin( 9 type(3) )
+    Metal2_p_pintext=text( 9 type(3) )
+
+    Metal2_slot=layer( 9 type(2) )
+
+    Metal3_d=layer( 11 type(0) )
+    Metal3_d_pin=pinLayer( 11 type(0) )
+    Metal3_d_text=textToPin( 11 type(3) )
+    Metal3_d_pintext=text( 11 type(3) )
+
+    Metal3_f=layer( 11 type(5) )
+
+    Metal3_n=layer( 11 type(4) )
+
+    Metal3_p=layer( 11 type(1) )
+    Metal3_p_pin=pinLayer( 11 type(1) )
+    Metal3_p_text=textToPin( 11 type(3) )
+    Metal3_p_pintext=text( 11 type(3) )
+
+    Metal3_slot=layer( 11 type(2) )
+
+    Metal4_d=layer( 31 type(0) )
+    Metal4_d_pin=pinLayer( 31 type(0) )
+    Metal4_d_text=textToPin( 31 type(3) )
+    Metal4_d_pintext=text( 31 type(3) )
+
+    Metal4_f=layer( 31 type(5) )
+
+    Metal4_n=layer( 31 type(4) )
+
+    Metal4_p=layer( 31 type(1) )
+    Metal4_p_pin=pinLayer( 31 type(1) )
+    Metal4_p_text=textToPin( 31 type(3) )
+    Metal4_p_pintext=text( 31 type(3) )
+
+    Metal4_slot=layer( 31 type(2) )
+
+    Metal5_d=layer( 33 type(0) )
+    Metal5_d_pin=pinLayer( 33 type(0) )
+    Metal5_d_text=textToPin( 33 type(3) )
+    Metal5_d_pintext=text( 33 type(3) )
+
+    Metal5_f=layer( 33 type(5) )
+
+    Metal5_n=layer( 33 type(4) )
+
+    Metal5_p=layer( 33 type(1) )
+    Metal5_p_pin=pinLayer( 33 type(1) )
+    Metal5_p_text=textToPin( 33 type(3) )
+    Metal5_p_pintext=text( 33 type(3) )
+
+    Metal5_slot=layer( 33 type(2) )
+
+    Metal6_d=layer( 35 type(0) )
+    Metal6_d_pin=pinLayer( 35 type(0) )
+    Metal6_d_text=textToPin( 35 type(3) )
+    Metal6_d_pintext=text( 35 type(3) )
+
+    Metal6_f=layer( 35 type(5) )
+
+    Metal6_n=layer( 35 type(4) )
+
+    Metal6_p=layer( 35 type(1) )
+    Metal6_p_pin=pinLayer( 35 type(1) )
+    Metal6_p_text=textToPin( 35 type(3) )
+    Metal6_p_pintext=text( 35 type(3) )
+
+    Metal6_slot=layer( 35 type(2) )
+
+    Metal7_d=layer( 38 type(0) )
+    Metal7_d_pin=pinLayer( 38 type(0) )
+    Metal7_d_text=textToPin( 38 type(3) )
+    Metal7_d_pintext=text( 38 type(3) )
+
+    Metal7_f=layer( 38 type(5) )
+
+    Metal7_n=layer( 38 type(4) )
+
+    Metal7_p=layer( 38 type(1) )
+    Metal7_p_pin=pinLayer( 38 type(1) )
+    Metal7_p_text=textToPin( 38 type(3) )
+    Metal7_p_pintext=text( 38 type(3) )
+
+    Metal7_slot=layer( 38 type(2) )
+
+    Metal8_d=layer( 40 type(0) )
+    Metal8_d_pin=pinLayer( 40 type(0) )
+    Metal8_d_text=textToPin( 40 type(3) )
+    Metal8_d_pintext=text( 40 type(3) )
+
+    Metal8_f=layer( 40 type(5) )
+
+    Metal8_n=layer( 40 type(4) )
+
+    Metal8_p=layer( 40 type(1) )
+    Metal8_p_pin=pinLayer( 40 type(1) )
+    Metal8_p_text=textToPin( 40 type(3) )
+    Metal8_p_pintext=text( 40 type(3) )
+
+    Metal8_slot=layer( 40 type(2) )
+
+    Metal9_d=layer( 42 type(0) )
+    Metal9_d_pin=pinLayer( 42 type(0) )
+    Metal9_d_text=textToPin( 42 type(3) )
+    Metal9_d_pintext=text( 42 type(3) )
+
+    Metal9_f=layer( 42 type(5) )
+
+    Metal9_n=layer( 42 type(4) )
+
+    Metal9_p=layer( 42 type(1) )
+    Metal9_p_pin=pinLayer( 42 type(1) )
+    Metal9_p_text=textToPin( 42 type(3) )
+    Metal9_p_pintext=text( 42 type(3) )
+
+    Metal9_slot=layer( 42 type(2) )
+
+    Metal10_d=layer( 152 type(0) )
+    Metal10_d_pin=pinLayer( 152 type(0) )
+    Metal10_d_text=textToPin( 152 type(3) )
+    Metal10_d_pintext=text( 152 type(3) )
+
+    Metal10_f=layer( 152 type(5) )
+
+    Metal10_n=layer( 152 type(4) )
+
+    Metal10_p=layer( 152 type(1) )
+    Metal10_p_pin=pinLayer( 152 type(1) )
+    Metal10_p_text=textToPin( 152 type(3) )
+    Metal10_p_pintext=text( 152 type(3) )
+
+    Metal10_slot=layer( 152 type(2) )
+
+    Metal11_d=layer( 162 type(0) )
+    Metal11_d_pin=pinLayer( 162 type(0) )
+    Metal11_d_text=textToPin( 162 type(3) )
+    Metal11_d_pintext=text( 162 type(3) )
+
+    Metal11_f=layer( 162 type(5) )
+
+    Metal11_n=layer( 162 type(4) )
+
+    Metal11_p=layer( 162 type(1) )
+    Metal11_p_pin=pinLayer( 162 type(1) )
+    Metal11_p_text=textToPin( 162 type(3) )
+    Metal11_p_pintext=text( 162 type(3) )
+
+    Metal11_slot=layer( 162 type(2) )
+
+    NPNdummy=layer( 20 type(0) )
+
+    Nburied=layer( 19 type(0) )
+    Nburied_pin=pinLayer( 19 type(0) )
+
+    Nhvt=layer( 18 type(0) )
+
+    Nimp=layer( 4 type(0) )
+    Nimp_pin=pinLayer( 4 type(0) )
+
+    Nwell=layer( 2 type(0) )
+    Nwell_pin=pinLayer( 2 type(0) )
+
+    Nzvt=layer( 52 type(0) )
+
+    Oxide=layer( 1 type(0) )
+
+    Oxide_thk=layer( 24 type(0) )
+
+    PNPdummy=layer( 21 type(0) )
+
+    Phvt=layer( 23 type(0) )
+
+    Pimp=layer( 5 type(0) )
+    Pimp_pin=pinLayer( 5 type(0) )
+
+    Poly=layer( 3 type(0) )
+    Poly_pin=pinLayer( 3 type(0) )
+
+    Psub=layer( 25 type(0) )
+    Psub_pin=pinLayer( 25 type(0) )
+
+    ResWdum=layer( 71 type(0) )
+
+    Resdum=layer( 13 type(0) )
+
+    SiProt=layer( 72 type(0) )
+
+    Via1=layer( 8 type(0) )
+
+    Via2=layer( 10 type(0) )
+
+    Via3=layer( 30 type(0) )
+
+    Via4=layer( 32 type(0) )
+
+    Via5=layer( 34 type(0) )
+
+    Via6=layer( 37 type(0) )
+
+    Via7=layer( 39 type(0) )
+
+    Via8=layer( 41 type(0) )
+ 
+    Via9=layer( 151 type(0) )
+
+    Via10=layer( 161 type(0) )
+
+    prBoundary=layer( 62 type(0) )
+
+    bulk=cellBoundary(root)
+)
+
+layerDefs("df2"
+
+    Bondpad=layer("Bondpad" type("drawing"))
+    Bondpad_pin=pinLayer("Bondpad")
+
+    CapMetal=layer("CapMetal" type("drawing"))
+    CapMetal_pin=pinLayer("CapMetal")
+
+    Cont=layer("Cont" type("drawing"))
+
+    ESDdummy=layer("ESDdummy" type("drawing"))
+
+    IND2dummy=layer("IND2dummy" type("drawing"))
+
+    IND3dummy=layer("IND3dummy" type("drawing"))
+
+    INDdummy=layer("INDdummy" type("drawing"))
+    INDdummy_pin=pinLayer("INDdummy")
+
+    M1Resdum=layer("M1Resdum" type("drawing"))
+
+    M2Resdum=layer("M2Resdum" type("drawing"))
+
+    M3Resdum=layer("M3Resdum" type("drawing"))
+
+    M4Resdum=layer("M4Resdum" type("drawing"))
+
+    M5Resdum=layer("M5Resdum" type("drawing"))
+
+    M6Resdum=layer("M6Resdum" type("drawing"))
+
+    M7Resdum=layer("M7Resdum" type("drawing"))
+
+    M8Resdum=layer("M8Resdum" type("drawing"))
+
+    M9Resdum=layer("M9Resdum" type("drawing"))
+
+    Metal1_d=layer("Metal1" type("drawing"))
+    Metal1_d_pin=pinLayer("Metal1")
+    Metal1_d_text=textToPin("Metal1" type("label"))
+    Metal1_d_pintext=pinText("Metal1")
+
+    Metal1_f=layer("Metal1" type("fill"))
+
+    Metal1_n=layer("Metal1" type("net"))
+
+    Metal1_p=layer("Metal1" type("pin"))
+    Metal1_p_pin=pinLayer("Metal1")
+    Metal1_p_text=textToPin("Metal1" type("label"))
+    Metal1_p_pintext=pinText("Metal1")
+
+    Metal1_slot=layer("Metal1" type("slot"))
+
+    Metal2_d=layer("Metal2" type("drawing"))
+    Metal2_d_pin=pinLayer("Metal2")
+    Metal2_d_text=textToPin("Metal2" type("label"))
+    Metal2_d_pintext=pinText("Metal2")
+
+    Metal2_f=layer("Metal2" type("fill"))
+
+    Metal2_n=layer("Metal2" type("net"))
+
+    Metal2_p=layer("Metal2" type("pin"))
+    Metal2_p_pin=pinLayer("Metal2")
+    Metal2_p_text=textToPin("Metal2" type("label"))
+    Metal2_p_pintext=pinText("Metal2")
+
+    Metal2_slot=layer("Metal2" type("slot"))
+
+    Metal3_d=layer("Metal3" type("drawing"))
+    Metal3_d_pin=pinLayer("Metal3")
+    Metal3_d_text=textToPin("Metal3" type("label"))
+    Metal3_d_pintext=pinText("Metal3")
+
+    Metal3_f=layer("Metal3" type("fill"))
+
+    Metal3_n=layer("Metal3" type("net"))
+
+    Metal3_p=layer("Metal3" type("pin"))
+    Metal3_p_pin=pinLayer("Metal3")
+    Metal3_p_text=textToPin("Metal3" type("label"))
+    Metal3_p_pintext=pinText("Metal3")
+
+    Metal3_slot=layer("Metal3" type("slot"))
+
+    Metal4_d=layer("Metal4" type("drawing"))
+    Metal4_d_pin=pinLayer("Metal4")
+    Metal4_d_text=textToPin("Metal4" type("label"))
+    Metal4_d_pintext=pinText("Metal4")
+
+    Metal4_f=layer("Metal4" type("fill"))
+
+    Metal4_n=layer("Metal4" type("net"))
+
+    Metal4_p=layer("Metal4" type("pin"))
+    Metal4_p_pin=pinLayer("Metal4")
+    Metal4_p_text=textToPin("Metal4" type("label"))
+    Metal4_p_pintext=pinText("Metal4")
+
+    Metal4_slot=layer("Metal4" type("slot"))
+
+    Metal5_d=layer("Metal5" type("drawing"))
+    Metal5_d_pin=pinLayer("Metal5")
+    Metal5_d_text=textToPin("Metal5" type("label"))
+    Metal5_d_pintext=pinText("Metal5")
+
+    Metal5_f=layer("Metal5" type("fill"))
+
+    Metal5_n=layer("Metal5" type("net"))
+
+    Metal5_p=layer("Metal5" type("pin"))
+    Metal5_p_pin=pinLayer("Metal5")
+    Metal5_p_text=textToPin("Metal5" type("label"))
+    Metal5_p_pintext=pinText("Metal5")
+
+    Metal5_slot=layer("Metal5" type("slot"))
+
+    Metal6_d=layer("Metal6" type("drawing"))
+    Metal6_d_pin=pinLayer("Metal6")
+    Metal6_d_text=textToPin("Metal6" type("label"))
+    Metal6_d_pintext=pinText("Metal6")
+
+    Metal6_f=layer("Metal6" type("fill"))
+
+    Metal6_n=layer("Metal6" type("net"))
+
+    Metal6_p=layer("Metal6" type("pin"))
+    Metal6_p_pin=pinLayer("Metal6")
+    Metal6_p_text=textToPin("Metal6" type("label"))
+    Metal6_p_pintext=pinText("Metal6")
+
+    Metal6_slot=layer("Metal6" type("slot"))
+
+    Metal7_d=layer("Metal7" type("drawing"))
+    Metal7_d_pin=pinLayer("Metal7")
+    Metal7_d_text=textToPin("Metal7" type("label"))
+    Metal7_d_pintext=pinText("Metal7")
+
+    Metal7_f=layer("Metal7" type("fill"))
+
+    Metal7_n=layer("Metal7" type("net"))
+
+    Metal7_p=layer("Metal7" type("pin"))
+    Metal7_p_pin=pinLayer("Metal7")
+    Metal7_p_text=textToPin("Metal7" type("label"))
+    Metal7_p_pintext=pinText("Metal7")
+
+    Metal7_slot=layer("Metal7" type("slot"))
+
+    Metal8_d=layer("Metal8" type("drawing"))
+    Metal8_d_pin=pinLayer("Metal8")
+    Metal8_d_text=textToPin("Metal8" type("label"))
+    Metal8_d_pintext=pinText("Metal8")
+
+    Metal8_f=layer("Metal8" type("fill"))
+
+    Metal8_n=layer("Metal8" type("net"))
+
+    Metal8_p=layer("Metal8" type("pin"))
+    Metal8_p_pin=pinLayer("Metal8")
+    Metal8_p_text=textToPin("Metal8" type("label"))
+    Metal8_p_pintext=pinText("Metal8")
+
+    Metal8_slot=layer("Metal8" type("slot"))
+
+    Metal9_d=layer("Metal9" type("drawing"))
+    Metal9_d_pin=pinLayer("Metal9")
+    Metal9_d_text=textToPin("Metal9" type("label"))
+    Metal9_d_pintext=pinText("Metal9")
+
+    Metal9_f=layer("Metal9" type("fill"))
+
+    Metal9_n=layer("Metal9" type("net"))
+
+    Metal9_p=layer("Metal9" type("pin"))
+    Metal9_p_pin=pinLayer("Metal9")
+    Metal9_p_text=textToPin("Metal9" type("label"))
+    Metal9_p_pintext=pinText("Metal9")
+
+    Metal9_slot=layer("Metal9" type("slot"))
+
+    Metal10_d=layer("Metal10" type("drawing"))
+    Metal10_d_pin=pinLayer("Metal10")
+    Metal10_d_text=textToPin("Metal10" type("label"))
+    Metal10_d_pintext=pinText("Metal10")
+
+    Metal10_f=layer("Metal10" type("fill"))
+
+    Metal10_n=layer("Metal10" type("net"))
+
+    Metal10_p=layer("Metal10" type("pin"))
+    Metal10_p_pin=pinLayer("Metal10")
+    Metal10_p_text=textToPin("Metal10" type("label"))
+    Metal10_p_pintext=pinText("Metal10")
+
+    Metal10_slot=layer("Metal10" type("slot"))
+
+    Metal11_d=layer("Metal11" type("drawing"))
+    Metal11_d_pin=pinLayer("Metal11")
+    Metal11_d_text=textToPin("Metal11" type("label"))
+    Metal11_d_pintext=pinText("Metal11")
+
+    Metal11_f=layer("Metal11" type("fill"))
+
+    Metal11_n=layer("Metal11" type("net"))
+
+    Metal11_p=layer("Metal11" type("pin"))
+    Metal11_p_pin=pinLayer("Metal11")
+    Metal11_p_text=textToPin("Metal11" type("label"))
+    Metal11_p_pintext=pinText("Metal11")
+
+    Metal11_slot=layer("Metal11" type("slot"))
+
+    NPNdummy=layer("NPNdummy" type("drawing"))
+
+    Nburied=layer("Nburied" type("drawing"))
+    Nburied_pin=pinLayer("Nburied")
+
+    Nhvt=layer("Nhvt" type("drawing"))
+
+    Nimp=layer("Nimp" type("drawing"))
+    Nimp_pin=pinLayer("Nimp")
+
+    Nwell=layer("Nwell" type("drawing"))
+    Nwell_pin=pinLayer("Nwell")
+
+    Nzvt=layer("Nzvt" type("drawing"))
+
+    Oxide=layer("Oxide" type("drawing"))
+
+    Oxide_thk=layer("Oxide_thk" type("drawing"))
+
+    PNPdummy=layer("PNPdummy" type("drawing"))
+
+    Phvt=layer("Phvt" type("drawing"))
+
+    Pimp=layer("Pimp" type("drawing"))
+    Pimp_pin=pinLayer("Pimp")
+
+    Poly=layer("Poly" type("drawing"))
+    Poly_pin=pinLayer("Poly")
+
+    Psub=layer("Psub" type("drawing"))
+    Psub_pin=pinLayer("Psub")
+
+    ResWdum=layer("ResWdum" type("drawing"))
+
+    Resdum=layer("Resdum" type("drawing"))
+
+    SiProt=layer("SiProt" type("drawing"))
+
+    Via1=layer("Via1" type("drawing"))
+
+    Via2=layer("Via2" type("drawing"))
+
+    Via3=layer("Via3" type("drawing"))
+
+    Via4=layer("Via4" type("drawing"))
+
+    Via5=layer("Via5" type("drawing"))
+
+    Via6=layer("Via6" type("drawing"))
+
+    Via7=layer("Via7" type("drawing"))
+
+    Via8=layer("Via8" type("drawing"))
+
+    Via9=layer("Via9" type("drawing"))
+
+    Via10=layer("Via10" type("drawing"))
+
+    prBoundary=layer("prBoundary")
+
+    bulk=cellBoundary(root)
+)
+
+Bondpad=geomOr(Bondpad Bondpad_pin)
+CapMetal=geomOr(CapMetal CapMetal_pin)
+INDdummy=geomOr(INDdummy INDdummy_pin)
+Metal1_d=geomOr(Metal1_d Metal1_d_pin)
+Metal1_p=geomOr(Metal1_p Metal1_p_pin)
+Metal2_d=geomOr(Metal2_d Metal2_d_pin)
+Metal2_p=geomOr(Metal2_p Metal2_p_pin)
+Metal3_d=geomOr(Metal3_d Metal3_d_pin)
+Metal3_p=geomOr(Metal3_p Metal3_p_pin)
+Metal4_d=geomOr(Metal4_d Metal4_d_pin)
+Metal4_p=geomOr(Metal4_p Metal4_p_pin)
+Metal5_d=geomOr(Metal5_d Metal5_d_pin)
+Metal5_p=geomOr(Metal5_p Metal5_p_pin)
+Metal6_d=geomOr(Metal6_d Metal6_d_pin)
+Metal6_p=geomOr(Metal6_p Metal6_p_pin)
+Metal7_d=geomOr(Metal7_d Metal7_d_pin)
+Metal7_p=geomOr(Metal7_p Metal7_p_pin)
+Metal8_d=geomOr(Metal8_d Metal8_d_pin)
+Metal8_p=geomOr(Metal8_p Metal8_p_pin)
+Metal9_d=geomOr(Metal9_d Metal9_d_pin)
+Metal9_p=geomOr(Metal9_p Metal9_p_pin)
+Metal10_d=geomOr(Metal10_d Metal10_d_pin)
+Metal10_p=geomOr(Metal10_p Metal10_p_pin)
+Metal11_d=geomOr(Metal11_d Metal11_d_pin)
+Metal11_p=geomOr(Metal11_p Metal11_p_pin)
+Nburied=geomOr(Nburied Nburied_pin)
+Nimp=geomOr(Nimp Nimp_pin)
+Nwell=geomOr(Nwell Nwell_pin)
+Pimp=geomOr(Pimp Pimp_pin)
+Poly=geomOr(Poly Poly_pin)
+Psub=geomOr(Psub Psub_pin)
+
+; Metal1_v=Metal1_p and Metal1_d
+Metal1_v=geomAnd(Metal1_d Metal1_p)
+
+; Metal2_v=Metal2_p and Metal2_d
+Metal2_v=geomAnd(Metal2_d Metal2_p)
+
+; Metal3_v=Metal3_p and Metal3_d
+Metal3_v=geomAnd(Metal3_d Metal3_p)
+
+; Metal4_v=Metal4_p and Metal4_d
+Metal4_v=geomAnd(Metal4_d Metal4_p)
+
+; Metal5_v=Metal5_p and Metal5_d
+Metal5_v=geomAnd(Metal5_d Metal5_p)
+
+; Metal6_v=Metal6_p and Metal6_d
+Metal6_v=geomAnd(Metal6_d Metal6_p)
+
+; Metal7_v=Metal7_p and Metal7_d
+Metal7_v=geomAnd(Metal7_d Metal7_p)
+
+; Metal8_v=Metal8_p and Metal8_d
+Metal8_v=geomAnd(Metal8_d Metal8_p)
+
+; Metal9_v=Metal9_p and Metal9_d
+Metal9_v=geomAnd(Metal9_d Metal9_p)
+
+; Metal10_v=Metal10_p and Metal10_d
+Metal10_v=geomAnd(Metal10_d Metal10_p)
+
+; Metal11_v=Metal11_p and Metal11_d
+Metal11_v=geomAnd(Metal11_d Metal11_p)
+
+
+; Metal1_d_n=if MergePinAndNet Metal1_d or Metal1_n else Metal1_d
+if( avSwitch("MergePinAndNet") then
+    Metal1_d_n=geomOr(Metal1_d Metal1_n)
+else
+    Metal1_d_n=Metal1_d
+)
+
+; Metal1=Metal1_d_n or Metal1_p or Metal1_f
+L59680=geomOr(Metal1_d_n Metal1_p)
+Metal1=geomOr(L59680 Metal1_f)
+
+; Metal2_d_n=if MergePinAndNet Metal2_d or Metal2_n else Metal2_d
+if( avSwitch("MergePinAndNet") then
+    Metal2_d_n=geomOr(Metal2_d Metal2_n)
+else
+    Metal2_d_n=Metal2_d
+)
+
+; Metal2=Metal2_d_n or Metal2_p or Metal2_f
+L17344=geomOr(Metal2_d_n Metal2_p)
+Metal2=geomOr(L17344 Metal2_f)
+
+
+; Metal3_d_n=if MergePinAndNet Metal3_d or Metal3_n else Metal3_d
+if( avSwitch("MergePinAndNet") then
+    Metal3_d_n=geomOr(Metal3_d Metal3_n)
+else
+    Metal3_d_n=Metal3_d
+)
+
+; Metal3=Metal3_d_n or Metal3_p or Metal3_f
+L92288=geomOr(Metal3_d_n Metal3_p)
+Metal3=geomOr(L92288 Metal3_f)
+
+; Metal4_d_n=if MergePinAndNet Metal4_d or Metal4_n else Metal4_d
+if( avSwitch("MergePinAndNet") then
+    Metal4_d_n=geomOr(Metal4_d Metal4_n)
+else
+    Metal4_d_n=Metal4_d
+)
+
+; Metal4=Metal4_d_n or Metal4_p or Metal4_f
+L34624=geomOr(Metal4_d_n Metal4_p)
+Metal4=geomOr(L34624 Metal4_f)
+
+; Metal5_d_n=if MergePinAndNet Metal5_d or Metal5_n else Metal5_d
+if( avSwitch("MergePinAndNet") then
+    Metal5_d_n=geomOr(Metal5_d Metal5_n)
+else
+    Metal5_d_n=Metal5_d
+)
+
+; Metal5=Metal5_d_n or Metal5_p or Metal5_f
+L76960=geomOr(Metal5_d_n Metal5_p)
+Metal5=geomOr(L76960 Metal5_f)
+
+; Metal6_d_n=if MergePinAndNet Metal6_d or Metal6_n else Metal6_d
+if( avSwitch("MergePinAndNet") then
+    Metal6_d_n=geomOr(Metal6_d Metal6_n)
+else
+    Metal6_d_n=Metal6_d
+)
+
+; Metal6=Metal6_d_n or Metal6_p or Metal6_f
+L19296=geomOr(Metal6_d_n Metal6_p)
+Metal6=geomOr(L19296 Metal6_f)
+
+; Metal7_d_n=if MergePinAndNet Metal7_d or Metal7_n else Metal7_d
+if( avSwitch("MergePinAndNet") then
+    Metal7_d_n=geomOr(Metal7_d Metal7_n)
+else
+    Metal7_d_n=Metal7_d
+)
+
+; Metal7=Metal7_d_n or Metal7_p or Metal7_f
+L38368=geomOr(Metal7_d_n Metal7_p)
+Metal7=geomOr(L38368 Metal7_f)
+
+; Metal8_d_n=if MergePinAndNet Metal8_d or Metal8_n else Metal8_d
+if( avSwitch("MergePinAndNet") then
+    Metal8_d_n=geomOr(Metal8_d Metal8_n)
+else
+    Metal8_d_n=Metal8_d
+)
+
+; Metal8=Metal8_d_n or Metal8_p or Metal8_f
+L96032=geomOr(Metal8_d_n Metal8_p)
+Metal8=geomOr(L96032 Metal8_f)
+
+; Metal9_d_n=if MergePinAndNet Metal9_d or Metal9_n else Metal9_d
+if( avSwitch("MergePinAndNet") then
+    Metal9_d_n=geomOr(Metal9_d Metal9_n)
+else
+    Metal9_d_n=Metal9_d
+)
+
+; Metal9=Metal9_d_n or Metal9_p or Metal9_f
+L53696=geomOr(Metal9_d_n Metal9_p)
+Metal9=geomOr(L53696 Metal9_f)
+
+; Metal10_d_n=if MergePinAndNet Metal10_d or Metal10_n else Metal10_d
+if( avSwitch("MergePinAndNet") then
+    Metal10_d_n=geomOr(Metal10_d Metal10_n)
+else
+    Metal10_d_n=Metal10_d
+)
+
+; Metal10=Metal10_d_n or Metal10_p or Metal10_f
+L53676=geomOr(Metal10_d_n Metal10_p)
+Metal10=geomOr(L53676 Metal10_f)
+
+; Metal11_d_n=if MergePinAndNet Metal11_d or Metal11_n else Metal11_d
+if( avSwitch("MergePinAndNet") then
+    Metal11_d_n=geomOr(Metal11_d Metal11_n)
+else
+    Metal11_d_n=Metal11_d
+)
+
+; Metal11=Metal11_d_n or Metal11_p or Metal11_f
+L53686=geomOr(Metal11_d_n Metal11_p)
+Metal11=geomOr(L53686 Metal11_f)
+
+;; Metal Fillings
+
+procedure( metalFill(vLayer1 vSquareSize vTileSize vTileSpace)
+
+  metx_size = geomSize( vLayer1 0.600 )
+  metx_incl_hull_out = geomSnap( generateHull( metx_size
+                                               heightHull
+                                               coarseGrid 0.100 )
+                                 0.005 )
+  if( avSwitch("useBackground") then
+      metx_hull_rev = geomAndNot( bulk metx_incl_hull_out)
+  else
+      metx_hull_rev = geomAndNot( prBoundary metx_incl_hull_out)
+  )
+  generateRectangle( metx_hull_rev
+                     tileSize eval( vTileSize )
+                     tileSpacing eval( vTileSpace )
+                     eval( vSquareSize )
+                     keepIn
+                   )
+) ;metalFill Procedure End
+
+vSquareSize = 0.5
+vTileSize = 0.5
+vTileSpace = 0.3
+
+met1_fill = metalFill(Metal1 vSquareSize vTileSize vTileSpace)
+met2_fill = metalFill(Metal2 vSquareSize vTileSize vTileSpace)
+met3_fill = metalFill(Metal3 vSquareSize vTileSize vTileSpace)
+met4_fill = metalFill(Metal4 vSquareSize vTileSize vTileSpace)
+met5_fill = metalFill(Metal5 vSquareSize vTileSize vTileSpace)
+met6_fill = metalFill(Metal6 vSquareSize vTileSize vTileSpace)
+met7_fill = metalFill(Metal7 vSquareSize vTileSize vTileSpace)
+met8_fill = metalFill(Metal8 vSquareSize vTileSize vTileSpace)
+met9_fill = metalFill(Metal9 vSquareSize vTileSize vTileSpace)
+met10_fill = metalFill(Metal10 vSquareSize vTileSize vTileSpace)
+met11_fill = metalFill(Metal11 vSquareSize vTileSize vTileSpace)
+
+) ; drcExtractRules complete

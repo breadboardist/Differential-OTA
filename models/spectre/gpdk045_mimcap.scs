@@ -1,0 +1,97 @@
+simulator lang=spectre
+library gpdk045
+
+section tt_mim
+parameters mimfacator=1
+include "gpdk045_mimcap.scs" section=cap
+endsection tt_mim
+
+section ss_mim
+parameters mimfacator=1.15
+include "gpdk045_mimcap.scs" section=cap
+endsection ss_mim
+
+section ff_mim
+parameters mimfacator=0.85
+include "gpdk045_mimcap.scs" section=cap
+endsection ff_mim
+
+section mc_mim
+include "gpdk045_mimcap.scs" section=stat_mim
+parameters    par_mimfacator             =    var_mimfacator        
+parameters    mimfacator                 =   1+0.05*par_mimfacator                      
+include "gpdk045_mimcap.scs" section=cap
+endsection mc_mim
+
+section stat_mim        
+parameters      random_mimfacator        = 0
+parameters     var_mimfacator            =     random_mimfacator   
+statistics {
+   process {     
+            vary    random_mimfacator               dist=gauss std=1/1  
+                    }
+    }   
+endsection stat_mim
+
+
+section tt3_mim
+parameters mimfacator_b=1
+include "gpdk045_mimcap.scs" section=cap3
+endsection tt3_mim
+
+section ss3_mim
+parameters mimfacator_b=1.15
+include "gpdk045_mimcap.scs" section=cap3
+endsection ss3_mim
+
+section ff3_mim
+parameters mimfacator_b=0.85
+include "gpdk045_mimcap.scs" section=cap3
+endsection ff3_mim
+
+section mc3_mim
+include "gpdk045_mimcap.scs" section=stat3_mim
+parameters    par_mimfacator_b             =    var_mimfacator_b        
+parameters    mimfacator_b                 =   1+0.05*par_mimfacator_b                      
+include "gpdk045_mimcap.scs" section=cap3
+endsection mc3_mim
+
+section stat3_mim        
+parameters      random_mimfacator_b        = 0
+parameters     var_mimfacator_b            =     random_mimfacator_b   
+statistics {
+   process {     
+            vary    random_mimfacator_b               dist=gauss std=1/1  
+                    }
+    }   
+endsection stat3_mim
+
+
+section  cap
+
+subckt mimcap (n1 n2)
+parameters w=1u l=1u
++ cmim_para=(w * l) * 1.025e-3 + 2 * (w + l)* 2.425e-10
+model cmim_cap capacitor c=1.0f cj=1e-3 cjsw=1e-10 coeffs=[6.16e-5 -2.05e-5] tc1=-5.225e-5 tc2=1.00e-8 tnom=25
+c1 (n1 n2) cmim_cap c=cmim_para*mimfacator
+ends mimcap 
+
+endsection cap
+
+section  cap3
+
+subckt gpdk045_mimcap (n1 n2 body)
+parameters w=1u l=1u
++ cmim_para_b=(w * l ) * 1.025e-3 + 2 * (w + l)* 2.425e-10
+model cmim_cap3 capacitor c=1.0f cj=1e-3 cjsw=1e-10 coeffs=[6.16e-5 -2.05e-5] tc1=-5.225e-5 tc2=1.00e-8 tnom=25
+l1 (n1 n11) inductor l=(w*1e6*0.11-l*1e6*0.15+10.7)*1e-12
+r1 (n11 n22 ) resistor r=(8000/(w*1e6)/(l*1e6)+150)*1e-3
+c1 (n22 n33) cmim_cap3 c=cmim_para_b*mimfacator_b
+r2 (n33 n44 ) resistor r=(3000/(l*1e6)/(w*1e6)+l*1e6/(w*1e6)*28+260+w*1e6*11)*1e-3
+l2 (n44 n2) inductor l=(w*1e6*0.11-l*1e6*0.15+10.7)*1e-12
+c2 (n33 body) capacitor c=(((w*1e6+0.8)*(l*1e6+0.8)+((w*1e6+3.4)*4.4))*0.0396+(l*1e6+0.8)*0.01+1.0093)*1e-15
+ends gpdk045_mimcap 
+
+endsection cap3
+ 
+endlibrary gpdk045 

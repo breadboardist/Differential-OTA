@@ -1,0 +1,676 @@
+simulator lang=spectre
+library gpdk045
+//       3.LIB TT_DIO                                                          *
+//              SS_DIO                                                         *
+//              FF_DIO                                                         *
+//              MC_DIO                                                         *
+//         ( 1.1V Standard-Vt P+/NW, N+/PW diode )                             *
+//                                                                             *
+//       4.LIB TT_DIO_hvt                                                      *
+//              SS_DIO_hvt                                                     *
+//              FF_DIO_hvt                                                     *
+//              MC_DIO_hvt                                                     *
+//         ( 1.1V High-Vt P+/NW, and N+/PW diode )                             *
+//                                                                             *
+//       5.LIB TT_DIO_lvt                                                      *
+//              SS_DIO_lvt                                                     *
+//              FF_DIO_lvt                                                     *
+//              MC_DIO_lvt                                                     *
+//         ( 1.1V Low-Vt P+/NW, and N+/PW diode )                              *
+//                                                                             *
+//       6.LIB TT_DIO_18                                                       *
+//              SS_DIO_18                                                      *
+//              FF_DIO_18                                                      *
+//              MC_DIO_18                                                      *
+//         ( 1.8V P+/NW, and N+/PW diode )                                     *
+//                                                                             *
+//       7.LIB TT_DIO_na                                                       *
+//              SS_DIO_na                                                      *
+//              FF_DIO_na                                                      *
+//              MC_DIO_na                                                      *
+//         ( 1.1V native N+/PW diode )                                         *
+//                                                                             *
+//       8.LIB TT_DIO_na18                                                     *
+//              SS_DIO_na18                                                    *
+//              FF_DIO_na18                                                    *
+//              MC_DIO_na18                                                    *
+//         ( 1.8V native N+/PW diode )                                         *
+//                                                                             *
+
+
+//  **************************************************************
+//                                                              *
+//              1.1V Standard Vt Junction DIODE MODELS          *
+//                                                              *
+//  *************************************************************
+
+// **************************************** 
+//             TYPICAL LIBRARY            *
+// ****************************************
+section tt_dio
+parameters is_dio=1
+parameters isw_dio=1
+parameters n_dio=1
+parameters rs_dio=1
+parameters cjo_dio=1
+parameters cjsw_dio=1
+include "gpdk045_diode.scs" section=dio
+endsection tt_dio
+
+// **************************************** 
+//             SLOW LIBRARY               *
+// ****************************************
+
+section ss_dio
+parameters is_dio=0.8
+parameters isw_dio=0.4
+parameters n_dio=1.003
+parameters rs_dio=1.15
+parameters cjo_dio=1.08
+parameters cjsw_dio=1.08
+include "gpdk045_diode.scs" section=dio
+endsection ss_dio
+
+// **************************************** 
+//             FAST LIBRARY               *
+// ****************************************
+section ff_dio
+parameters is_dio=1.2
+parameters isw_dio=1.6
+parameters n_dio=0.997
+parameters rs_dio=0.85
+parameters cjo_dio=0.92
+parameters cjsw_dio=0.92
+include "gpdk045_diode.scs" section=dio
+endsection ff_dio
+
+//  *************************************************
+//                  STATISTICAL LIBRARY             *
+//  *************************************************
+
+section mc_dio
+parameters statis_dio=0
+parameters dio_stat=statis_dio
+parameters is_dio=1.0000e+000 + ( -6.6666e-002) * dio_stat
+parameters isw_dio=1.0000e+000 + ( -2.0000e-001) * dio_stat
+parameters n_dio=1.0000e+000 + (1.0000e-003) * dio_stat
+parameters rs_dio=1.0000e+000 + (5.0000e-002) * dio_stat
+parameters cjo_dio=1.0000e+000 + (2.6666e-002) * dio_stat
+parameters cjsw_dio=1.0000e+000 + (2.6666e-002) * dio_stat
+
+statistics {
+    process {
+        vary statis_dio dist=gauss std=1.0000e+000/1
+        }
+    }
+    
+include "gpdk045_diode.scs" section=dio
+endsection mc_dio
+
+section dio
+
+//  *************************************************************
+//                       MODEL OF N+/PW DIODE                   *
+//                                                              *
+//  *************************************************************   
+
+model gpdk045_ndio diode  
++level = 1                     tlev = 1                      tlevc = 1 
++imax = 1e40                   minr = 1e-10                  ibv = 0.03                    
++ik = 8.007637E10              is = 1.985439E-7*is_dio       n = 1.241062*n_dio                  
++rs = 8.701365E-11*rs_dio      bv = 9.2                      area = 3.6E-8                 
++cjo = 1.177208E-3*cjo_dio     vj = 0.5                      m = 0.249998                      
++fc = 0                        cjsw = 6.561678E-11*cjsw_dio  vjsw = 0.73
++mjsw = 9.48645E-3             tnom = 25                     eg = 1.16                     
++xti = 3                       cta = 8E-4                    ctp = 3.6E-4                  
++trs = 2.4E-3                  isw = 7.240096E-13*isw_dio    perim = 7.32E-4               
++tbv1 = -1E-3                  pta = 1E-3                    ptp = 1.85E-3 
++allow_scaling=1    
+                                      
+//  *************************************************************
+//                       MODEL OF P+/NW DIODE                   *
+//                                                              *
+//  *************************************************************                                                                              
+
+model gpdk045_pdio diode
++level = 1                     tlev = 1                      tlevc = 1  
++imax = 1e40                   minr = 1e-10                  ibv = 0.03                    
++ik = 1.225265E10              is = 1.657517E-7*is_dio       n = 1.223746 *n_dio                  
++rs = 1.1E-10*rs_dio           bv = 9.2                      area = 3.6E-8                 
++cjo = 1.308015E-3*cjo_dio     vj = 0.8                      m = 0.349995                      
++fc = 0                        cjsw = 7.604536E-11*cjsw_dio  vjsw = 0.44
++mjsw = 9.369543E-3            tnom = 25                     eg = 1.17                     
++xti = 3                       cta = 8E-4                    ctp = 2.4E-4                  
++trs = 2.4E-3                  isw = 6.075E-13*isw_dio       perim = 7.32E-4               
++tbv1 = -1E-3                  pta = 1.85E-3                 ptp = 1.8E-3               
++allow_scaling=1 
+endsection dio
+
+
+//  *************************************************************
+//                                                              *
+//               1.1V Hvt Junction DIODE MODELS                 *
+//                                                              *
+//  *************************************************************
+ 
+// **************************************** 
+//             TYPICAL LIBRARY            *
+// ****************************************
+
+section tt_dio_hvt
+parameters is_dio_hvt=1
+parameters isw_dio_hvt=1
+parameters n_dio_hvt=1
+parameters rs_dio_hvt=1
+parameters cjo_dio_hvt=1
+parameters cjsw_dio_hvt=1
+include "gpdk045_diode.scs" section=dio_hvt
+endsection tt_dio_hvt
+
+// **************************************** 
+//             SLOW LIBRARY               *
+// ****************************************
+
+section ss_dio_hvt
+parameters is_dio_hvt=0.8
+parameters isw_dio_hvt=0.4
+parameters n_dio_hvt=1.003
+parameters rs_dio_hvt=1.15
+parameters cjo_dio_hvt=1.08
+parameters cjsw_dio_hvt=1.08
+include "gpdk045_diode.scs" section=dio_hvt
+endsection ss_dio_hvt
+
+// **************************************** 
+//             FAST LIBRARY               *
+// ****************************************
+
+section ff_dio_hvt
+parameters is_dio_hvt=1.2
+parameters isw_dio_hvt=1.6
+parameters n_dio_hvt=0.997
+parameters rs_dio_hvt=0.85
+parameters cjo_dio_hvt=0.92
+parameters cjsw_dio_hvt=0.92
+include "gpdk045_diode.scs" section=dio_hvt
+endsection ff_dio_hvt
+
+
+//  *************************************************
+//                  STATISTICAL LIBRARY             *
+//  *************************************************
+
+section mc_dio_hvt
+parameters statis_dio_hvt=0
+parameters dio_hvt_stat=statis_dio_hvt
+parameters is_dio_hvt=1.0000e+000 + ( -6.6666e-002) * dio_hvt_stat
+parameters isw_dio_hvt=1.0000e+000 + ( -2.0000e-001) * dio_hvt_stat
+parameters n_dio_hvt=1.0000e+000 + (1.0000e-003) * dio_hvt_stat
+parameters rs_dio_hvt=1.0000e+000 + (5.0000e-002) * dio_hvt_stat
+parameters cjo_dio_hvt=1.0000e+000 + (2.6666e-002) * dio_hvt_stat
+parameters cjsw_dio_hvt=1.0000e+000 + (2.6666e-002) * dio_hvt_stat
+
+statistics {
+    process {
+        vary statis_dio_hvt dist=gauss std=1.0000e+000/1
+        }
+    }
+    
+include "gpdk045_diode.scs" section=dio_hvt
+endsection mc_dio_hvt
+
+
+section dio_hvt
+
+//  *************************************************************
+//                       MODEL OF N+/PW DIODE                   *
+//                                                              *
+//  *************************************************************
+
+model gpdk045_ndio_hvt diode
++level = 1                      tlev = 1                        tlevc = 1 
++imax = 1e40                    minr = 1e-10                    ibv = 0.03                    
++ik = 1.740496E9                is = 1.896997E-7*is_dio_hvt     n = 1.198652*n_dio_hvt              
++rs =  9.016058E-11*rs_dio_hvt  bv = 10                         area = 3.6E-8                 
++cjo = 7.977971E-4*cjo_dio_hvt  vj = 0.7                        m = 0.367081                      
++fc = 0                         cjsw = 4.4E-11*cjsw_dio_hvt     vjsw = 0.8  
++mjsw = 0.01                    tnom = 25                       eg = 1.16                     
++xti = 3                        cta = 8E-4                      ctp = 1E-3                    
++trs = 2.4E-3                   isw = 5.987257E-13*isw_dio_hvt  perim = 7.32E-4               
++tbv1 = -6E-4                   pta = 1E-3                      ptp = 1.85E-3   
++allow_scaling=1    
+          
+//  *************************************************************
+//                       MODEL OF P+/NW DIODE                   *
+//                                                              *
+//  *************************************************************
+
+model gpdk045_pdio_hvt diode
++level = 1                      tlev = 1                          tlevc = 1 
++imax = 1e40                    minr = 1e-10                      ibv = 0.03                    
++ik = 1.729632E9                is = 1.34302E-7*is_dio_hvt        n = 1.115577*n_dio_hvt              
++rs = 1.307036E-10*rs_dio_hvt   bv = 9.1                          area = 3.6E-8                 
++cjo = 1.348809E-3*cjo_dio_hvt  vj = 0.8                          m =  0.359997                      
++fc = 0                         cjsw = 7.635601E-11*cjsw_dio_hvt  vjsw = 0.71    
++mjsw = 9.344869E-3             tnom = 25                         eg = 1.16                     
++xti = 3                        cta = 8.24E-4                     ctp = 2.5E-4                  
++trs = 2.4E-3                   isw = 4.21575E-13*isw_dio_hvt     perim = 7.32E-4               
++tbv1 = -1E-3                   pta = 1.9E-3                      ptp = 1.8E-3              
++allow_scaling=1      
+
+endsection dio_hvt
+
+
+//  *************************************************************
+//                                                              *
+//              1.1V Low Vt Junction DIODE MODELS               *
+//                                                              *
+//  *************************************************************
+
+// **************************************** 
+//             TYPICAL LIBRARY            *
+// ****************************************
+
+section tt_dio_lvt
+parameters is_dio_lvt=1
+parameters isw_dio_lvt=1
+parameters n_dio_lvt=1
+parameters rs_dio_lvt=1
+parameters cjo_dio_lvt=1
+parameters cjsw_dio_lvt=1
+include "gpdk045_diode.scs" section=dio_lvt
+endsection tt_dio_lvt
+
+// **************************************** 
+//             SLOW LIBRARY               *
+// ****************************************
+
+section ss_dio_lvt
+parameters is_dio_lvt=0.8
+parameters isw_dio_lvt=0.4
+parameters n_dio_lvt=1.003
+parameters rs_dio_lvt=1.15
+parameters cjo_dio_lvt=1.08
+parameters cjsw_dio_lvt=1.08
+include "gpdk045_diode.scs" section=dio_lvt
+endsection ss_dio_lvt
+
+// **************************************** 
+//             FAST LIBRARY               *
+// ****************************************
+
+section ff_dio_lvt
+parameters is_dio_lvt=1.2
+parameters isw_dio_lvt=1.6
+parameters n_dio_lvt=0.997
+parameters rs_dio_lvt=0.85
+parameters cjo_dio_lvt=0.92
+parameters cjsw_dio_lvt=0.92
+include "gpdk045_diode.scs" section=dio_lvt
+endsection ff_dio_lvt
+
+
+//  *************************************************
+//                  STATISTICAL LIBRARY             *
+//  *************************************************
+
+section mc_dio_lvt
+parameters statis_dio_lvt=0
+parameters dio_lvt_stat=statis_dio_lvt
+parameters is_dio_lvt=1.0000e+000 + ( -6.6666e-002) * dio_lvt_stat
+parameters isw_dio_lvt=1.0000e+000 + ( -2.0000e-001) * dio_lvt_stat
+parameters n_dio_lvt=1.0000e+000 + (1.0000e-003) * dio_lvt_stat
+parameters rs_dio_lvt=1.0000e+000 + (5.0000e-002) * dio_lvt_stat
+parameters cjo_dio_lvt=1.0000e+000 + (2.6666e-002) * dio_lvt_stat
+parameters cjsw_dio_lvt=1.0000e+000 + (2.6666e-002) * dio_lvt_stat
+
+statistics {
+    process {
+        vary statis_dio_lvt dist=gauss std=1.0000e+000/1
+        }
+    }
+    
+include "gpdk045_diode.scs" section=dio_lvt
+endsection mc_dio_lvt
+
+section dio_lvt
+
+//  *************************************************************
+//                       MODEL OF N+/PW DIODE                   *
+//                                                              *
+//  *************************************************************
+
+model gpdk045_ndio_lvt diode
++level = 1                      tlev = 1                           tlevc = 1 
++imax = 1e40                    minr = 1e-10                       ibv = 0.03                    
++ik = 1.577316E10               is = 2.392504E-7 *is_dio_lvt       n = 1.325866*n_dio_lvt              
++rs = 1.423594E-10*rs_dio_lvt   bv = 9.812                         area = 3.6E-8                 
++cjo = 1.177208E-3*cjo_dio_lvt  vj = 0.5                           m = 0.24999                      
++fc = 0                         cjsw = 6.561678E-11*cjsw_dio_lvt   vjsw = 0.73 
++mjsw = 9.48645E-3              tnom = 25                          eg = 1.16                     
++xti = 3                        cta = 7.8E-4                       ctp = 3.52E-4                 
++trs = 2.4E-3                   isw = 4.460224E-13 *isw_dio_lvt    perim = 7.32E-4               
++tbv1 = -1E-3                   pta = 1E-3                         ptp = 1.8E-3                
++allow_scaling=1        
+
+//  *************************************************************
+//                       MODEL OF P+/NW DIODE                   *
+//                                                              *
+//  *************************************************************             
+
+model gpdk045_pdio_lvt diode
++level = 1                      tlev = 1                          tlevc = 1   
++imax = 1e40                    minr = 1e-10                      ibv = 0.03                    
++ik = 1.225265E10               is = 1.657517E-7 *is_dio_lvt      n = 1.223746*n_dio_lvt              
++rs = 1E-10*rs_dio_lvt          bv = 9                            area = 3.6E-8                 
++cjo = 1.308014E-3*cjo_dio_lvt  vj = 0.8                          m = 0.349996                      
++fc = 0                         cjsw = 8.25345E-11*cjsw_dio_lvt   vjsw = 0.45 
++mjsw = 9.514807E-3             tnom = 25                         eg = 1.16                     
++xti = 3                        cta = 8                           ctp = 2.3E-4                  
++trs = 2.4E-3                   isw = 6.075E-13*isw_dio_lvt       perim = 7.32E-4                          
++tbv1 = -1E-3                   pta = 1.8E-3                      ptp = 1.8E-3       
++allow_scaling=1 
+
+endsection dio_lvt
+
+
+//  *************************************************************
+//                                                              *
+//                 1.8 IO Junction DIODE MODELS                 *
+//                                                              *
+//  *************************************************************
+
+// **************************************** 
+//             TYPICAL LIBRARY            *
+// ****************************************
+
+section tt_dio_18
+parameters is_dio_18=1.0
+parameters isw_dio_18=1.0
+parameters n_dio_18=1.000
+parameters rs_dio_18=1.0
+parameters cjo_dio_18=1.00
+parameters cjsw_dio_18=1.00
+include "gpdk045_diode.scs" section=dio_18
+endsection tt_dio_18
+
+// **************************************** 
+//             SLOW LIBRARY               *
+// ****************************************
+
+section ss_dio_18
+parameters is_dio_18=0.8
+parameters isw_dio_18=0.4
+parameters n_dio_18=1.003
+parameters rs_dio_18=1.15
+parameters cjo_dio_18=1.08
+parameters cjsw_dio_18=1.08
+include "gpdk045_diode.scs" section=dio_18
+endsection ss_dio_18
+
+// **************************************** 
+//             FAST LIBRARY               *
+// ****************************************
+
+section ff_dio_18
+parameters is_dio_18=1.2
+parameters isw_dio_18=1.6
+parameters n_dio_18=0.997
+parameters rs_dio_18=0.85
+parameters cjo_dio_18=0.92
+parameters cjsw_dio_18=0.92
+include "gpdk045_diode.scs" section=dio_18
+endsection ff_dio_18
+
+//  *************************************************
+//                  STATISTICAL LIBRARY             *
+//  *************************************************
+
+section mc_dio_18
+parameters statis_dio_18=0
+parameters dio_18_stat=statis_dio_18
+parameters is_dio_18=1.0000e+000 + ( -6.6666e-002) * dio_18_stat
+parameters isw_dio_18=1.0000e+000 + ( -2.0000e-001) * dio_18_stat
+parameters n_dio_18=1.0000e+000 + (1.0000e-003) * dio_18_stat
+parameters rs_dio_18=1.0000e+000 + (5.0000e-002) * dio_18_stat
+parameters cjo_dio_18=1.0000e+000 + (2.6666e-002) * dio_18_stat
+parameters cjsw_dio_18=1.0000e+000 + (2.6666e-002) * dio_18_stat
+
+statistics {
+    process {
+        vary statis_dio_18 dist=gauss std=1.0000e+000/1
+        }
+    }
+    
+include "gpdk045_diode.scs" section=dio_18
+endsection mc_dio_18
+
+section dio_18
+
+//  *************************************************************
+//                       MODEL OF N+/PW DIODE                   *
+//                                                              *
+//  *************************************************************
+
+model gpdk045_ndio_2v diode
++level = 1                     tlev = 1                          tlevc = 1   
++imax = 1e40                   minr = 1e-10                      ibv = 0.03                    
++ik = 4.024677E9               is =  5.385886E-7*is_dio_18       n = 1.232037*n_dio_18               
++rs = 1E-10*rs_dio_18          bv = 10.5                         area = 3.6E-8                 
++cjo = 1.154537E-3*cjo_dio_18  vj = 0.71                         m = 0.322726                      
++fc = 0                        cjsw = 1.761112E-10*cjsw_dio_18   vjsw = 1.2   
++mjsw = 0.223089               tnom = 25                         eg = 1.16                     
++xti = 3                       cta = 8.91E-4                     ctp = 4.45E-4                 
++trs = 2.4E-3                  isw = 3.451519E-12*isw_dio_18     perim = 7.32E-4               
++tbv1 = -9E-4                  pta = 1.5E-3                      ptp = 1.4E-3          
++allow_scaling=1     
+          
+//  *************************************************************
+//                       MODEL OF P+/NW DIODE                   *
+//                                                              *
+//  *************************************************************              
+
+model gpdk045_pdio_2v diode
++level = 1                     tlev = 1                          tlevc = 1     
++imax = 1e40                   minr = 1e-10                      ibv = 0.03                    
++ik = 1.369323E10              is = 4.318717E-7*is_dio_18        n = 1.223675*n_dio_18               
++rs =1.100467E-10*rs_dio_18    bv = 9.6                          area = 3.6E-8                 
++cjo = 1.35181E-3*cjo_dio_18   vj = 0.76                         m = 0.327183                      
++fc = 0                        cjsw = 8.581655E-11*cjsw_dio_18   vjsw = 0.2  
++mjsw = 5.41039E-2             tnom = 25                         eg = 1.16                     
++xti = 3                       cta = 8.6E-4                      ctp = 3.2E-4                  
++trs = 2.4E-3                  isw = 1.834696E-12*isw_dio_18     perim = 7.32E-4               
++tbv1 = -8.5E-4                pta = 1.5E-3                      ptp = 1.9E-3           
++allow_scaling=1 
+
+endsection dio_18
+
+
+//  *************************************************************
+//                                                              *
+//              1.1V Native Core Junction DIODE MODELS          *
+//                                                              *
+//  *************************************************************
+
+// **************************************** 
+//             TYPICAL LIBRARY            *
+// ****************************************
+
+section tt_dio_na
+parameters is_dio_na=1.0
+parameters isw_dio_na=1.0
+parameters n_dio_na=1.000
+parameters rs_dio_na=1.0
+parameters cjo_dio_na=1.00
+parameters cjsw_dio_na=1.00
+include "gpdk045_diode.scs" section=dio_na
+endsection tt_dio_na
+
+// **************************************** 
+//             SLOW LIBRARY               *
+// ****************************************
+
+section ss_dio_na
+parameters is_dio_na=0.8
+parameters isw_dio_na=0.4
+parameters n_dio_na=1.003
+parameters rs_dio_na=1.15
+parameters cjo_dio_na=1.08
+parameters cjsw_dio_na=1.08
+include "gpdk045_diode.scs" section=dio_na
+endsection ss_dio_na
+
+// **************************************** 
+//             FAST LIBRARY               *
+// ****************************************
+
+section ff_dio_na
+parameters is_dio_na=1.2
+parameters isw_dio_na=1.6
+parameters n_dio_na=0.997
+parameters rs_dio_na=0.85
+parameters cjo_dio_na=0.92
+parameters cjsw_dio_na=0.92
+include "gpdk045_diode.scs" section=dio_na
+endsection ff_dio_na
+
+//  *************************************************
+//                  STATISTICAL LIBRARY             *
+//  *************************************************
+
+section mc_dio_na
+parameters statis_dio_na=0
+parameters dio_na_stat=statis_dio_na
+parameters is_dio_na=1.0000e+000 + ( -6.6666e-002) * dio_na_stat
+parameters isw_dio_na=1.0000e+000 + ( -2.0000e-001) * dio_na_stat
+parameters n_dio_na=1.0000e+000 + (1.0000e-003) * dio_na_stat
+parameters rs_dio_na=1.0000e+000 + (5.0000e-002) * dio_na_stat
+parameters cjo_dio_na=1.0000e+000 + (2.6666e-002) * dio_na_stat
+parameters cjsw_dio_na=1.0000e+000 + (2.6666e-002) * dio_na_stat
+
+statistics {
+    process {
+        vary statis_dio_na dist=gauss std=1.0000e+000/1
+        }
+    }
+    
+include "gpdk045_diode.scs" section=dio_na
+endsection mc_dio_na
+
+section dio_na
+
+//  *************************************************************
+//                       MODEL OF N+/PW DIODE                   *
+//                                                              *
+//  *************************************************************
+
+model gpdk045_ndio_nvt diode
++level = 1                     tlev = 1                          tlevc = 1   
++imax = 1e40                   minr = 1e-10                      ibv = 0.03                    
++ik = 1.470233E11              is = 7.89286E-7*is_dio_na         n = 1.225041*n_dio_na               
++rs = 1.200399E-10*rs_dio_na   bv = 17.2                         area = 3.6E-8                 
++cjo = 1.668223E-4*cjo_dio_na  vj = 0.5                          m = 0.319946                      
++fc = 0                        cjsw = 1.60E-10*cjsw_dio_na       vjsw = 0.7
++mjsw = 1.11213E-2             tnom = 25                         eg = 1.16                     
++xti = 3                       cta = 2.2E-3                      ctp = 3.54E-4                 
++trs = 2.4E-3                  isw = 1.067566E-12*isw_dio_na     perim = 7.32E-4                                  
++tbv1 = -5E-4                  pta = 2.3E-3                      ptp = 5E-3              
++allow_scaling=1  
+
+endsection dio_na
+
+
+//  *************************************************************
+//                                                              *
+//               1.8V Native Junction DIODE MODELS              *
+//                                                              *
+//  *************************************************************
+
+// **************************************** 
+//             TYPICAL LIBRARY            *
+// ****************************************
+
+section tt_dio_na18
+parameters is_dio_na18=1
+parameters isw_dio_na18=1
+parameters n_dio_na18=1
+parameters rs_dio_na18=1
+parameters cjo_dio_na18=1
+parameters cjsw_dio_na18=1
+include "gpdk045_diode.scs" section=dio_na18
+endsection tt_dio_na18
+
+// **************************************** 
+//             SLOW LIBRARY               *
+// ****************************************
+
+section ss_dio_na18
+parameters is_dio_na18=0.8
+parameters isw_dio_na18=0.4
+parameters n_dio_na18=1.003
+parameters rs_dio_na18=1.15
+parameters cjo_dio_na18=1.08
+parameters cjsw_dio_na18=1.08
+include "gpdk045_diode.scs" section=dio_na18
+endsection ss_dio_na18
+
+// **************************************** 
+//             FAST LIBRARY               *
+// ****************************************
+section ff_dio_na18
+parameters is_dio_na18=1.2
+parameters isw_dio_na18=1.6
+parameters n_dio_na18=0.997
+parameters rs_dio_na18=0.85
+parameters cjo_dio_na18=0.92
+parameters cjsw_dio_na18=0.92
+include "gpdk045_diode.scs" section=dio_na18
+endsection ff_dio_na18
+
+//  *************************************************
+//                  STATISTICAL LIBRARY             *
+//  *************************************************
+
+section mc_dio_na18
+parameters statis_dio_na18=0
+parameters dio_na18_stat=statis_dio_na18
+parameters is_dio_na18=1.0000e+000 + ( -6.6666e-002) * dio_na18_stat
+parameters isw_dio_na18=1.0000e+000 + ( -2.0000e-001) * dio_na18_stat
+parameters n_dio_na18=1.0000e+000 + (1.0000e-003) * dio_na18_stat
+parameters rs_dio_na18=1.0000e+000 + (5.0000e-002) * dio_na18_stat
+parameters cjo_dio_na18=1.0000e+000 + (2.6666e-002) * dio_na18_stat
+parameters cjsw_dio_na18=1.0000e+000 + (2.6666e-002) * dio_na18_stat
+
+statistics {
+    process {
+        vary statis_dio_na18 dist=gauss std=1.0000e+000/1
+        }
+    }
+    
+include "gpdk045_diode.scs" section=dio_na18
+endsection mc_dio_na18
+
+section dio_na18
+
+//  *************************************************************
+//  *                     MODEL OF N+/Pwell DIODE               *
+//  *                                                           *
+//  *************************************************************              
+
+model gpdk045_ndio_2v_nvt diode
++level = 1                       tlev = 1                            tlevc = 1   
++imax = 1e40                     minr = 1e-10                        ibv = 0.03                    
++ik = 8.997264E9                 is = 1.075624E-6*is_dio_na18        n = 1.223513*n_dio_na18             
++rs = 1.210382E-10*rs_dio_na18   bv = 20.2                           area = 3.6E-8                 
++cjo = 1.668265E-4*cjo_dio_na18  vj = 0.4                            m = 0.314933                     
++fc = 0                          cjsw = 2.344674E-10*cjsw_dio_na18   vjsw =0.2
++mjsw = 2.32881E-2               tnom = 25                           eg = 1.16                     
++xti = 3                         cta = 3E-3                          ctp = 2E-4                    
++trs = 2.4E-3                    isw = 1.670095E-12*isw_dio_na18     perim = 7.32E-4               
++tbv1 = -8E-4                    pta = 2.3E-3                        ptp = 2E-4                  
++allow_scaling=1  
+
+endsection dio_na18
+
+
+endlibrary gpdk045

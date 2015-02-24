@@ -1,0 +1,30 @@
+\o Program:		@(#)$CDS: libManager version 32.10 03/28/2011 11:23 (cat91amd) $
+\o Sub version:		sub-version  s002 
+\o Arguments:		-unmapped -mpssession virtuoso11441 -mpshost eecad17.engr.sjsu.edu 
+\o Working Directory:	eecad17.engr.sjsu.edu:/home/na/nang9016/newcad/gpdk045_RFIC
+\o Qt version: 		4.5.3
+\o changeWorkingDir("/home/na/nang9016/newcad/gpdk045_RFIC") unnecessary.
+\o ddSetForcedLib("") unnecessary.
+\o Log file is "/home/na/nang9016/newcad/gpdk045_RFIC/libManager.log".
+\o Opening libManager window.
+\a nrSetWindowVisibility(cdsLibManager "show")
+\o MPS service: map window
+\o Library Manager customization server connected.
+\a nrSetCurrentWindow(cdsLibManager)
+\o  Error (cif): 'error while processing path' cifNormalizePathSorta : /htek/cads/cadence/ASSURA32/tools/assura/etc/avtech/avTech.
+\w Warning: The directory: '/htek/cads/cadence/ASSURA32/tools/assura/etc/avtech/avTech' does not exist
+\w 	but was defined in libFile '/home/na/nang9016/newcad/gpdk045_RFIC/cds.lib' for Lib 'avTech'.
+\a nrResizeWindow(cdsLibManager list(0 32 600 448))
+\a cdsLibManager->libListBox->value = "gpdk045"
+\a cdsLibManager->libLineEdit->value = "gpdk045"
+\a cdsLibManager->cellListBox->value = "assign2"
+\a cdsLibManager->cellLineEdit->value = "assign2"
+\a cdsLibManager->viewListBox->value = "schematic"
+\a cdsLibManager->viewLineEdit->value = "schematic"
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->viewListBox->value = "schematic"
+\o MPS request: edit design
+\a nrListItemAction(cdsLibManager->gdmXTView 1 0)
+\a nrSetWindowVisibility(cdsLibManager "hide")
+\o libManager is exiting.
+\a exit(0)

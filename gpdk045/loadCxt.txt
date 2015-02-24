@@ -1,0 +1,43 @@
+(procedure( (PasLoadLibContext libName cxtName)
+	let((tmpDir libPath flag) 
+	    if( (boundp('Pas) && listp(Pas) && procedurep((Pas->isBuilding)) && funcall((Pas->isBuilding)))
+		then
+		(flag = t)
+		else
+		if( isContextLoaded(cxtName)
+		    then
+		    (flag = t)
+		    else
+		    when((libPath = ddGetObjReadPath(ddGetObj(libName))) 
+			(tmpDir = makeTempFileName(sprintf(nil "%s/libInitXXXXX" 
+				    getTempDir()
+				)
+			    )) 
+			createDir(tmpDir) 
+			createDir(sprintf(nil "%s/%s" tmpDir "64bit")) 
+			shell(sprintf(nil "cd %s; ln -s %s/%s.cxt %s.cxt" tmpDir libPath cxtName
+				cxtName
+			    )
+			)
+			shell(sprintf(nil "cd %s/64bit; ln -s %s/%s64bit.cxt %s.cxt" tmpDir libPath cxtName
+				cxtName
+			    )
+			) 
+			printf("\tLoading context '%s' from library '%s' ... " cxtName libName) 
+			if( errset(loadContext(sprintf(nil "%s/%s.cxt" tmpDir cxtName)))
+			    then
+			    printf("done!\n")
+			    (flag = t)
+			    else
+			    printf("failed!\n")
+			) 
+			deleteFile(sprintf(nil "%s/64bit/%s.cxt" tmpDir cxtName)) 
+			deleteDir(sprintf(nil "%s/%s" tmpDir "64bit"))
+			deleteFile(sprintf(nil "%s/%s.cxt" tmpDir cxtName)) 
+			deleteDir(tmpDir)
+		    )
+		)
+	    ) flag
+	)
+    )
+)

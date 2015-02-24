@@ -1,0 +1,652 @@
+;/*************************************************************************
+;
+;  Title:        Diva LVS rules for GENERIC PDK Process
+;
+;*************************************************************************/
+
+
+;*********************
+;***** LVS RULES *****
+;*********************
+
+lvsRules(
+
+printf("\n GENERIC PDK LVS Rules\n")
+
+;***************
+;*** MOSFETS ***
+;***************
+
+;*****
+;combine parallel MOS devices (mosfets with different l's are not combined)
+;*****
+
+procedure(parallelMOS(m1 m2)
+prog((mt)
+  mt = ncons(nil)
+  when( and(m1->l m2->l)
+    unless(abs(m1->l - m2->l) < .005e-6
+      return("doNotCombine")
+    )
+  )
+  when( and(m1->w m2->w)
+    unless(m1->m
+      m1->m = 1
+    )
+    unless(m2->m
+      m2->m = 1
+    )
+    mt->w = m1->w * m1->m + m2->w * m2->m
+    mt->m = 1
+    mt->l = m1->l
+  )
+  return(mt)
+)
+)
+
+;*****
+;Compare Mosfets
+;(compare l / compare schematic combined w * m vs. layout combined w)
+;*****
+
+procedure(compareMOS(layMos schMos)
+  prog(nil
+    unless( and(layMos->w schMos->w layMos->l schMos->l)
+      sprintf(errorC
+          "Nil parameter: w:%g l:%g (layout) w:%g l:%g (schematic)"
+          layMos->w layMos->l schMos->w schMos->l)
+          return(errorC)
+    )
+
+    when(abs(layMos->w - schMos->w * schMos->m) > 0.01 * schMos->w * schMos->m
+    && abs(layMos->l - schMos->l) > 0.001 * schMos->l
+        sprintf(errorwl
+            "Gate w & l mismatch : total w:%g l:%g (layout) w:%g m:%g l:%g (schematic)"
+        float(layMos->w) float(layMos->l)
+        float(schMos->w) float(schMos->m) float(schMos->l)) 
+        return(errorwl)
+    )
+    when(abs(layMos->w - schMos->w * schMos->m) > 0.01 * schMos->w * schMos->m
+        sprintf(errorw "Gate w mismatch: total w:%g (layout) w:%g m:%g (schematic)"
+        float(layMos->w) float(schMos->w) float(schMos->m) )
+        return(errorw)
+    )
+    when(abs(layMos->l - schMos->l) > 0.001 * schMos->l
+        sprintf(errorl
+        "Gate length mismatch: %g layout to %g schematic"
+        float(layMos->l) float(schMos->l))
+        return(errorl)
+    )
+    return(nil)
+
+    ) ;end prog
+) ;end procedure
+
+
+;*****************
+;*** RESISTORS ***
+;*****************
+
+;*****
+;combine parallel resistors
+;*****
+
+procedure( (parallelRES r1 r2)
+   prog( (rt)
+
+       (rt = ncons(nil))
+       if( ((r1->l) && (r2->l) && (r1->w) && (r2->w)) then
+          when( and(r1->l r2->l)
+            unless(abs(r1->l - r2->l) < .005e-6
+              return("doNotCombine")
+            )
+          rt->l = r1->l
+          )
+           (rt->w = (r1->w + r2->w) )
+           return(rt)
+       else
+           return( sprintf( errorStr "doNotCombine" ))
+       ) ;end if
+
+   ) ;end prog
+) ;end procedure
+
+;*****
+;combine series resistors
+;*****
+
+procedure( (seriesRES r1 r2)
+   prog( (rt)
+
+       (rt = ncons(nil))
+       if( ((r1->l) && (r2->l) && (r1->w) && (r2->w)) then
+          when( and(r1->w r2->w)
+            unless(abs(r1->w - r2->w) < .005e-6
+              return("doNotCombine")
+            )
+          rt->w = r1->w
+          )
+           (rt->l = (r1->l + r2->l))
+           return(rt)
+       else
+          return( sprintf( errorStr "doNotCombine" ))
+       ) ;end if
+
+   ) ;end prog
+) ;end procedure
+
+;*****
+;Compare Resistor
+;(compare w and r)
+;*****
+
+procedure( (compareRES layRes schRes)
+   prog( (mismatchParam errorStr)
+        diffL = 0.0
+        diffW = 0.0
+        tol = 0.01
+
+        diffL = abs( layRes->l - schRes->l )
+            if( diffL > (tol * schRes->l) then
+                sprintf(error
+                "L Value mismatch : l = %g (layout) vs %g (schematic)"
+                float(layRes->l)
+                float(schRes->l)
+                )  ;end sprintf
+                return(error)
+            ) ; end if
+
+        diffW = abs( layRes->w - schRes->w )
+            if( diffW > (tol * schRes->w) then
+                sprintf(error
+                "w Value mismatch : w = %g  (layout) vs %g um (schematic)"
+                float(layRes->w)
+                float(schRes->w)
+                )  ;end sprintf
+                return(error)
+            )  ;end if
+
+   ) ;endif prog
+) ;endif procedure
+
+
+;******************
+;*** MOS CAPACITORS ***
+;******************
+
+;*****
+;combine parallel capacitors
+;(moscaps with different l's or w's are not combined)
+;*****
+
+procedure(parallelCAP(m1 m2)
+        prog((mt)
+          mt = ncons(nil)
+          when( !m1->m m1->m = 1)
+          when( !m2->m m2->m = 1)
+          when( and(m1->w m2->w)
+            mt->w = m1->w * m1->m + m2->w * m2->m
+          )
+
+          when( and(m1->l m2->l)
+            unless(abs(m1->l - m2->l) < .005e-6
+              return("doNotCombine")
+            )
+          mt->l = m1->l
+          )
+
+          mt->l = m1->l
+          mt->m = 1
+  return(mt)
+)
+)
+
+;*****
+;Compare Capacitor
+;(compare l / compare schematic combined w * m vs. layout combined w)
+;*****
+
+procedure(compareCAP(layCap schCap)
+  prog(nil
+    unless( and(layCap->w schCap->w layCap->l schCap->l)
+      sprintf(errorC
+          "Nil parameter: w:%g l:%g (layout) w:%g l:%g (schematic)"
+          layCap->w layCap->l schCap->w schCap->l)
+          return(errorC)
+    )
+
+    when(abs(layCap->w - schCap->w * schCap->m) > 0.01 * schCap->w * schCap->m
+        sprintf(errorw "w mismatch: total w:%g (layout) w:%g m:%g (schematic)"
+        float(layCap->w) float(schCap->w) float(schCap->m) )
+        return(errorw)
+    )
+    when(abs(layCap->l - schCap->l) > 0.01 * schCap->l
+        sprintf(errorl "l mismatch: total l:%g (layout) l:%g (schematic)"
+        float(layCap->l) float(schCap->l))
+        return(errorl)
+    )
+    return(nil)
+
+    ) ;end prog
+) ;end procedure
+
+
+;************************
+;*** METAL CAPACITORS ***
+;************************
+
+;*****
+;combine parallel MIMcapacitors
+;*****
+
+procedure(parallelMIMCAP(c1 c2)
+    prog((ct)
+
+        unless(c1->m
+        c1->m = 1
+        )
+        unless(c2->m
+        c2->m = 1
+        )
+
+        ct = ncons(nil)
+        c1->w = c1->w * c1->m
+        c2->w = c2->w * c2->m
+        ct->w = c1->w + c2->w
+        ct->m = 1
+        return(ct)
+
+  ) ;end prog
+) ;end procedure
+
+
+;*****
+;Compare MIMCapacitor
+;(compare l,w)
+;*****
+
+procedure(compareMIMCAP(layCap schCap)
+    prog(nil
+      diffW = 0.0
+        tol = 0.01
+
+        schCap->w = schCap->w * schCap->m
+
+        if(layCap->w != nil || schCap->w != nil then
+          diffW = abs( layCap->w - schCap->w )
+            if( diffW > (tol * schCap->w) then
+                sprintf(error
+                 "w value mismatch : w = %g (layout) vs %g (schematic)"
+                    float(layCap->w)
+                    float(schCap->w)
+                )  ;end sprintf
+                return(error)
+            )  ;end if
+
+        ) ; end if
+
+
+    ) ; end prog
+) ; end procedure
+
+
+;****************
+;*** BIPOLARS ***
+;****************
+
+;*****
+;combine parallel bjt
+;*****
+
+    procedure(parallelBjt(q1 q2)
+        prog((qt)
+           diffA = 0.0
+           qt = ncons(nil)
+         diffA = abs(q2->area - q1->area)
+         if(diffA < 0.00000005 then
+            if(q1->area && q2->area then
+                qt->area = (q1->area + q2->area)  else
+                qt->area = 1.0
+               )
+            if(q1->area && q2->area then
+                    unless(q1->m
+                      q1->m = 1
+                    )
+                    unless(q2->m
+                      q2->m = 1
+                    )
+                qt->area = q1->area * q1->m + q2->area * q2->m
+                qt->m = 1
+                else
+               )
+            return(qt)
+         )
+         else
+         qt = "doNotCombine"
+         return(qt)
+      ) ; end prg
+    ) ; end procedure
+
+;*****
+;Compare Bjt
+;(compare emitter area)
+;*****
+
+    procedure(compareBjt(layBjt schBjt)
+        prog(nil
+        diffA = 0.0
+        tol = 0.01
+
+        schBjt->area = schBjt->area * schBjt->m
+
+        if(layBjt->area != nil || schBjt->area != nil then
+          diffA = abs( schBjt->area - layBjt->area )
+                if( diffA > (tol * schBjt->area) then
+                    sprintf(error
+                     "a Value mismatch : %g (layout) vs %g (schematic)"
+                        float(layBjt->area)
+                        float(schBjt->area)
+                    )  ;end sprintf
+                    return(error)
+                )  ;end if
+
+                return(nil)
+            ) ; end if
+
+        ) ; end prog
+    ) ; end procedure
+
+;**************
+;*** DIODES ***
+;**************
+
+;*****
+;combine parallel diodes
+;*****
+
+    procedure(parallelDIO(d1 d2)
+        prog((dt)
+           diffA = 0.0
+           dt = ncons(nil)
+         diffA = abs(d2->area - d1->area)
+         if(diffA < 0.00000005 then
+            if(d1->area && d2->area then
+                dt->area = (d1->area + d2->area)  else
+                dt->area = 1.0
+               )
+            if(d1->area && d2->area then
+                    unless(d1->m
+                      d1->m = 1
+                    )
+                    unless(d2->m
+                      d2->m = 1
+                    )
+                dt->area = d1->area * d1->m + d2->area * d2->m
+                dt->m = 1
+                else
+               )
+            return(dt)
+         )
+         else
+         dt = "doNotCombine"
+         return(dt)
+      ) ; end prg
+    ) ; end procedure
+
+;*****
+;Compare Diodes
+;(compare combined m factor)
+;*****
+
+    procedure(compareDIO(layDio schDio)
+        prog(nil
+        diffA = 0.0
+        tol = 0.05
+
+        schDio->area = schDio->area * schDio->m
+
+        if(layDio->area != nil || schDio->area != nil then
+          diffA = abs( schDio->area - layDio->area )
+                if( diffA > (tol * schDio->area) then
+                    sprintf(error
+                     "a Value mismatch : %g um2 (layout) vs %g um2 (schematic)"
+                        float(layDio->area)
+                        float(schDio->area)
+                    )  ;end sprintf
+                    return(error)
+                )  ;end if
+
+                return(nil)
+            ) ; end if
+
+        ) ; end prog
+    ) ; end procedure(compareDio(layDio schDio)
+
+;*****************
+;*** INDUCTORS ***
+;*****************
+;*****
+;combine parallel inductors
+;*****
+ procedure( parallelIND( dev1 dev2 )
+  prog( ( )
+   newdev = ncons(nil)
+  
+   M1 = M2 = M3 = float(1)
+   S1 = S2 = W1 = W2 = R1 = R2 = N1 = N2 = float(0)
+                                                                                                    
+   if( dev1->nr then N1 = float( dev1->nr ) )
+   if( dev1->space then S1 = float( dev1->space ) )
+   if( dev1->width then W1 = float( dev1->width ) )
+   if( dev1->rad then R1 = float( dev1->rad ) )
+   if( dev1->m then M1 = float( dev1->m ) )
+   if( dev2->nr then
+     if( stringp( dev2->nr ) then N2 = atof( dev2->nr )
+     else N2 = float( dev2->nr ) )
+   )
+   if( dev2->space then S2 = float( dev2->space ) )
+   if( dev2->width then
+     if( stringp( dev2->width ) then
+       W2 = atof( dev2->width )
+       W2 = W2 * 1e-6
+     else W2 = float( dev2->width ) )
+   )
+   if( dev2->rad then R2 = float( dev2->rad ) )
+   if( dev2->m then M2 = float( dev2->m ) )
+
+   if( N1 == N2 && R1 == R2 && S1 == S2 && W1 == W2 then
+     newdev->nr = dev1->nr
+     newdev->rad = dev1->rad
+     newdev->width = dev1->width
+     newdev->space = dev1->space
+     M3 = newdev->m = M1 + M2
+     printf( "\n" )
+     printf( "** Parallel IND combined \n" )
+     printf("   1st device: nr= %g rad= %g space= %g width= %g m= %g\n" N1 R1 S1 W1 M1 )
+     printf("   2nd device: nr= %g rad= %g space= %g width= %g m= %g\n" N2 R2 S2 W2 M2 )
+     printf("   Resulting: nr= %g rad= %g space= %g width= %g m= %g\n" N1 R1 S1 W1 M3 )
+     return(newdev)
+    else 
+     return(nil)
+    )
+   ) ;prog
+ ) ;procedure( parallelIND )
+
+;*****
+;Compare Inductors
+;*****
+
+    procedure(compareIND(layInd schInd)
+        prog(nil
+        diffW = 0.0
+        diffS = 0.0
+        diffT = 0.0
+        diffR = 0.0
+        tol = 0.05
+
+        if(layInd->width != nil || schInd->width != nil then
+          diffW = abs( schInd->width - layInd->width )
+                if( diffW > (tol * schInd->width ) then
+                    sprintf(error
+                     "width mismatch : %g  (layout) vs %g  (schematic)"
+                        float(layInd->width ) float(schInd->width )
+                    )  ;end sprintf
+                    return(error)
+                )  ;end if
+        ) ; end if
+        if(layInd->space != nil || schInd->space != nil then
+          diffS = abs( schInd->space - layInd->space )
+                if( diffS > (tol * schInd->space ) then
+                    sprintf(error
+                     "space mismatch : %g  (layout) vs %g  (schematic)"
+                        float(layInd->space ) float(schInd->space )
+                    )  ;end sprintf
+                    return(error)
+                )  ;end if
+        ) ; end if
+        if(layInd->nr != nil || schInd->nr != nil then
+          diffT = abs( schInd->nr - layInd->nr )
+                if( diffT > (tol * schInd->nr ) then
+                    sprintf(error
+                     "nr mismatch : %g  (layout) vs %g  (schematic)"
+                        float(layInd->nr ) float(schInd->nr )
+                    )  ;end sprintf
+                    return(error)
+                )  ;end if
+        ) ; end if
+        if(layInd->rad != nil || schInd->rad != nil then
+          diffR = abs( schInd->rad - layInd->rad )
+                if( diffR > (tol * schInd->rad ) then
+                    sprintf(error
+                     "rad mismatch : %g  (layout) vs %g  (schematic)"
+                        float(layInd->rad ) float(schInd->rad )
+                    )  ;end sprintf
+                    return(error)
+                )  ;end if
+        ) ; end if
+
+        return(nil)
+
+        ) ; end prog
+    ) ; end procedure(compareInd(layInd schInd)
+
+
+
+;*********************************************
+;Call the permutation & comparison procedures.
+;*********************************************
+  permuteDevice( parallel "ind_a" parallelIND )
+  permuteDevice( parallel "ind_s" parallelIND )
+  permuteDevice( parallel "nmos1v" parallelMOS )
+  permuteDevice( parallel "nmos1v_hvt" parallelMOS )
+  permuteDevice( parallel "nmos1v_lvt" parallelMOS )
+  permuteDevice( parallel "nmos1v_nat" parallelMOS )
+  permuteDevice( parallel "nmos2v" parallelMOS )
+  permuteDevice( parallel "nmos2v_nat" parallelMOS )
+  permuteDevice( parallel "pmos1v" parallelMOS )
+  permuteDevice( parallel "pmos1v_hvt" parallelMOS )
+  permuteDevice( parallel "pmos1v_lvt" parallelMOS )
+  permuteDevice( parallel "pmos2v" parallelMOS )
+  permuteDevice( parallel "resm1" parallelRES )
+  permuteDevice( parallel "resm2" parallelRES )
+  permuteDevice( parallel "resm3" parallelRES )
+  permuteDevice( parallel "resm4" parallelRES )
+  permuteDevice( parallel "resm5" parallelRES )
+  permuteDevice( parallel "resm6" parallelRES )
+  permuteDevice( parallel "resm7" parallelRES )
+  permuteDevice( parallel "resm8" parallelRES )
+  permuteDevice( parallel "resm9" parallelRES )
+  permuteDevice( parallel "resm10" parallelRES )
+  permuteDevice( parallel "resm11" parallelRES )
+  permuteDevice( parallel "resnsndiff" parallelRES )
+  permuteDevice( parallel "resnsnpoly" parallelRES )
+  permuteDevice( parallel "resnspdiff" parallelRES )
+  permuteDevice( parallel "resnsppoly" parallelRES )
+  permuteDevice( parallel "ressndiff" parallelRES )
+  permuteDevice( parallel "ressnpoly" parallelRES )
+  permuteDevice( parallel "resspdiff" parallelRES )
+  permuteDevice( parallel "ressppoly" parallelRES )
+  permuteDevice( series "resm1" seriesRES )
+  permuteDevice( series "resm2" seriesRES )
+  permuteDevice( series "resm3" seriesRES )
+  permuteDevice( series "resm4" seriesRES )
+  permuteDevice( series "resm5" seriesRES )
+  permuteDevice( series "resm6" seriesRES )
+  permuteDevice( series "resm7" seriesRES )
+  permuteDevice( series "resm8" seriesRES )
+  permuteDevice( series "resm9" seriesRES )
+  permuteDevice( series "resm10" seriesRES )
+  permuteDevice( series "resm11" seriesRES )
+  permuteDevice( series "resnsndiff" seriesRES )
+  permuteDevice( series "resnsnpoly" seriesRES )
+  permuteDevice( series "resnspdiff" seriesRES )
+  permuteDevice( series "resnsppoly" seriesRES )
+  permuteDevice( series "ressndiff" seriesRES )
+  permuteDevice( series "ressnpoly" seriesRES )
+  permuteDevice( series "resspdiff" seriesRES )
+  permuteDevice( series "ressppoly" seriesRES )
+  permuteDevice( parallel "nmoscap1v" parallelCAP )
+  permuteDevice( parallel "nmoscap2v" parallelCAP )
+  permuteDevice( parallel "pmoscap1v" parallelCAP )
+  permuteDevice( parallel "pmoscap2v" parallelCAP )
+  permuteDevice( parallel "pnp" parallelBjt )
+  permuteDevice( parallel "npn" parallelBjt )
+  permuteDevice( parallel "npn2" parallelBjt )
+  permuteDevice( parallel "npn5" parallelBjt )
+  permuteDevice( parallel "npn10" parallelBjt )
+  permuteDevice( parallel "vpnp2" parallelBjt )
+  permuteDevice( parallel "vpnp5" parallelBjt )
+  permuteDevice( parallel "vpnp10" parallelBjt )
+  permuteDevice( parallel "ndio" parallelDIO )
+  permuteDevice( parallel "pdio" parallelDIO )
+  permuteDevice( parallel "mimcap" parallelCAP )
+
+  compareDeviceProperty( "nmos1v" compareMOS )
+  compareDeviceProperty( "nmos1v_hvt" compareMOS )
+  compareDeviceProperty( "nmos1v_lvt" compareMOS )
+  compareDeviceProperty( "nmos1v_nat" compareMOS )
+  compareDeviceProperty( "nmos2v" compareMOS )
+  compareDeviceProperty( "nmos2v_nat" compareMOS )
+  compareDeviceProperty( "pmos1v" compareMOS )
+  compareDeviceProperty( "pmos1v_hvt" compareMOS )
+  compareDeviceProperty( "pmos2v" compareMOS )
+  compareDeviceProperty( "resm1" compareRES )
+  compareDeviceProperty( "resm2" compareRES )
+  compareDeviceProperty( "resm3" compareRES )
+  compareDeviceProperty( "resm4" compareRES )
+  compareDeviceProperty( "resm5" compareRES )
+  compareDeviceProperty( "resm6" compareRES )
+  compareDeviceProperty( "resm7" compareRES )
+  compareDeviceProperty( "resm8" compareRES )
+  compareDeviceProperty( "resm9" compareRES )
+  compareDeviceProperty( "resm10" compareRES )
+  compareDeviceProperty( "resm11" compareRES )
+  compareDeviceProperty( "resnsndiff" compareRES )
+  compareDeviceProperty( "resnsnpoly" compareRES )
+  compareDeviceProperty( "resnspdiff" compareRES )
+  compareDeviceProperty( "resnsppoly" compareRES )
+  compareDeviceProperty( "resnwoxide" compareRES )
+  compareDeviceProperty( "resnwsti" compareRES )
+  compareDeviceProperty( "ressndiff" compareRES )
+  compareDeviceProperty( "ressnpoly" compareRES )
+  compareDeviceProperty( "resspdiff" compareRES )
+  compareDeviceProperty( "ressppoly" compareRES )
+  compareDeviceProperty( "nmoscap1v" compareCAP )
+  compareDeviceProperty( "nmoscap2v" compareCAP )
+  compareDeviceProperty( "pmoscap1v" compareCAP )
+  compareDeviceProperty( "pmoscap2v" compareCAP )
+  compareDeviceProperty( "pnp" compareBjt )
+  compareDeviceProperty( "npn" compareBjt )
+  compareDeviceProperty( "npn2" compareBjt )
+  compareDeviceProperty( "npn5" compareBjt )
+  compareDeviceProperty( "npn10" compareBjt )
+  compareDeviceProperty( "vpnp2" compareBjt )
+  compareDeviceProperty( "vpnp5" compareBjt )
+  compareDeviceProperty( "vpnp10" compareBjt )
+  compareDeviceProperty( "ndio" compareDIO )
+  compareDeviceProperty( "pdio" compareDIO )
+  compareDeviceProperty( "mimcap" compareCAP )
+  compareDeviceProperty( "ind_a" compareIND )
+  compareDeviceProperty( "ind_s" compareIND )
+) ;end lvsRules
+

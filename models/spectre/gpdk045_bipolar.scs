@@ -1,0 +1,450 @@
+//**************************************************************
+//*   Generic PDK Bipolar models                        06/06/08
+//*
+//**************************************************************
+
+simulator lang=spectre
+library gpdk045
+//       1.LIB TT_BJT_PNP                                                      *
+//              SS_BJT_PNP                                                     *
+//              FF_BJT_PNP                                                     *
+//              MC_BJT_PNP                                                     *
+//         ( 1.1V P+/NW/PSUB vertical PNP bipolar corner model)                *
+//                                                                             *
+//       2.LIB TT_BJT_NPN                                                      *
+//              SS_BJT_NPN                                                     *
+//              FF_BJT_NPN                                                     *
+//              MC_BJT_NPN                                                     *
+//         ( 1.1V N+/PW/DNW vertical NPN bipolar corner model)                 *
+
+
+
+//  *************************************************************
+//                                                              *
+//        Vertical PNP BIPOLAR MODELS for 1.1V                  *
+//                                                              *
+//  *************************************************************
+
+//  ************************************************    
+//                     TYPICAL LIBRARY             *
+//  ************************************************
+
+section tt_bjt_pnp
+parameters bf_pnp=1
+parameters is_pnp=1
+parameters nf_pnp=1
+parameters rb_pnp=1
+parameters re_pnp=1
+parameters rc_pnp=1
+parameters rbm_pnp=1
+parameters cje_pnp=1
+parameters cjc_pnp=1
+include "gpdk045_bipolar.scs" section=bjt_pnp
+endsection tt_bjt_pnp
+
+//  ************************************************  
+//                  SLOW CORNER LIBRARY            *
+//  ************************************************
+
+section ss_bjt_pnp
+parameters bf_pnp=0.9
+parameters is_pnp=0.8
+parameters nf_pnp=1.003
+parameters rb_pnp=1.2
+parameters re_pnp=1.2
+parameters rc_pnp=1.2
+parameters rbm_pnp=1.2
+parameters cje_pnp=1.1
+parameters cjc_pnp=1.1
+include "gpdk045_bipolar.scs" section=bjt_pnp
+endsection ss_bjt_pnp
+ 
+//  *************************************************  
+//                  FAST CORNER LIBRARY             *
+//  *************************************************
+
+section ff_bjt_pnp
+parameters bf_pnp=1.1
+parameters is_pnp=1.2
+parameters nf_pnp=0.997
+parameters rb_pnp=0.8
+parameters re_pnp=0.8
+parameters rc_pnp=0.8
+parameters rbm_pnp=0.8
+parameters cje_pnp=0.9
+parameters cjc_pnp=0.9
+include "gpdk045_bipolar.scs" section=bjt_pnp
+endsection ff_bjt_pnp
+ 
+//  *************************************************
+//                  STATISTICAL LIBRARY             *
+//  *************************************************
+
+section mc_bjt_pnp
+parameters statis_bjt_pnp=0
+parameters bjt_pnp_stat=statis_bjt_pnp
+parameters bf_pnp=1.0000e+000 + ( -3.3333e-002) * bjt_pnp_stat
+parameters is_pnp=1.0000e+000 + ( -6.6666e-002) * bjt_pnp_stat
+parameters nf_pnp=1.0000e+000 + (1.0000e-003) * bjt_pnp_stat
+parameters rb_pnp=1.0000e+000 + (6.6666e-002) * bjt_pnp_stat
+parameters re_pnp=1.0000e+000 + (6.6666e-002) * bjt_pnp_stat
+parameters rc_pnp=1.0000e+000 + (6.6666e-002) * bjt_pnp_stat
+parameters rbm_pnp=1.0000e+000 + (6.6666e-002) * bjt_pnp_stat
+parameters cje_pnp=1.0000e+000 + (3.3333e-002) * bjt_pnp_stat
+parameters cjc_pnp=1.0000e+000 + (3.3333e-002) * bjt_pnp_stat
+
+statistics {
+    process {
+        vary statis_bjt_pnp dist=gauss std=1.0000e+000/1
+        }
+    }
+    
+include "gpdk045_bipolar.scs" section=bjt_pnp
+endsection mc_bjt_pnp
+
+section bjt_pnp
+
+//*********************************************
+//                PNP 2x2                     *
+//*********************************************
+
+model gpdk045_vpnp2 bjt type=pnp
++is = 5.047001E-19*is_pnp          bf = 1.851323*bf_pnp              nf = 1.015*nf_pnp                
++vaf = 870.651284                  ikf = 1.542565E-3                 ise = 4.919814E-19*is_pnp          
++ne = 1.208471                     br = 6.5E-4                       nr = 1.087854                     
++var = 61.1                        ikr = 1.63E-3                     isc = 3.6882E-19*is_pnp          
++nc = 1.13                         rb = 140.48*rb_pnp                irb = 1E-3                    
++rbm = 0.1*rbm_pnp                 re = 9.56*re_pnp                  rc = 10.01*rc_pnp                
++cje = 5.1E-15*cje_pnp             vje = 0.78                        mje = 0.4                    
++cjc = 3.8E-14*cjc_pnp             vjc = 0.78                        mjc = 0.5                    
++fc = 0                            tlev = 1                          tlevc = 1                     
++xti = 2.992645                    eg = 1.16                         tis1 = 0                      
++tis2 = 0                          tbf1 = 4.306037E-3                tbf2 = -2.146509E-6           
++tnf1 = 1.32E-4                    tvaf1 = 0                         tvaf2 = 0                     
++tikf1 = -6.686122E-3              tikf2 = 3.82661E-5                tbr1 = -3E-3                  
++tbr2 = 3E-5                       tnr1 = 1.8E-4                     tvar1 = 0                     
++tvar2 = 0                         tikr1 = 0                         tikr2 = 0                     
++cte = 8E-4                        ctc = 3E-3                        tvje = 1.9E-3                 
++tvjc = 3E-3                       tre1 = 2.5E-4                     tre2 = 5E-5                   
++trb1 = 1.489417E-3                trb2 = -2.802535E-6               trc1 = 1.96E-3                
++trc2 = 0                          xtb = 0                           tnom = 25                         
++minr=1e-60         
+
+//*********************************************
+//                PNP 5x5                     *
+//*********************************************
+
+
+model gpdk045_vpnp5 bjt type=pnp
+//*** Flag Parameter ***
++is = 2.439529E-18*is_pnp          bf = 1.22655*bf_pnp               nf = 1.015*nf_pnp                
++vaf = 870.651284                  ikf = 1.542565E-3                 ise = 1.849892E-18*is_pnp          
++ne = 1.208471                     br = 6.5E-4                       nr = 1.087854                    
++var = 61.1                        ikr = 1.63E-3                     isc = 1.7644E-18*is_pnp          
++nc = 1.13                         rb = 92.64*rb_pnp                 irb = 1E-3                    
++rbm = 0.1*rbm_pnp                 re = 6.52*re_pnp                  rc = 8.58*rc_pnp  
++cje = 2.848E-14*cje_pnp           vje = 0.78                        mje = 0.4                      
++cjc = 5.512E-14*cjc_pnp           vjc = 0.78                        mjc = 0.5                     
++fc = 0                            tlev = 1                          tlevc = 1                     
++xti = 2.992645                    eg = 1.16                         tis1 = 0                      
++tis2 = 0                          tbf1 = 4.306037E-3                tbf2 = -2.146509E-6           
++tnf1 = 1.32E-4                    tvaf1 = 0                         tvaf2 = 0                     
++tikf1 = -6.686122E-3              tikf2 = 3.82661E-5                tbr1 = -3E-3                  
++tbr2 = 3E-5                       tnr1 = 1.8E-4                     tvar1 = 0                     
++tvar2 = 0                         tikr1 = 0                         tikr2 = 0                     
++cte = 8E-4                        ctc = 3E-3                        tvje = 1.9E-3                 
++tvjc = 3E-3                       tre1 = 2.5E-4                     tre2 = 5E-5                   
++trb1 = 1.489417E-3                trb2 = -2.802535E-6               trc1 = 1.96E-3                
++trc2 = 0                          xtb = 0                           tnom = 25                         
++minr=1e-60
+
+//*********************************************
+//                PNP 10x10                   *
+//*********************************************
+
+
+model gpdk045_vpnp10 bjt type=pnp
++is = 8.49138E-18*is_pnp           bf = 1.022506*bf_pnp              nf = 1.015*nf_pnp                
++vaf = 870.651284                  ikf = 1.542565E-3                 ise = 6.846822E-18*is_pnp             
++ne = 1.208471                     br = 6.5E-3                       nr = 1.087854                     
++var = 61.1                        ikr = 1.63E-3                     isc = 6.0E-18*is_pnp             
++nc = 1.13                         rb = 88.42*rb_pnp                 irb = 1E-3                    
++rbm = 0.1*rbm_pnp                 re = 3.48*re_pnp                  rc = 7.12*rc_pnp                 
++cje = 1.17e-13*cje_pnp            vje = 0.78                        mje = 0.4                     
++cjc = 2.55e-13*cjc_pnp            vjc = 0.78                        mjc = 0.5                    
++fc = 0                            tlev = 1                          tlevc = 1                     
++xti = 2.992645                    eg = 1.16                         tis1 = 0                      
++tis2 = 0                          tbf1 = 4.306037E-3                tbf2 = -2.146509E-6           
++tnf1 = 1.32E-4                    tvaf1 = 0                         tvaf2 = 0                     
++tikf1 = -6.686122E-3              tikf2 = 3.82661E-5                tbr1 = -3E-3                  
++tbr2 = 3E-5                       tnr1 = 1.8E-4                     tvar1 = 0                     
++tvar2 = 0                         tikr1 = 0                         tikr2 = 0                     
++cte = 8E-4                        ctc = 3E-3                        tvje = 1.9E-3                 
++tvjc = 3E-3                       tre1 = 2.5E-4                     tre2 = 5E-5                   
++trb1 = 1.489417E-3                trb2 = -2.802535E-6               trc1 = 1.96E-3                
++trc2 = 0                          xtb = 0                           tnom = 25                         
++minr=1e-60
+
+//*********************************************
+//                PNP scalable                *
+//*********************************************
+
+
+subckt pnp_scalable (1 2 3 4)
+  parameters area=1 areab=1 areac=1 
++dtemp=temp-25   
++bf_s_p  = (2.47173-0.35165*sqrt(area)+0.02072*area) 
++is_s_p  = (1.24243+0.95591*area-0.00119*area*area)*1E-19   
++nf_s_p  = 1.015 
++ise_s_p = (2.35377+0.64069*area+2.04526E-4*area*area)*1E-19 
++isc_s_p = (0.92598+0.69471*area-0.00104*area*area)*1E-19 
++rb_s_p  = 124.95992-0.41349*area 
++rc_s_p  = 9.74326-0.02729*area 
++re_s_p  = 8.98351-0.05729*area 
++rbm_s_p = 0.1 
++cje_s_p = (-0.09539+1.16951*area)*1E-15 
++cjc_s_p = (3.6666+0.02564*area+0.00193*area*area)*1E-14                       
+                                                                         
+model pnp bjt type=pnp
++is = is_s_p*is_pnp               bf = bf_s_p*bf_pnp               nf = nf_s_p*nf_pnp               
++vaf = 870.651284                 ikf = 1.542565E-3                ise = ise_s_p*is_pnp                 
++ne = 1.208471                    br = 6.5E-4                      nr = 1.087854                   
++var = 61.1                       ikr = 1.63E-3                    isc = isc_s_p*is_pnp                 
++nc = 1.13                        rb = rb_s_p*rb_pnp               irb = 1E-3                    
++rbm = rbm_s_p*rbm_pnp            re = re_s_p*re_pnp               rc = rc_s_p*rc_pnp               
++cje = cje_s_p*cje_pnp            vje = 0.78                       mje = 0.4                     
++cjc = cjc_s_p*cjc_pnp            vjc = 0.78                       mjc = 0.5                   
++fc = 0                           tlev = 1                          tlevc = 1                     
++xti = 2.992645                    eg = 1.16                         tis1 = 0                      
++tis2 = 0                          tbf1 = 4.306037E-3                tbf2 = -2.146509E-6           
++tnf1 = 1.32E-4                    tvaf1 = 0                         tvaf2 = 0                     
++tikf1 = -6.686122E-3              tikf2 = 3.82661E-5                tbr1 = -3E-3                  
++tbr2 = 3E-5                       tnr1 = 1.8E-4                     tvar1 = 0                     
++tvar2 = 0                         tikr1 = 0                         tikr2 = 0                     
++cte = 8E-4                        ctc = 3E-3                        tvje = 1.9E-3                 
++tvjc = 3E-3                       tre1 = 2.5E-4                     tre2 = 5E-5                   
++trb1 = 1.489417E-3                trb2 = -2.802535E-6               trc1 = 1.96E-3                
++trc2 = 0                          xtb = 0                           tnom = 25                         
++minr=1e-60
+       
+  q1 (1 2 3 4) pnp area=area areab=areab areac=areac 
+ends pnp_scalable       
+
+ 
+endsection bjt_pnp
+
+
+//***************************************************************
+//                                                              *
+//         Vertical NPN BIPOLAR MODELS for 1.1V                 *
+//                                                              *
+//  *************************************************************
+ 
+//  ************************************************    
+//                     TYPICAL LIBRARY             *
+//  ************************************************
+
+section tt_bjt_npn
+parameters bf_npn=1
+parameters is_npn=1
+parameters nf_npn=1
+parameters rb_npn=1
+parameters re_npn=1
+parameters rc_npn=1
+parameters rbm_npn=1
+parameters cje_npn=1
+parameters cjc_npn=1
+include "gpdk045_bipolar.scs" section=bjt_npn
+endsection tt_bjt_npn
+ 
+
+//  ************************************************  
+//                  SLOW CORNER LIBRARY            *
+//  ************************************************
+
+section ss_bjt_npn
+parameters bf_npn=0.9
+parameters is_npn=0.8
+parameters nf_npn=1.003
+parameters rb_npn=1.2
+parameters re_npn=1.2
+parameters rc_npn=1.2
+parameters rbm_npn=1.2
+parameters cje_npn=1.1
+parameters cjc_npn=1.1
+include "gpdk045_bipolar.scs" section=bjt_npn
+endsection ss_bjt_npn
+ 
+//  ************************************************  
+//                  FAST CORNER LIBRARY            *
+//  ************************************************
+
+section ff_bjt_npn
+parameters bf_npn=1.1
+parameters is_npn=1.2
+parameters nf_npn=0.997
+parameters rb_npn=0.8
+parameters re_npn=0.8
+parameters rc_npn=0.8
+parameters rbm_npn=0.8
+parameters cje_npn=0.9
+parameters cjc_npn=0.9
+include "gpdk045_bipolar.scs" section=bjt_npn
+endsection ff_bjt_npn
+ 
+//  ************************************************  
+//                  STATISTICAL LIBRARY            *
+//  ************************************************
+
+section mc_bjt_npn
+parameters statis_bjt_npn=0
+parameters bjt_npn_stat=statis_bjt_npn
+parameters bf_npn=1.0000e+000 + ( -3.3333e-002) * bjt_npn_stat
+parameters is_npn=1.0000e+000 + ( -6.6666e-002) * bjt_npn_stat
+parameters nf_npn=1.0000e+000 + (1.0000e-003) * bjt_npn_stat
+parameters rb_npn=1.0000e+000 + (6.6666e-002) * bjt_npn_stat
+parameters re_npn=1.0000e+000 + (6.6666e-002) * bjt_npn_stat
+parameters rc_npn=1.0000e+000 + (6.6666e-002) * bjt_npn_stat
+parameters rbm_npn=1.0000e+000 + (6.6666e-002) * bjt_npn_stat
+parameters cje_npn=1.0000e+000 + (3.3333e-002) * bjt_npn_stat
+parameters cjc_npn=1.0000e+000 + (3.3333e-002) * bjt_npn_stat
+
+statistics {
+    process {
+        vary statis_bjt_npn dist=gauss std=1.0000e+000/1
+        }
+    }
+    
+include "gpdk045_bipolar.scs" section=bjt_npn
+endsection mc_bjt_npn
+
+
+section bjt_npn
+
+//*********************************************
+//                NPN 2x2                     *
+//*********************************************                     
+
+model gpdk045_npn2 bjt type=npn
++is = 1.084771E-18*is_npn      bf = 5.06438*bf_npn              nf = 1.014*nf_npn                
++vaf = 89.799145               ikf = 0.1421                     ise = 9.938318E-19*is_npn           
++ne = 1.214378                 br = 0.4055                      nr = 1                        
++var = 56.62                   ikr = 0.1                        isc = 8.24e-019*is_npn           
++nc = 1.13                     rb = 323.467944*rb_npn           irb = 1E-3                    
++rbm = 0.1*rbm_npn             re = 8.386475*re_npn             rc = 13.42*rc_npn                
++cje = 5.38E-15*cje_npn        vje = 0.55                       mje = 0.26                    
++cjc = 8.29E-14*cjc_npn        vjc = 0.74                       mjc = 0.37                    
++cjs = 0                       fc = 0                           tnom = 25                       
++xti = 3.438657                eg = 1.16                        tis1 = 0                      
++tis2 = 0                      tbf1 = 6.914862E-3               tbf2 = -2.153333E-5           
++tvaf1 = -4.227397E-4          tvaf2 = 7.438088E-6              tikf1 = -3.798624E-3          
++tikf2 = 8.936198E-4           tne1 = 5E-4                      tbr1 = 1E-3                   
++tbr2 = 0                      tvar1 = 0                        tvar2 = 0                     
++tikr1 = 0                     tikr2 = 0                        cte = 7.8E-4                  
++ctc = 9.9E-4                  tvje = 1E-3                      tvjc = 1.75E-3                
++tre1 = 5.4E-4                 tre2 = 0                         trb1 = 6.529291E-3            
++trb2 = 4.62196E-6             trc1 = 7.1E-4                    trc2 = 0   
++xtb = 0                       tlev = 1                         tlevc = 1                                             
++minr=1e-60         
+
+//*********************************************
+//                NPN 5x5                     *
+//*********************************************                     
+
+model gpdk045_npn5 bjt type=npn
++is = 5.569313E-18*is_npn      bf = 4.56047*bf_npn           nf = 1.014*nf_npn                
++vaf = 89.799145               ikf = 0.1421                  ise = 4.745226E-18*is_npn          
++ne = 1.214378                 br = 0.4055                   nr = 1                        
++var = 56.62                   ikr = 0.1                     isc = 3.9243E-018*is_npn         
++nc = 1.13                     rb = 176.08*rb_npn            irb = 1E-3                    
++rbm = 0.1*rbm_npn             re = 6.512*re_npn             rc = 7.26*rc_npn                 
++cje = 2.88E-14*cje_npn        vje = 0.55                    mje = 0.26                     
++cjc = 1.480E-13*cjc_npn       vjc = 0.74                    mjc = 0.37                    
++cjs = 0                       fc = 0                        tnom = 25                       
++xti = 3.438657                eg = 1.16                     tis1 = 0                      
++tis2 = 0                      tbf1 = 6.914862E-3            tbf2 = -2.153333E-5           
++tvaf1 = -4.227397E-4          tvaf2 = 7.438088E-6           tikf1 = -3.798624E-3          
++tikf2 = 8.936198E-4           tne1 = 5E-4                   tbr1 = 1E-3                   
++tbr2 = 0                      tvar1 = 0                     tvar2 = 0                     
++tikr1 = 0                     tikr2 = 0                     cte = 7.8E-4                  
++ctc = 9.9E-4                  tvje = 1E-3                   tvjc = 1.75E-3                
++tre1 = 5.4E-4                 tre2 = 0                      trb1 = 6.529291E-3            
++trb2 = 4.62196E-6             trc1 = 7.1E-4                 trc2 = 0   
++xtb = 0                       tlev = 1                      tlevc = 1                                             
++minr=1e-60                       
+
+
+//*********************************************
+//                NPN 10x10                   *
+//*********************************************                     
+
+model gpdk045_npn10 bjt type=npn
++is = 1.995379E-17*is_npn      bf = 4.049424*bf_npn          nf = 1.014*nf_npn                
++vaf = 89.799145               ikf = 0.1421                  ise = 1.5416E-17*is_npn          
++ne = 1.214378                 br = 0.4055                   nr = 1                        
++var = 56.62                   ikr = 0.1                     isc = 1.411E-17*is_npn          
++nc = 1.13                     rb = 112.22*rb_npn            irb = 1E-3                    
++rbm = 0.1*rbm_npn             re = 4.312*re_npn             rc = 5.98*rc_npn                 
++cje = 1.20E-13*cje_npn        vje = 0.55                    mje = 0.26                    
++cjc = 2.74E-13*cjc_npn        vjc = 0.74                    mjc = 0.37                    
++cjs = 0                       fc = 0                        tnom = 25                       
++xti = 3.438657                eg = 1.16                     tis1 = 0                      
++tis2 = 0                      tbf1 = 6.914862E-3            tbf2 = -2.153333E-5           
++tvaf1 = -4.227397E-4          tvaf2 = 7.438088E-6           tikf1 = -3.798624E-3          
++tikf2 = 8.936198E-4           tne1 = 5E-4                   tbr1 = 1E-3                   
++tbr2 = 0                      tvar1 = 0                     tvar2 = 0                     
++tikr1 = 0                     tikr2 = 0                     cte = 7.8E-4                  
++ctc = 9.9E-4                  tvje = 1E-3                   tvjc = 1.75E-3                
++tre1 = 5.4E-4                 tre2 = 0                      trb1 = 6.529291E-3            
++trb2 = 4.62196E-6             trc1 = 7.1E-4                 trc2 = 0   
++xtb = 0                       tlev = 1                      tlevc = 1                                             
++minr=1e-60                                        
+
+//*********************************************
+//                NPN scalable                *
+//*********************************************
+                                                              
+subckt npn_scalable (1 2 3 4)                                                                                                          
+parameters area=1 areab=1 areac=1 
++dtemp=temp-25                                                                                            
++bf_s_n  = 5.54994-0.24562*sqrt(area)+0.00957*area                                                                                    
++is_s_n  = (0.47178+0.19529*area)*1E-18                                                                                              
++nf_s_n  = 1.014                                                                                                                     
++ise_s_n = (6.82395+1.48123*area)*1E-19                                                                                              
++isc_s_n = (3.64554+1.3771*area)*1E-19                                                                                              
++rb_s_n  = 283.17087-1.84298*area                                                                                                    
++rc_s_n  = 11.53048-0.06148*area                                                                                                     
++re_s_n  = 8.07913-0.03897*area                                                                                                     
++rbm_s_n = 0.1                                                                                                                       
++cje_s_n = (-0.19806+1.1998*area)*1E-15                                                                                              
++cjc_s_n = (6.90208+0.3529*area-0.00148*area*area)*1E-14                                                                           
+
+model npn bjt type=npn                                       
++is = is_s_n*is_npn            bf = bf_s_n*bf_npn            nf = nf_s_n*nf_npn                                                         
++vaf = 89.799145               ikf = 0.1421                  ise = ise_s_n*is_npn                                                           
++ne = 1.214378                 br = 0.4055                   nr = 1                                                                  
++var = 56.62                   ikr = 0.1                     isc = isc_s_n*is_npn                                                           
++nc = 1.13                     rb = rb_s_n*rb_npn            irb = 1E-3                                                              
++rbm = rbm_s_n*rbm_npn         re = re_s_n*re_npn            rc = rc_s_n*rc_npn                                                         
++cje = cje_s_n*cje_npn         vje = 0.55                    mje = 0.26                                                              
++cjc = cjc_s_n*cjc_npn         vjc = 0.74                    mjc = 0.37                                                             
++fc = 0                        xti = 3                       tnom = 25                       
++xti = 3.438657                eg = 1.16                     tis1 = 0                      
++tis2 = 0                      tbf1 = 6.914862E-3            tbf2 = -2.153333E-5           
++tvaf1 = -4.227397E-4          tvaf2 = 7.438088E-6           tikf1 = -3.798624E-3          
++tikf2 = 8.936198E-4           tne1 = 5E-4                   tbr1 = 1E-3                   
++tbr2 = 0                      tvar1 = 0                     tvar2 = 0                     
++tikr1 = 0                     tikr2 = 0                     cte = 7.8E-4                  
++ctc = 9.9E-4                  tvje = 1E-3                   tvjc = 1.75E-3                
++tre1 = 5.4E-4                 tre2 = 0                      trb1 = 6.529291E-3            
++trb2 = 4.62196E-6             trc1 = 7.1E-4                 trc2 = 0   
++xtb = 0                       tlev = 1                      tlevc = 1                                             
++minr=1e-60                                                                                             
+                                                                                                                                     
+q1 (1 2 3 4) npn area=area areab=areab areac=areac                                                                          
+ends npn_scalable   
+
+endsection bjt_npn 
+
+
+endlibrary gpdk045

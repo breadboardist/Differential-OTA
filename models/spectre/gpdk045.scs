@@ -1,0 +1,161 @@
+* GPDK Corner Definitions
+* This is an example file showing how to define corners
+* using model files for individual components as the
+* building blocks.
+
+simulator lang=spectre
+library gpdk045
+
+section tt
+include "gpdk045_mos.scs" section=tt
+include "gpdk045_mos.scs" section=tt_hvt
+include "gpdk045_mos.scs" section=tt_lvt
+include "gpdk045_mos.scs" section=tt_na
+include "gpdk045_mos.scs" section=tt_18
+include "gpdk045_mos.scs" section=tt_na18
+include "gpdk045_mos.scs" section=tt_mos_var
+include "gpdk045_mos.scs" section=tt_mos18_var
+include "gpdk045_diode.scs" section=tt_dio
+include "gpdk045_diode.scs" section=tt_dio_hvt
+include "gpdk045_diode.scs" section=tt_dio_lvt
+include "gpdk045_diode.scs" section=tt_dio_na
+include "gpdk045_diode.scs" section=tt_dio_18
+include "gpdk045_diode.scs" section=tt_dio_na18
+include "gpdk045_bipolar.scs" section=tt_bjt_pnp
+include "gpdk045_bipolar.scs" section=tt_bjt_npn
+include "gpdk045_mimcap.scs" section=tt3_mim
+include "gpdk045_moscap.scs" section=ttcap
+include "gpdk045_moscap.scs" section=ttcap_18
+include "gpdk045_resistor.scs" section=tt_res
+include "gpdk045_resistor.scs" section=tt_res3
+include "gpdk045_inductor.scs" section=tt_ind
+endsection tt
+
+section ff
+include "gpdk045_mos.scs" section=ff
+include "gpdk045_mos.scs" section=ff_hvt
+include "gpdk045_mos.scs" section=ff_lvt
+include "gpdk045_mos.scs" section=ff_na
+include "gpdk045_mos.scs" section=ff_18
+include "gpdk045_mos.scs" section=ff_na18
+include "gpdk045_mos.scs" section=ff_mos_var
+include "gpdk045_mos.scs" section=ff_mos18_var
+include "gpdk045_diode.scs" section=ff_dio
+include "gpdk045_diode.scs" section=ff_dio_hvt
+include "gpdk045_diode.scs" section=ff_dio_lvt
+include "gpdk045_diode.scs" section=ff_dio_na
+include "gpdk045_diode.scs" section=ff_dio_18
+include "gpdk045_diode.scs" section=ff_dio_na18
+include "gpdk045_bipolar.scs" section=ff_bjt_pnp
+include "gpdk045_bipolar.scs" section=ff_bjt_npn
+include "gpdk045_mimcap.scs" section=ff3_mim
+include "gpdk045_moscap.scs" section=ffcap
+include "gpdk045_moscap.scs" section=ffcap_18
+include "gpdk045_resistor.scs" section=ff_res
+include "gpdk045_resistor.scs" section=ff_res3
+include "gpdk045_inductor.scs" section=ff_ind
+endsection ff
+
+section ss
+include "gpdk045_mos.scs" section=ss
+include "gpdk045_mos.scs" section=ss_hvt
+include "gpdk045_mos.scs" section=ss_lvt
+include "gpdk045_mos.scs" section=ss_na
+include "gpdk045_mos.scs" section=ss_18
+include "gpdk045_mos.scs" section=ss_na18
+include "gpdk045_mos.scs" section=ss_mos_var
+include "gpdk045_mos.scs" section=ss_mos18_var
+include "gpdk045_diode.scs" section=ss_dio
+include "gpdk045_diode.scs" section=ss_dio_hvt
+include "gpdk045_diode.scs" section=ss_dio_lvt
+include "gpdk045_diode.scs" section=ss_dio_na
+include "gpdk045_diode.scs" section=ss_dio_18
+include "gpdk045_diode.scs" section=ss_dio_na18
+include "gpdk045_bipolar.scs" section=ss_bjt_pnp
+include "gpdk045_bipolar.scs" section=ss_bjt_npn
+include "gpdk045_mimcap.scs" section=ss3_mim
+include "gpdk045_moscap.scs" section=sscap
+include "gpdk045_moscap.scs" section=sscap_18
+include "gpdk045_resistor.scs" section=ss_res
+include "gpdk045_resistor.scs" section=ss_res3
+include "gpdk045_inductor.scs" section=ss_ind
+endsection ss
+
+section fs
+include "gpdk045_mos.scs" section=fs
+include "gpdk045_mos.scs" section=fs_hvt
+include "gpdk045_mos.scs" section=fs_lvt
+include "gpdk045_mos.scs" section=fs_na
+include "gpdk045_mos.scs" section=fs_18
+include "gpdk045_mos.scs" section=fs_na18
+include "gpdk045_mos.scs" section=ss_mos_var
+include "gpdk045_mos.scs" section=ss_mos18_var
+include "gpdk045_diode.scs" section=ss_dio
+include "gpdk045_diode.scs" section=ss_dio_hvt
+include "gpdk045_diode.scs" section=ss_dio_lvt
+include "gpdk045_diode.scs" section=ss_dio_na
+include "gpdk045_diode.scs" section=ss_dio_18
+include "gpdk045_diode.scs" section=ss_dio_na18
+include "gpdk045_bipolar.scs" section=ss_bjt_pnp
+include "gpdk045_bipolar.scs" section=ss_bjt_npn
+include "gpdk045_mimcap.scs" section=ss3_mim
+include "gpdk045_moscap.scs" section=fscap
+include "gpdk045_moscap.scs" section=fscap_18
+include "gpdk045_resistor.scs" section=ss_res
+include "gpdk045_resistor.scs" section=ss_res3
+include "gpdk045_inductor.scs" section=ss_ind
+endsection fs
+
+section sf
+include "gpdk045_mos.scs" section=sf
+include "gpdk045_mos.scs" section=sf_hvt
+include "gpdk045_mos.scs" section=sf_lvt
+include "gpdk045_mos.scs" section=sf_na
+include "gpdk045_mos.scs" section=sf_18
+include "gpdk045_mos.scs" section=sf_na18
+include "gpdk045_mos.scs" section=ss_mos_var
+include "gpdk045_mos.scs" section=ss_mos18_var
+include "gpdk045_diode.scs" section=ss_dio
+include "gpdk045_diode.scs" section=ss_dio_hvt
+include "gpdk045_diode.scs" section=ss_dio_lvt
+include "gpdk045_diode.scs" section=ss_dio_na
+include "gpdk045_diode.scs" section=ss_dio_18
+include "gpdk045_diode.scs" section=ss_dio_na18
+include "gpdk045_bipolar.scs" section=ss_bjt_pnp
+include "gpdk045_bipolar.scs" section=ss_bjt_npn
+include "gpdk045_mimcap.scs" section=ss3_mim
+include "gpdk045_moscap.scs" section=sfcap
+include "gpdk045_moscap.scs" section=sfcap_18
+include "gpdk045_resistor.scs" section=ss_res
+include "gpdk045_resistor.scs" section=ss_res3
+include "gpdk045_inductor.scs" section=ss_ind
+endsection sf
+
+section mc
+include "gpdk045_mos.scs" section=stat
+include "gpdk045_mos.scs" section=mc
+include "gpdk045_mos.scs" section=mc_hvt
+include "gpdk045_mos.scs" section=mc_lvt
+include "gpdk045_mos.scs" section=mc_na
+include "gpdk045_mos.scs" section=mc_18
+include "gpdk045_mos.scs" section=mc_na18
+include "gpdk045_mos.scs" section=mc_mos_var
+include "gpdk045_mos.scs" section=mc_mos18_var
+include "gpdk045_diode.scs" section=mc_dio
+include "gpdk045_diode.scs" section=mc_dio_hvt
+include "gpdk045_diode.scs" section=mc_dio_lvt
+include "gpdk045_diode.scs" section=mc_dio_na
+include "gpdk045_diode.scs" section=mc_dio_18
+include "gpdk045_diode.scs" section=mc_dio_na18
+include "gpdk045_bipolar.scs" section=mc_bjt_pnp
+include "gpdk045_bipolar.scs" section=mc_bjt_npn
+include "gpdk045_mimcap.scs" section=mc3_mim
+include "gpdk045_moscap.scs" section=mccap
+include "gpdk045_moscap.scs" section=mccap_18
+include "gpdk045_resistor.scs" section=mc_res
+include "gpdk045_resistor.scs" section=mc_res3
+include "gpdk045_inductor.scs" section=mc_ind
+endsection mc
+
+endlibrary gpdk045
+

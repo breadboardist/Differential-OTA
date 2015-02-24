@@ -1,0 +1,13 @@
+savedComponent = (let
+(tmp1)
+(unless tmp1
+tmp1 = make_sevVariableStruct()
+)
+(unless tmp1
+tmp1 = (ncons nil)
+)
+tmp1->name = "a"
+tmp1->expression = "1.2"
+tmp1->index = 1
+list(tmp1)
+)

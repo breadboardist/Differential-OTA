@@ -1,0 +1,1345 @@
+//**************************************************************
+//*   Generic PDK Resistor models                       
+//*                           
+//**************************************************************
+
+simulator lang=spectre
+library gpdk045
+//  **********************************************************************
+//  **********************************************************************
+//        Model name      structure                 
+//        -----------------------------------------
+//        resnwsti	   N-well Resistor under STI
+//        resnwoxide	   N-well Resistor under Oxide
+//        ressndiff	   N+ Diffused Resistor (salicide)
+//        resspdiff	   P+ Diffused Resistor (salicide)
+//        ressnpoly	   N+ Poly Resistor (salicide)
+//        ressppoly	   P+ Poly Resistor (salicide)
+//        resnsndiff	   N+ Diffused Resistor (w/o salicide)
+//        resnspdiff	   P+ Diffused Resistor (w/o salicide)
+//        resnsnpoly	   N+ Poly Resistor (w/o salicide)
+//        resnsppoly	   P+ Poly Resistor (w/o salicide)
+//        resm1            Metal 1 Resistor
+//        resm2            Metal 2 Resistor
+//        resm3            Metal 3 Resistor
+//        resm4            Metal 4 Resistor
+//        resm5            Metal 5 Resistor
+//        resm6            Metal 6 Resistor
+//        resm7            Metal 7 Resistor
+//        resm8            Metal 8 Resistor
+//        resm9            Metal 9 Resistor
+//        resm10           Metal10 Resistor
+//        resm11	   Metal11 Resistor
+//        resnwsti_m       NW diff(under STI)
+//        resnwoxide_m     NW diff(under OD)
+//        ressndiff_m      N+diff w/i silicide 
+//        resspdiff_m      P+diff w/i silicide
+//        ressnpoly_dis    N+Poly w/i silicide
+//        ressppoly_dis    P+Poly w/i silicide
+//        resnsndiff_m     N+diff w/o silicide
+//        resnspdiff_m     P+diff w/o silicide
+//        resnsnpoly_dis   N+Poly w/o silicide
+//        resnsppoly_dis   P+Poly w/o silicide
+//        resm1_m          3 terminal  Metal 1 Resistor    
+//        resm2_m          3 terminal  Metal 2 Resistor
+//        resm3_m          3 terminal  Metal 3 Resistor
+//        resm4_m          3 terminal  Metal 4 Resistor
+//        resm5_m          3 terminal  Metal 5 Resistor
+//        resm6_m          3 terminal  Metal 6 Resistor
+//        resm7_m          3 terminal  Metal 7 Resistor
+//        resm8_m          3 terminal  Metal 8 Resistor
+//        resm9_m          3 terminal  Metal 9 Resistor
+//        resm10_m         3 terminal  Metal10 Resistor
+//        resm11_m	   3 terminal  Metal11 Resistor
+//        ---------------------------------------
+
+section tt_res
+parameters     r_resnwsti         =  1e3          
+parameters     r_resnwoxide	  =  450
+parameters     r_ressndiff	  =  18
+parameters     r_dxw_ressndiff    =  0
+parameters     r_resspdiff	  =  15
+parameters     r_dxw_resspdiff    =  0
+parameters     r_ressnpoly	  =  15
+parameters     r_dxw_ressnpoly    =  0             
+parameters     r_ressppoly	  =  15
+parameters     r_dxw_ressppoly    =  0            
+parameters     r_resnsndiff	  =  100
+parameters     r_rend_resnsndiff  =  8.46e-6     
+parameters     r_dxl_resnsndiff   =  0
+parameters     r_dxw_resnsndiff   =  0            
+parameters     r_resnspdiff	  =  200 
+parameters     r_rend_resnspdiff  =  2.95e-5     
+parameters     r_dxl_resnspdiff   =  0   
+parameters     r_dxw_resnspdiff   =  0            
+parameters     r_resnsnpoly	  =  200
+parameters     r_rend_resnsnpoly  =  1.44e-5   
+parameters     r_dxl_resnsnpoly   =  0        
+parameters     r_dxw_resnsnpoly   =  0            
+parameters     r_resnsppoly	  =  600
+parameters     r_rend_resnsppoly  =  7.015e-6     
+parameters     r_dxl_resnsppoly   =  0  
+parameters     r_dxw_resnsppoly   =  0          
+parameters     r_resm1            =  0.0736
+parameters     r_resm2            =  0.0604 
+parameters     r_resm3            =  0.0604 
+parameters     r_resm4            =  0.0604 
+parameters     r_resm5            =  0.0604 
+parameters     r_resm6            =  0.0604
+parameters     r_resm7            =  0.0604
+parameters     r_resm8            =  0.0214
+parameters     r_resm9            =  0.0214 
+parameters     r_resm10           =  0.0214 
+parameters     r_resm11	          =  0.021 
+include "gpdk045_resistor.scs" section=res
+endsection tt_res
+
+
+section ss_res
+parameters     r_resnwsti                =  1e3  * 1.20      
+parameters     r_resnwoxide	         =  450 * 1.20
+parameters     r_ressndiff	         =  18 * 1.20
+parameters     r_dxw_ressndiff           =  0 + 0.015u
+parameters     r_resspdiff	         =  15* 1.20
+parameters     r_dxw_resspdiff           =  0+ 0.015u
+parameters     r_ressnpoly	         =  15* 1.20
+parameters     r_dxw_ressnpoly           =  0    + 0.009u         
+parameters     r_ressppoly	         =  15* 1.20
+parameters     r_dxw_ressppoly           =         0   + 0.012u         
+parameters     r_resnsndiff	         =  100* 1.15
+parameters     r_rend_resnsndiff         =  8.46e-6 * 1.90  
+parameters     r_dxl_resnsndiff          =  0+ 0.0u
+parameters     r_dxw_resnsndiff          =  0  + 0.040u           
+parameters     r_resnspdiff	         =  200  * 1.25
+parameters     r_rend_resnspdiff         =  2.95e-5    * 1.60  
+parameters     r_dxl_resnspdiff          =  0   + 0.0u
+parameters     r_dxw_resnspdiff          =  0  + 0.022u          
+parameters     r_resnsnpoly	         =  200* 1.15
+parameters     r_rend_resnsnpoly         =  1.44e-5   * 1.90 
+parameters     r_dxl_resnsnpoly          =  0  + 0.0u       
+parameters     r_dxw_resnsnpoly          =  0  + 0.032u          
+parameters     r_resnsppoly	         =  600 * 1.15
+parameters     r_rend_resnsppoly         =  7.015e-6     * 1.60 
+parameters     r_dxl_resnsppoly          =  0  + 0.0u
+parameters     r_dxw_resnsppoly          =  0 + 0.035u         
+parameters     r_resm1                   =  0.0736  * 1.20
+parameters     r_resm2                   =  0.0604  * 1.20
+parameters     r_resm3                   =  0.0604  * 1.20 
+parameters     r_resm4                   =  0.0604  * 1.20 
+parameters     r_resm5                   =  0.0604  * 1.20 
+parameters     r_resm6                   =  0.0604  * 1.20
+parameters     r_resm7                   =  0.0604  * 1.20
+parameters     r_resm8                   =  0.0214  * 1.20
+parameters     r_resm9                   =  0.0214  * 1.20
+parameters     r_resm10                  =  0.0214  * 1.20 
+parameters     r_resm11	                 =  0.021   * 1.20 
+include "gpdk045_resistor.scs" section=res
+endsection ss_res
+
+
+
+section ff_res
+parameters     r_resnwsti         =  1e3  * 0.8      
+parameters     r_resnwoxide	  =  450 * 0.8 
+parameters     r_ressndiff	  =  18 * 0.8 
+parameters     r_dxw_ressndiff    =  0 - 0.015u
+parameters     r_resspdiff	  =  15* 0.8 
+parameters     r_dxw_resspdiff    =  0 - 0.015u
+parameters     r_ressnpoly	  =  15* 0.8 
+parameters     r_dxw_ressnpoly    =  0 - 0.009u         
+parameters     r_ressppoly	  =  15*0.8 
+parameters     r_dxw_ressppoly    =  0  - 0.012u         
+parameters     r_resnsndiff	  =  100* 0.85 
+parameters     r_rend_resnsndiff  =  8.46e-6 * 0.1  
+parameters     r_dxl_resnsndiff   =  0
+parameters     r_dxw_resnsndiff   =  0  - 0.040u           
+parameters     r_resnspdiff	  =  200  * 0.75
+parameters     r_rend_resnspdiff  =  2.95e-5    * 0.4  
+parameters     r_dxl_resnspdiff   =  0   + 0.0u
+parameters     r_dxw_resnspdiff   =  0  - 0.022u          
+parameters     r_resnsnpoly	  =  200* 0.85
+parameters     r_rend_resnsnpoly  =  1.44e-5   *0.1 
+parameters     r_dxl_resnsnpoly   =  0  + 0.0u       
+parameters     r_dxw_resnsnpoly   =  0  - 0.032u          
+parameters     r_resnsppoly	  =  600 *0.85
+parameters     r_rend_resnsppoly  =  7.015e-6     * 0.4
+parameters     r_dxl_resnsppoly   =  0  + 0.0u
+parameters     r_dxw_resnsppoly   =  0 - 0.035u         
+parameters     r_resm1            =  0.0736  * 0.8
+parameters     r_resm2            =  0.0604  * 0.8
+parameters     r_resm3            =  0.0604  * 0.8
+parameters     r_resm4            =  0.0604  * 0.8 
+parameters     r_resm5            =  0.0604  * 0.8      
+parameters     r_resm6            =  0.0604  * 0.8     
+parameters     r_resm7            =  0.0604  * 0.8     
+parameters     r_resm8            =  0.0214  * 0.8     
+parameters     r_resm9            =  0.0214  * 0.8
+parameters     r_resm10           =  0.0214  * 0.8 
+parameters     r_resm11	          =  0.021   * 0.8 
+include "gpdk045_resistor.scs" section=res
+endsection ff_res
+
+
+section mc_res
+include "gpdk045_resistor.scs" section=stat_res
+parameters    par_r_resnwsti             =    var_r_resnwsti      
+parameters    par_r_resnwoxide           =    var_r_resnwoxide    
+parameters    par_r_ressndiff            =    var_r_ressndiff     
+parameters    par_dxw_ressndiff          =    var_dxw_ressndiff   
+parameters    par_r_resspdiff            =    var_r_resspdiff     
+parameters    par_dxw_resspdiff          =    var_dxw_resspdiff   
+parameters    par_r_ressnpoly            =    var_r_ressnpoly     
+parameters    par_dxw_ressnpoly          =    var_dxw_ressnpoly   
+parameters    par_r_ressppoly            =    var_r_ressppoly     
+parameters    par_dxw_ressppoly          =    var_dxw_ressppoly   
+parameters    par_r_resnsndiff           =    var_r_resnsndiff    
+parameters    par_rend_resnsndiff        =    var_rend_resnsndiff 
+parameters    par_dxw_resnsndiff         =    var_dxw_resnsndiff  
+parameters    par_r_resnspdiff           =    var_r_resnspdiff    
+parameters    par_rend_resnspdiff        =    var_rend_resnspdiff 
+parameters    par_dxw_resnspdiff         =    var_dxw_resnspdiff  
+parameters    par_r_resnsnpoly           =    var_r_resnsnpoly    
+parameters    par_rend_resnsnpoly        =    var_rend_resnsnpoly 
+parameters    par_dxw_resnsnpoly         =    var_dxw_resnsnpoly  
+parameters    par_r_resnsppoly           =    var_r_resnsppoly    
+parameters    par_rend_resnsppoly        =    var_rend_resnsppoly 
+parameters    par_dxl_resnsppoly         =    var_dxl_resnsppoly  
+parameters    par_r_resm1                =    var_r_resm1         
+parameters    par_r_resm2                =    var_r_resm2         
+parameters    par_r_resm3                =    var_r_resm3         
+parameters    par_r_resm4                =    var_r_resm4         
+parameters    par_r_resm5                =    var_r_resm5         
+parameters    par_r_resm6                =    var_r_resm6         
+parameters    par_r_resm7                =    var_r_resm7         
+parameters    par_r_resm8                =    var_r_resm8         
+parameters    par_r_resm9                =    var_r_resm9         
+parameters    par_r_resm10               =    var_r_resm10        
+parameters    par_r_resm11  	         =    var_r_resm11  	    
+parameters    r_resnwsti                 =  1e3    * (1 + 0.05 *    par_r_resnwsti          )         
+parameters    r_resnwoxide	         =  450    * (1 + 0.05 *    par_r_resnwoxide        )
+parameters    r_ressndiff	         =  18     * (1 + 0.05 *    par_r_ressndiff         )
+parameters    r_dxw_ressndiff            = 0.0099u *                par_dxw_ressndiff
+parameters    r_resspdiff	         =  15   *   (1 + 0.05 *    par_r_resspdiff         )
+parameters    r_dxw_resspdiff            =  0.0099u *               par_dxw_resspdiff
+parameters    r_ressnpoly	         =  15    *  (1 + 0.05 *    par_r_ressnpoly         )
+parameters    r_dxw_ressnpoly            =  0.0072u *               par_dxw_ressnpoly
+parameters    r_ressppoly	         =  15    *  (1 + 0.05 *    par_r_ressppoly         )
+parameters    r_dxw_ressppoly            =  0.0086u *               par_dxw_ressppoly        
+parameters    r_resnsndiff	         =  100 *    (1 + 0.0375 *  par_r_resnsndiff        )
+parameters    r_rend_resnsndiff          =  8.46e-6 *(1 + 0.45 *    par_rend_resnsndiff     )     
+parameters    r_dxl_resnsndiff           =  0+ 0.0u
+parameters    r_dxw_resnsndiff           =  0.023u *                par_dxw_resnsndiff           
+parameters    r_resnspdiff	         =  200  *   (1 + 0.0625 *  par_r_resnspdiff        )
+parameters    r_rend_resnspdiff          =  2.95e-5 *(1 + 0.29 *    par_rend_resnspdiff     )    
+parameters    r_dxl_resnspdiff           =  0 + 0.0u  
+parameters    r_dxw_resnspdiff           =  0.021u *                par_dxw_resnspdiff
+parameters    r_resnsnpoly	         =  200 *    (1 + 0.0375 *  par_r_resnsnpoly        )
+parameters    r_rend_resnsnpoly          =  1.44e-5* (1 + 0.38 *    par_rend_resnsnpoly     ) 
+parameters    r_dxl_resnsnpoly           =  0  + 0.0u      
+parameters    r_dxw_resnsnpoly           =  0.018u *                par_dxw_resnsnpoly         
+parameters    r_resnsppoly	         =  600 *    (1 + 0.0375 *  par_r_resnsppoly        )
+parameters    r_rend_resnsppoly          =  7.015e-6*(1 + 0.27   *  par_rend_resnsppoly     )
+parameters    r_dxw_resnsppoly           =  0  + 0.0u
+parameters    r_dxl_resnsppoly           =  0.020u *                par_dxl_resnsppoly       
+parameters    r_resm1                    =  0.0736 * (1 + 0.05 *    par_r_resm1             )               
+parameters    r_resm2                    =  0.0604  * (1 + 0.05 *   par_r_resm2             )                
+parameters    r_resm3                    =  0.0604  * (1 + 0.05 *   par_r_resm3             )                
+parameters    r_resm4                    =  0.0604  * (1 + 0.05 *   par_r_resm4             )              
+parameters    r_resm5                    =  0.0604  * (1 + 0.05 *   par_r_resm5             )            
+parameters    r_resm6                    =  0.0604 * (1 + 0.05 *    par_r_resm6             )                 
+parameters    r_resm7                    =  0.0604 * (1 + 0.05 *    par_r_resm7             )                
+parameters    r_resm8                    =  0.0214 * (1 + 0.05 *    par_r_resm8             )                
+parameters    r_resm9                    =  0.0214  * (1 + 0.05 *   par_r_resm9             )                
+parameters    r_resm10                   =  0.0214  * (1 + 0.05 *   par_r_resm10            )                
+parameters    r_resm11	                 =  0.021  * (1 + 0.05 *    par_r_resm11            ) 	       
+include "gpdk045_resistor.scs" section=res
+endsection mc_res
+
+
+section stat_res        
+parameters      random_r_resnwsti        = 0
+parameters      random_r_resnwoxide      = 0
+parameters      random_r_ressndiff       = 0
+parameters      random_dxw_ressndiff     = 0
+parameters      random_r_resspdiff       = 0
+parameters      random_dxw_resspdiff     = 0
+parameters      random_r_ressnpoly       = 0
+parameters      random_dxw_ressnpoly     = 0
+parameters      random_r_ressppoly       = 0
+parameters      random_dxw_ressppoly     = 0
+parameters      random_r_resnsndiff      = 0
+parameters      random_rend_resnsndiff   = 0
+parameters      random_dxw_resnsndiff    = 0
+parameters      random_r_resnspdiff      = 0
+parameters      random_rend_resnspdiff   = 0
+parameters      random_dxw_resnspdiff    = 0
+parameters      random_r_resnsnpoly      = 0
+parameters      random_rend_resnsnpoly   = 0
+parameters      random_dxw_resnsnpoly    = 0
+parameters      random_r_resnsppoly      = 0
+parameters      random_rend_resnsppoly   = 0
+parameters      random_dxl_resnsppoly    = 0
+parameters      random_r_resm1           = 0
+parameters      random_r_resm2           = 0
+parameters      random_r_resm3           = 0
+parameters      random_r_resm4           = 0
+parameters      random_r_resm5           = 0
+parameters      random_r_resm6           = 0
+parameters      random_r_resm7           = 0
+parameters      random_r_resm8           = 0
+parameters      random_r_resm9           = 0
+parameters      random_r_resm10          = 0
+parameters      random_r_resm11          = 0
+parameters     var_r_resnwsti            =     random_r_resnwsti       
+parameters     var_r_resnwoxide          =     random_r_resnwoxide     
+parameters     var_r_ressndiff           =     random_r_ressndiff      
+parameters     var_dxw_ressndiff         =     random_dxw_ressndiff    
+parameters     var_r_resspdiff           =     random_r_resspdiff      
+parameters     var_dxw_resspdiff         =     random_dxw_resspdiff    
+parameters     var_r_ressnpoly           =     random_r_ressnpoly      
+parameters     var_dxw_ressnpoly         =     random_dxw_ressnpoly    
+parameters     var_r_ressppoly           =     random_r_ressppoly      
+parameters     var_dxw_ressppoly         =     random_dxw_ressppoly    
+parameters     var_r_resnsndiff          =     random_r_resnsndiff     
+parameters     var_rend_resnsndiff       =     random_rend_resnsndiff  
+parameters     var_dxw_resnsndiff        =     random_dxw_resnsndiff   
+parameters     var_r_resnspdiff          =     random_r_resnspdiff     
+parameters     var_rend_resnspdiff       =     random_rend_resnspdiff  
+parameters     var_dxw_resnspdiff        =     random_dxw_resnspdiff   
+parameters     var_r_resnsnpoly          =     random_r_resnsnpoly     
+parameters     var_rend_resnsnpoly       =     random_rend_resnsnpoly  
+parameters     var_dxw_resnsnpoly        =     random_dxw_resnsnpoly   
+parameters     var_r_resnsppoly          =     random_r_resnsppoly     
+parameters     var_rend_resnsppoly       =     random_rend_resnsppoly  
+parameters     var_dxl_resnsppoly        =     random_dxl_resnsppoly   
+parameters     var_r_resm1               =     random_r_resm1          
+parameters     var_r_resm2               =     random_r_resm2          
+parameters     var_r_resm3               =     random_r_resm3          
+parameters     var_r_resm4               =     random_r_resm4          
+parameters     var_r_resm5               =     random_r_resm5          
+parameters     var_r_resm6               =     random_r_resm6          
+parameters     var_r_resm7               =     random_r_resm7          
+parameters     var_r_resm8               =     random_r_resm8          
+parameters     var_r_resm9               =     random_r_resm9          
+parameters     var_r_resm10              =     random_r_resm10         
+parameters     var_r_resm11  	         =     random_r_resm11         
+statistics {
+   process {     
+            vary    random_r_resnwsti               dist=gauss std=1/1  
+            vary    random_r_resnwoxide             dist=gauss std=1/1  
+            vary    random_r_ressndiff              dist=gauss std=1/1  
+            vary    random_dxw_ressndiff            dist=gauss std=1/1  
+            vary    random_r_resspdiff              dist=gauss std=1/1  
+            vary    random_dxw_resspdiff            dist=gauss std=1/1  
+            vary    random_r_ressnpoly              dist=gauss std=1/1  
+            vary    random_dxw_ressnpoly            dist=gauss std=1/1  
+            vary    random_r_ressppoly              dist=gauss std=1/1  
+            vary    random_dxw_ressppoly            dist=gauss std=1/1  
+            vary    random_r_resnsndiff             dist=gauss std=1/1  
+            vary    random_rend_resnsndiff          dist=gauss std=1/1  
+            vary    random_dxw_resnsndiff           dist=gauss std=1/1  
+            vary    random_r_resnspdiff             dist=gauss std=1/1  
+            vary    random_rend_resnspdiff          dist=gauss std=1/1  
+            vary    random_dxw_resnspdiff           dist=gauss std=1/1  
+            vary    random_r_resnsnpoly             dist=gauss std=1/1  
+            vary    random_rend_resnsnpoly          dist=gauss std=1/1  
+            vary    random_dxw_resnsnpoly           dist=gauss std=1/1  
+            vary    random_r_resnsppoly             dist=gauss std=1/1  
+            vary    random_rend_resnsppoly          dist=gauss std=1/1  
+            vary    random_dxl_resnsppoly           dist=gauss std=1/1  
+            vary    random_r_resm1                  dist=gauss std=1/1  
+            vary    random_r_resm2                  dist=gauss std=1/1  
+            vary    random_r_resm3                  dist=gauss std=1/1  
+            vary    random_r_resm4                  dist=gauss std=1/1  
+            vary    random_r_resm5                  dist=gauss std=1/1  
+            vary    random_r_resm6                  dist=gauss std=1/1  
+            vary    random_r_resm7                  dist=gauss std=1/1  
+            vary    random_r_resm8                  dist=gauss std=1/1  
+            vary    random_r_resm9                  dist=gauss std=1/1  
+            vary    random_r_resm10                 dist=gauss std=1/1  
+            vary    random_r_resm11                 dist=gauss std=1/1     
+        }
+    }   
+endsection stat_res
+
+
+
+section  res
+
+
+
+
+//  *********************************   N-well Resistor under STI  *********************************
+subckt resnwsti ( n1 n2 ) 
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++ dw = 2e-7                     pvc1 = 7.6e-7                 
++ pvc2 = -4.77e-4               ptc1 = 3.71e-3                ptc2 = 1e-7  
++rsh = r_resnwsti              pt = temp                 tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0) 
+r1 ( n1 n2 ) bsource r=rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/factor)+pvc2*(v(n2,n1)/factor)*(v(n2,n1)/factor))*tfac
+ends resnwsti
+
+
+//  *********************************   N-well Resistor under Oxide  *********************************
+                         
+
+subckt resnwoxide ( n1 n2 ) 
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++ dw = 1.4e-7                   pvc1 = 0.0124                 
++ pvc2 = -2.98e-4               ptc1 = 2.83e-3                ptc2 = 1.04e-5  
++rsh = r_resnwoxide               pt = temp                 tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0) 
+r1 ( n1 n2 ) bsource r=rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/factor)+pvc2*(v(n2,n1)/factor)*(v(n2,n1)/factor))*tfac
+ends resnwoxide
+
+//  *********************************   N+ Diffused Resistor (salicide)  *********************************
+                      
+
+subckt ressndiff ( n1 n2 ) 
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++ pvc1 = 4.77e-7                
++ pvc2 = 7.63e-13               ptc1 = 3.2e-3                 ptc2 = 4.06e-7 
++rsh = r_ressndiff               dw = r_dxw_ressndiff              pt = temp                
++tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0) 
+r1 ( n1 n2 ) bsource r=rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends ressndiff
+
+//  *********************************   P+ Diffused Resistor (salicide)  *********************************
+                     
+
+subckt resspdiff ( n1 n2 ) 
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++ pvc1 = 6.04e-7                
++ pvc2 = 7.82e-13               ptc1 = 3.55e-3                ptc2 = -3.88e-7   
++rsh = r_resspdiff               dw = r_dxw_resspdiff              pt = temp                 
++tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0) 
+r1 ( n1 n2 ) bsource r=rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends resspdiff
+
+//  *********************************   N+ Poly Resistor (salicide) *********************************
+
+                       
+
+subckt ressnpoly ( n1 n2 ) 
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++ pvc1 = 1.51e-6                
++ pvc2 = 1.13e-12               ptc1 = 3.32e-3                ptc2 = -1.71e-6  
++rsh = r_ressnpoly             dw = r_dxw_ressnpoly            pt = temp                 
++tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0) 
+r1 ( n1 n2 ) bsource r=rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends ressnpoly
+
+
+//  *********************************   P+ Poly Resistor (salicide) *********************************
+
+subckt ressppoly ( n1 n2 ) 
+parameters  l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++ pvc1 = 1.82e-6                
++ pvc2 = 1.23e-12               ptc1 = 3.28e-3                ptc2 = -1.09e-6        
++rsh = r_ressppoly            dw = r_dxw_ressppoly            pt = temp                
++tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0) 
+r1 ( n1 n2 ) bsource r=rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends ressppoly
+
+
+//  *********************************  N+ Diffused Resistor (w/o salicide)  *********************************
+          
+subckt resnsndiff ( n1 n2 ) 
+parameters  l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0              
++pvcp1 = -0.296                pvcp2 = -8.04e-6              
++pvcp3 = -2.449                ptcp1 = 2.565e-3              ptcp2 = 5.5e-7                
++pvce1 = -0.0689               pvce2 = 1.12e3                pvce3 = -0.182                
++ptce1 = 1.875e-3              ptce2 = 2.5e-6                
++rsh = r_resnsndiff             rend0 = r_rend_resnsndiff    dw = r_dxw_resnsndiff             
++dl = r_dxl_resnsndiff             pt = temp                  tface = 1.0+ptce1*(pt-25.0)+ptce2*(pt-25.0)*(pt-25.0) 
++tfacp = 1.0+ptcp1*(pt-25.0)+ptcp2*(pt-25.0)*(pt-25.0) 
+rend1 ( n1 3 ) bsource r=rend0/mf/w/factor*tface*(1+pvce1*(tanh(pvce2*abs(v(n1,3))+pvce3)-tanh(pvce3)))
+rp ( 3 4 ) bsource r=rsh/mf*(l*factor-dl)/(w*factor-dw)*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(3,4)/(l*factor-dl))+pvcp3)-tanh(pvcp3)))
+rend2 ( 4 n2 ) bsource r=rend0/mf/w/factor*tface*(1+pvce1*(tanh(pvce2*abs(v(4,n2))+pvce3)-tanh(pvce3)))
+ends resnsndiff
+
+
+
+
+                                
+                                  
+//  *********************************  P+ Diffused Resistor (w/o salicide)  *********************************
+           
+subckt resnspdiff ( n1 n2 )
+parameters  l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0              
++ pvcp1 = -0.389                pvcp2 = -1.73e-6              
++ pvcp3 = -2.098                ptcp1 = 1.51e-3               ptcp2 = 4.14e-6               
++ pvce1 = 0.035                 pvce2 = 259                   pvce3 = -0.0992               
++ ptce1 = -1e-3                 ptce2 = 2e-6                  
++rsh = r_resnspdiff              rend0 = r_rend_resnspdiff         dw = r_dxw_resnspdiff             
++dl = r_dxl_resnspdiff             pt = temp                 tface = 1.0+ptce1*(pt-25.0)+ptce2*(pt-25.0)*(pt-25.0) 
++tfacp = 1.0+ptcp1*(pt-25.0)+ptcp2*(pt-25.0)*(pt-25.0) 
+rend1 ( n1 3 ) bsource r=rend0/mf/w/factor*tface*(1+pvce1*(tanh(pvce2*abs(v(n1,3))+pvce3)-tanh(pvce3)))
+rp ( 3 4 ) bsource r=rsh/mf*(l*factor-dl)/(w*factor-dw)*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(3,4)/(l*factor-dl))+pvcp3)-tanh(pvcp3)))
+rend2 ( 4 n2 ) bsource r=rend0/mf/w/factor*tface*(1+pvce1*(tanh(pvce2*abs(v(4,n2))+pvce3)-tanh(pvce3)))
+ends resnspdiff
+                                  
+                                  
+
+ 
+//  *********************************    N+ Poly Resistor (w/o salicide)  *********************************
+                         
+subckt resnsnpoly ( n1 n2 ) 
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0            
++pvcp1 = -0.788                pvcp2 = -9.8e-5               
++pvcp3 = -2.453                ptcp1 = 9.89e-4               ptcp2 = 2.5e-6                
++pvce1 = -0.0227               pvce2 = -654                  pvce3 = 0.766                 
++ptce1 = 3e-3                  ptce2 = 8e-6   
++rsh = r_resnsnpoly            rend0 = r_rend_resnsnpoly       dw = r_dxw_resnsnpoly           
++dl = r_dxl_resnsnpoly           pt = temp                 tface = 1.0+ptce1*(pt-25.0)+ptce2*(pt-25.0)*(pt-25.0) 
++tfacp = 1.0+ptcp1*(pt-25.0)+ptcp2*(pt-25.0)*(pt-25.0) 
+rend1 ( n1 3 ) bsource r=rend0/mf/w/factor*tface*(1+pvce1*(tanh(pvce2*abs(v(n1,3))+pvce3)-tanh(pvce3)))
+rp ( 3 4 ) bsource r=rsh/mf*(l*factor-dl)/(w*factor-dw)*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(3,4)/(l*factor-dl))+pvcp3)-tanh(pvcp3)))
+rend2 ( 4 n2 ) bsource r=rend0/mf/w/factor*tface*(1+pvce1*(tanh(pvce2*abs(v(4,n2))+pvce3)-tanh(pvce3)))
+ends resnsnpoly
+ 
+ 
+//  *********************************  P+ Poly Resistor (w/o salicide)  *********************************
+                     
+subckt resnsppoly ( n1 n2 ) 
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0           
++pvcp1 = 1.1e-3                pvcp2 = -2.69e-5              
++pvcp3 = 2.957                 ptcp1 = -5e-4                 ptcp2 = 8.692e-15             
++pvce1 = 0.0104                pvce2 = -7.216                pvce3 = 0.172                 
++ptce1 = -8e-7                 ptce2 = -5e-6   
++rsh = r_resnsppoly            rend0 = r_rend_resnsppoly       dw = r_dxw_resnsppoly           
++dl = r_dxl_resnsppoly           pt = temp                 tface = 1.0+ptce1*(pt-25.0)+ptce2*(pt-25.0)*(pt-25.0) 
++tfacp = 1.0+ptcp1*(pt-25.0)+ptcp2*(pt-25.0)*(pt-25.0) 
+rend1 ( n1 3 ) bsource r=rend0/mf/w/factor*tface*(1+pvce1*(tanh(pvce2*abs(v(n1,3))+pvce3)-tanh(pvce3)))
+rp ( 3 4 ) bsource r=rsh/mf*(l*factor-dl)/(w*factor-dw)*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(3,4)/(l*factor-dl))+pvcp3)-tanh(pvcp3)))
+rend2 ( 4 n2 ) bsource r=rend0/mf/w/factor*tface*(1+pvce1*(tanh(pvce2*abs(v(4,n2))+pvce3)-tanh(pvce3)))
+ends resnsppoly
+
+               
+//  *********************************     Metal 1      ***********************************               
+subckt gpdk045_resm1 ( n1 n2 ) 
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 2.92e-3                ptc2 = -1.22e-7               
++rsh = r_resm1                 pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0) 
+r1 ( n1 n2 ) bsource r=rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends gpdk045_resm1
+
+
+                      
+//  *********************************     Metal 2      ***********************************   
+subckt gpdk045_resm2 ( n1 n2 )  
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.077e-3               ptc2 = -1.14e-7     
++rsh =  r_resm2                   pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0)
+r1 ( n1 n2 ) bsource r=rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends gpdk045_resm2
+
+                      
+//  *********************************     Metal 3      ***********************************   
+subckt gpdk045_resm3 ( n1 n2 )  
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.077e-3               ptc2 = -1.14e-7   
++rsh = r_resm3                    pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0)
+r1 ( n1 n2 ) bsource r=rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends gpdk045_resm3
+
+
+//  *********************************     Metal 4      ***********************************               
+subckt gpdk045_resm4 ( n1 n2 )  
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.077e-3               ptc2 = -1.14e-7               
++rsh = r_resm4                    pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0)
+r1 ( n1 n2 ) bsource r=rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends gpdk045_resm4
+
+
+//  *********************************     Metal 5      ***********************************                
+subckt gpdk045_resm5 ( n1 n2 ) 
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.077e-3               ptc2 = -1.14e-7               
++rsh = r_resm5                    pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0)
+r1 ( n1 n2 ) bsource r=rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends gpdk045_resm5
+
+
+                        
+//  *********************************     Metal 6      ***********************************   
+subckt gpdk045_resm6 ( n1 n2 )  
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.077e-3               ptc2 = -1.14e-7 
++rsh = r_resm6                    pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0)
+r1 ( n1 n2 ) bsource r=rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends gpdk045_resm6
+
+
+                          
+//  *********************************     Metal 7      ***********************************   
+subckt gpdk045_resm7 ( n1 n2 )   
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.077e-3               ptc2 = -1.14e-7 
++rsh =r_resm7                    pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0)
+r1 ( n1 n2 ) bsource r=rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends gpdk045_resm7
+
+
+                 
+//  *********************************     Metal 8      ***********************************   
+subckt gpdk045_resm8 ( n1 n2 ) 
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.506e-3               ptc2 = -3.6e-7 
++rsh =r_resm8                  pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0)
+r1 ( n1 n2 ) bsource r=rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends gpdk045_resm8
+
+
+//  *********************************     Metal 9      ***********************************   
+subckt gpdk045_resm9 ( n1 n2 ) 
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.506e-3               ptc2 = -3.6e-7 
++rsh = r_resm9                 pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0)
+r1 ( n1 n2 ) bsource r=rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends gpdk045_resm9
+
+
+                         
+//  *********************************     Metal 10      ***********************************   
+subckt gpdk045_resm10 ( n1 n2 )  
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.506e-3               ptc2 = -3.6e-7 
++rsh = r_resm10                pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0)
+r1 ( n1 n2 ) bsource r=rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends gpdk045_resm10
+
+
+                             
+//  *********************************     Metal 11      ***********************************   
+subckt gpdk045_resm11 ( n1 n2 )  
+parameters  l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.89e-3                ptc2 = -1.5e-7 
++rsh = r_resm11                pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0) 
+r1 ( n1 n2 ) bsource r=rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac 
+ends gpdk045_resm11
+
+endsection res
+
+
+section tt_res3
+parameters      r_resnwsti_m          =   1000
+parameters      r_resnwoxide_m        =   450
+parameters      r_ressndiff_m         =   18
+parameters      r_resspdiff_m         =   15
+parameters      r_ressnpoly_dis       =   15
+parameters      r_ressppoly_dis       =    15
+parameters      r_resnsndiff_m        =   100  
+parameters      r_rend_resnsndiff_m   =   8.46u
+parameters      r_dxl_resnsndiff_m    =   0
+parameters      r_dxw_resnsndiff_m    =   0.027u                        
+parameters      r_resnspdiff_m        =   200
+parameters      r_rend_resnspdiff_m   =   29.5u  
+parameters      r_dxl_resnspdiff_m    =   0      
+parameters      r_dxw_resnspdiff_m    =   0.03071u
+parameters      r_resnsnpoly_dis      =    200
+parameters      r_rend_resnsnpoly_dis =   14.4u   
+parameters      r_dxl_resnsnpoly_dis  =   0       
+parameters      r_dxw_resnsnpoly_dis  =   0.0936u
+parameters      r_resnsppoly_dis      =   650
+parameters      r_rend_resnsppoly_dis =   86.7u  
+parameters      r_dxl_resnsppoly_dis  =   0       
+parameters      r_dxw_resnsppoly_dis  =   0.0689u             
+parameters     r_resm1_m            =  0.0736
+parameters     r_resm2_m            =  0.0604 
+parameters     r_resm3_m            =  0.0604 
+parameters     r_resm4_m            =  0.0604 
+parameters     r_resm5_m            =  0.0604 
+parameters     r_resm6_m            =  0.0604
+parameters     r_resm7_m            =  0.0604
+parameters     r_resm8_m            =  0.0214
+parameters     r_resm9_m            =  0.0214 
+parameters     r_resm10_m           =  0.0214 
+parameters     r_resm11_m	    =  0.021     
+include "gpdk045_resistor.scs" section=res_3t       
+endsection tt_res3              
+   
+
+section ss_res3
+parameters     r_resnwsti_m          =  1e3  * 1.20      
+parameters     r_resnwoxide_m        =  450 * 1.20
+parameters     r_ressndiff_m         =  18 * 1.20
+parameters     r_resspdiff_m         =  15* 1.20
+parameters     r_ressnpoly_dis       =  15* 1.20     
+parameters     r_ressppoly_dis       =  15* 1.20   
+parameters     r_resnsndiff_m        =  100* 1.15
+parameters     r_rend_resnsndiff_m   =  8.46e-6 * 1.90  
+parameters     r_dxl_resnsndiff_m    =  0+ 0.0u
+parameters     r_dxw_resnsndiff_m    =  0  + 0.040u           
+parameters     r_resnspdiff_m        =  200  * 1.25
+parameters     r_rend_resnspdiff_m   =  2.95e-5    * 1.60  
+parameters     r_dxl_resnspdiff_m    =  0   + 0.0u
+parameters     r_dxw_resnspdiff_m    =  0  + 0.022u          
+parameters     r_resnsnpoly_dis      =  200* 1.15
+parameters     r_rend_resnsnpoly_dis =  1.44e-5   * 1.90 
+parameters     r_dxl_resnsnpoly_dis  =  0  + 0.0u       
+parameters     r_dxw_resnsnpoly_dis  =  0  + 0.032u          
+parameters     r_resnsppoly_dis      =  650 * 1.15
+parameters     r_rend_resnsppoly_dis =  86.7u        * 1.60 
+parameters     r_dxl_resnsppoly_dis  =  0  + 0.0u
+parameters     r_dxw_resnsppoly_dis  =  0 + 0.035u    
+parameters     r_resm1_m                      =  0.0736  * 1.20
+parameters     r_resm2_m                      =  0.0604  * 1.20
+parameters     r_resm3_m                      =  0.0604  * 1.20 
+parameters     r_resm4_m                      =  0.0604  * 1.20 
+parameters     r_resm5_m                      =  0.0604  * 1.20 
+parameters     r_resm6_m                      =  0.0604  * 1.20
+parameters     r_resm7_m                      =  0.0604  * 1.20
+parameters     r_resm8_m                      =  0.0214  * 1.20
+parameters     r_resm9_m                      =  0.0214  * 1.20
+parameters     r_resm10_m                    =  0.0214  * 1.20 
+parameters     r_resm11_m 	                 =  0.021   * 1.20 
+include "gpdk045_resistor.scs" section=res_3t
+endsection ss_res3
+
+
+
+section ff_res3
+parameters     r_resnwsti_m          =  1e3  * 0.8      
+parameters     r_resnwoxide_m        =  450 * 0.8 
+parameters     r_ressndiff_m         =  18 * 0.8 
+parameters     r_resspdiff_m         =  15* 0.8 
+parameters     r_ressnpoly_dis       =  15* 0.8  
+parameters     r_ressppoly_dis       =  15*0.8      
+parameters     r_resnsndiff_m        =  100* 0.85 
+parameters     r_rend_resnsndiff_m   =  8.46e-6 * 0.1  
+parameters     r_dxl_resnsndiff_m    =  0
+parameters     r_dxw_resnsndiff_m    =  0  - 0.040u           
+parameters     r_resnspdiff_m        =  200  * 0.75
+parameters     r_rend_resnspdiff_m   =  2.95e-5    * 0.4  
+parameters     r_dxl_resnspdiff_m    =  0   + 0.0u
+parameters     r_dxw_resnspdiff_m    =  0  - 0.022u          
+parameters     r_resnsnpoly_dis      =  200* 0.85
+parameters     r_rend_resnsnpoly_dis =  1.44e-5   *0.1 
+parameters     r_dxl_resnsnpoly_dis  =  0  + 0.0u       
+parameters     r_dxw_resnsnpoly_dis  =  0  - 0.032u          
+parameters     r_resnsppoly_dis      =  650 *0.85
+parameters     r_rend_resnsppoly_dis =  86.7u        * 0.4
+parameters     r_dxl_resnsppoly_dis  =  0  + 0.0u
+parameters     r_dxw_resnsppoly_dis  =  0 - 0.035u         
+parameters     r_resm1_m              =  0.0736  * 0.8
+parameters     r_resm2_m              =  0.0604  * 0.8
+parameters     r_resm3_m              =  0.0604  * 0.8
+parameters     r_resm4_m              =  0.0604  * 0.8 
+parameters     r_resm5_m              =  0.0604  * 0.8      
+parameters     r_resm6_m              =  0.0604  * 0.8     
+parameters     r_resm7_m              =  0.0604  * 0.8     
+parameters     r_resm8_m              =  0.0214  * 0.8     
+parameters     r_resm9_m              =  0.0214  * 0.8
+parameters     r_resm10_m             =  0.0214  * 0.8 
+parameters     r_resm11_m	      =  0.021   * 0.8 
+include "gpdk045_resistor.scs" section=res_3t
+endsection ff_res3
+   
+
+              
+section mc_res3   
+include "gpdk045_resistor.scs" section=stat_res3  
+parameters      par_r_resnwsti_m            =    var_r_resnwsti_m           
+parameters      par_r_resnwoxide_m          =    var_r_resnwoxide_m         
+parameters      par_r_ressndiff_m           =    var_r_ressndiff_m          
+parameters      par_r_resspdiff_m           =    var_r_resspdiff_m          
+parameters      par_r_ressnpoly_dis         =    var_r_ressnpoly_dis        
+parameters      par_r_ressppoly_dis         =    var_r_ressppoly_dis        
+parameters      par_r_resnsndiff_m          =    var_r_resnsndiff_m         
+parameters      par_rend_resnsndiff_m       =    var_rend_resnsndiff_m                                 
+parameters      par_dxw_resnsndiff_m        =    var_dxw_resnsndiff_m       
+parameters      par_r_resnspdiff_m          =    var_r_resnspdiff_m         
+parameters      par_rend_resnspdiff_m       =    var_rend_resnspdiff_m                              
+parameters      par_dxw_resnspdiff_m        =    var_dxw_resnspdiff_m       
+parameters      par_r_resnsnpoly_dis        =    var_r_resnsnpoly_dis       
+parameters      par_rend_resnsnpoly_dis     =    var_rend_resnsnpoly_dis                                   
+parameters      par_dxw_resnsnpoly_dis      =    var_dxw_resnsnpoly_dis     
+parameters      par_r_resnsppoly_dis        =    var_r_resnsppoly_dis       
+parameters      par_rend_resnsppoly_dis     =    var_rend_resnsppoly_dis    
+parameters      par_dxw_resnsppoly_dis      =    var_dxw_resnsppoly_dis     
+parameters    par_r_resm1_m                 =    var_r_resm1_m           
+parameters    par_r_resm2_m                 =    var_r_resm2_m           
+parameters    par_r_resm3_m                 =    var_r_resm3_m           
+parameters    par_r_resm4_m                 =    var_r_resm4_m           
+parameters    par_r_resm5_m                 =    var_r_resm5_m           
+parameters    par_r_resm6_m                 =    var_r_resm6_m           
+parameters    par_r_resm7_m                 =    var_r_resm7_m           
+parameters    par_r_resm8_m                 =    var_r_resm8_m           
+parameters    par_r_resm9_m                 =    var_r_resm9_m           
+parameters    par_r_resm10_m                =    var_r_resm10_m          
+parameters    par_r_resm11_m	 	    =    var_r_resm11_m	     
+parameters      r_resnwsti_m                =   1000    * (1 + 0.05   *  par_r_resnwsti_m        )                              
+parameters      r_resnwoxide_m              =   450     * (1 + 0.05   *  par_r_resnwoxide_m      )                        
+parameters      r_ressndiff_m               =   18      * (1 + 0.05   *  par_r_ressndiff_m       )                        
+parameters      r_resspdiff_m               =   15      * (1 + 0.05   *  par_r_resspdiff_m       )                        
+parameters      r_ressnpoly_dis             =   15      * (1 + 0.05   *  par_r_ressnpoly_dis     )                        
+parameters      r_ressppoly_dis             =    15     * (1 + 0.05   *  par_r_ressppoly_dis     )                        
+parameters      r_resnsndiff_m              =   100     * (1 + 0.0375 *  par_r_resnsndiff_m      )                        
+parameters      r_rend_resnsndiff_m           =   8.46u   * (1 +  0.45  *  par_rend_resnsndiff_m   )                        
+parameters      r_dxl_resnsndiff_m            =   0                     
+parameters      r_dxw_resnsndiff_m            =   0.027u                *  par_dxw_resnsndiff_m                                   
+parameters      r_resnspdiff_m              =   200     * (1 + 0.0625 *  par_r_resnspdiff_m      )                        
+parameters      r_rend_resnspdiff_m           =   29.5u   * (1 + 0.29   *  par_rend_resnspdiff_m   )                        
+parameters      r_dxl_resnspdiff_m            =   0  + 0.0u                       
+parameters      r_dxw_resnspdiff_m            =   0.03071u              *  par_dxw_resnspdiff_m                            
+parameters      r_resnsnpoly_dis            =    200    * (1 + 0.0375 *  par_r_resnsnpoly_dis    )                        
+parameters      r_rend_resnsnpoly_dis         =   14.4u   * (1 + 0.38   *  par_rend_resnsnpoly_dis )                          
+parameters      r_dxl_resnsnpoly_dis          =   0     + 0.0u                       
+parameters      r_dxw_resnsnpoly_dis          =   0.0936u               *  par_dxw_resnsnpoly_dis                          
+parameters      r_resnsppoly_dis            =   650     * (1 + 0.0375 *  par_r_resnsppoly_dis    )                        
+parameters      r_rend_resnsppoly_dis         =   86.7u   * (1 + 0.27   *  par_rend_resnsppoly_dis )                        
+parameters      r_dxl_resnsppoly_dis          =   0  + 0.0u                
+parameters      r_dxw_resnsppoly_dis          =   0.0689u                * par_dxw_resnsppoly_dis   
+parameters    r_resm1_m                     =  0.0736 * (1 + 0.05 *    par_r_resm1_m              )               
+parameters    r_resm2_m                     =  0.0604  * (1 + 0.05 *   par_r_resm2_m              )                
+parameters    r_resm3_m                     =  0.0604  * (1 + 0.05 *   par_r_resm3_m              )                
+parameters    r_resm4_m                     =  0.0604  * (1 + 0.05 *   par_r_resm4_m              )              
+parameters    r_resm5_m                     =  0.0604  * (1 + 0.05 *   par_r_resm5_m              )            
+parameters    r_resm6_m                     =  0.0604 * (1 + 0.05 *    par_r_resm6_m              )                 
+parameters    r_resm7_m                     =  0.0604 * (1 + 0.05 *    par_r_resm7_m              )                
+parameters    r_resm8_m                     =  0.0214 * (1 + 0.05 *    par_r_resm8_m              )                
+parameters    r_resm9_m                     =  0.0214  * (1 + 0.05 *   par_r_resm9_m              )                
+parameters    r_resm10_m                    =  0.0214  * (1 + 0.05 *   par_r_resm10_m             )                
+parameters    r_resm11_m	            =  0.021  * (1 + 0.05 *    par_r_resm11_m	            ) 	       
+include "gpdk045_resistor.scs" section=res_3t                                 
+endsection mc_res3       
+
+ 
+
+
+
+section stat_res3        
+parameters                 radom_r_resnwsti_m               =     0
+parameters                 random_r_resnwoxide_m            =     0
+parameters                 random_r_ressndiff_m             =     0
+parameters                 random_r_resspdiff_m             =     0
+parameters                 random_r_ressnpoly_dis           =     0
+parameters                 random_r_ressppoly_dis           =     0
+parameters                 random_r_resnsndiff_m            =     0
+parameters                 random_rend_resnsndiff_m         =     0
+parameters                 random_dxw_resnsndiff_m          =     0
+parameters                 random_r_resnspdiff_m            =     0
+parameters                 random_rend_resnspdiff_m         =     0
+parameters                 random_dxw_resnspdiff_m          =     0
+parameters                 random_r_resnsnpoly_dis          =     0
+parameters                 random_rend_resnsnpoly_dis       =     0
+parameters                 random_dxw_resnsnpoly_dis        =     0
+parameters                 random_r_resnsppoly_dis          =     0
+parameters                 random_rend_resnsppoly_dis       =     0
+parameters                 random_dxw_resnsppoly_dis        =     0                             
+parameters                 random_r_resm1_m           = 0
+parameters                 random_r_resm2_m           = 0
+parameters                 random_r_resm3_m           = 0
+parameters                 random_r_resm4_m           = 0
+parameters                 random_r_resm5_m           = 0
+parameters                 random_r_resm6_m           = 0
+parameters                 random_r_resm7_m           = 0
+parameters                 random_r_resm8_m           = 0
+parameters                 random_r_resm9_m           = 0
+parameters                 random_r_resm10_m          = 0
+parameters                 random_r_resm11_m	      = 0
+parameters                var_r_resnwsti_m          =     radom_r_resnwsti_m        
+parameters                var_r_resnwoxide_m        =     random_r_resnwoxide_m      
+parameters                var_r_ressndiff_m         =     random_r_ressndiff_m       
+parameters                var_r_resspdiff_m         =     random_r_resspdiff_m       
+parameters                var_r_ressnpoly_dis       =     random_r_ressnpoly_dis     
+parameters                var_r_ressppoly_dis       =     random_r_ressppoly_dis     
+parameters                var_r_resnsndiff_m        =     random_r_resnsndiff_m      
+parameters                var_rend_resnsndiff_m     =     random_rend_resnsndiff_m   
+parameters                var_dxw_resnsndiff_m      =     random_dxw_resnsndiff_m    
+parameters                var_r_resnspdiff_m        =     random_r_resnspdiff_m      
+parameters                var_rend_resnspdiff_m     =     random_rend_resnspdiff_m   
+parameters                var_dxw_resnspdiff_m      =     random_dxw_resnspdiff_m    
+parameters                var_r_resnsnpoly_dis      =     random_r_resnsnpoly_dis    
+parameters                var_rend_resnsnpoly_dis   =     random_rend_resnsnpoly_dis 
+parameters                var_dxw_resnsnpoly_dis    =     random_dxw_resnsnpoly_dis  
+parameters                var_r_resnsppoly_dis      =     random_r_resnsppoly_dis    
+parameters                var_rend_resnsppoly_dis   =     random_rend_resnsppoly_dis 
+parameters                var_dxw_resnsppoly_dis    =     random_dxw_resnsppoly_dis  
+parameters                var_r_resm1_m             =     random_r_resm1_m           
+parameters                var_r_resm2_m             =     random_r_resm2_m           
+parameters                var_r_resm3_m             =     random_r_resm3_m           
+parameters                var_r_resm4_m             =     random_r_resm4_m           
+parameters                var_r_resm5_m             =     random_r_resm5_m           
+parameters                var_r_resm6_m             =     random_r_resm6_m           
+parameters                var_r_resm7_m             =     random_r_resm7_m           
+parameters                var_r_resm8_m             =     random_r_resm8_m           
+parameters                var_r_resm9_m             =     random_r_resm9_m           
+parameters                var_r_resm10_m            =     random_r_resm10_m          
+parameters                var_r_resm11_m	    =     random_r_resm11_m	         
+statistics {
+    process {     
+            vary      radom_r_resnwsti_m              dist=gauss std=1/1
+            vary      random_r_resnwoxide_m           dist=gauss std=1/1
+            vary      random_r_ressndiff_m            dist=gauss std=1/1
+            vary      random_r_resspdiff_m            dist=gauss std=1/1
+            vary      random_r_ressnpoly_dis          dist=gauss std=1/1
+            vary      random_r_ressppoly_dis          dist=gauss std=1/1
+            vary      random_r_resnsndiff_m           dist=gauss std=1/1
+            vary      random_rend_resnsndiff_m        dist=gauss std=1/1
+            vary      random_dxw_resnsndiff_m         dist=gauss std=1/1
+            vary      random_r_resnspdiff_m           dist=gauss std=1/1
+            vary      random_rend_resnspdiff_m        dist=gauss std=1/1
+            vary      random_dxw_resnspdiff_m         dist=gauss std=1/1
+            vary      random_r_resnsnpoly_dis         dist=gauss std=1/1
+            vary      random_rend_resnsnpoly_dis      dist=gauss std=1/1
+            vary      random_dxw_resnsnpoly_dis       dist=gauss std=1/1
+            vary      random_r_resnsppoly_dis         dist=gauss std=1/1
+            vary      random_rend_resnsppoly_dis      dist=gauss std=1/1
+            vary      random_dxw_resnsppoly_dis       dist=gauss std=1/1                  
+            vary      random_r_resm1_m                dist=gauss std=1/1  
+            vary      random_r_resm2_m                dist=gauss std=1/1  
+            vary      random_r_resm3_m                dist=gauss std=1/1  
+            vary      random_r_resm4_m                dist=gauss std=1/1  
+            vary      random_r_resm5_m                dist=gauss std=1/1  
+            vary      random_r_resm6_m                dist=gauss std=1/1  
+            vary      random_r_resm7_m                dist=gauss std=1/1  
+            vary      random_r_resm8_m                dist=gauss std=1/1  
+            vary      random_r_resm9_m                dist=gauss std=1/1  
+            vary      random_r_resm10_m               dist=gauss std=1/1  
+            vary      random_r_resm11_m	              dist=gauss std=1/1     
+        }           
+    }               
+endsection stat_res3 
+                    
+                    
+
+
+
+
+section res_3t
+
+//*********************       resnwsti_m      NW diff(under STI)   ********************* 
+subckt gpdk045_resnwsti (n2 n1 body)
+parameters l=1e-6 w=1e-6 mf=1 factor=1
++ rsh=r_resnwsti_m dw=0.45u ptc1=1.90e-03 ptc2=1.062e-05 pvc1=1.27e-02 pvc2=-5.02e-04 pt=temp
++ tfac= 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0) 
+r1 ( n2 nm ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs(v(n2,n1))+pvc2*v(n2,n1)*v(n2,n1))*tfac
+r2 ( nm nn ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs(v(n2,n1))+pvc2*v(n2,n1)*v(n2,n1))*tfac
+r3 ( nn nx ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs(v(n2,n1))+pvc2*v(n2,n1)*v(n2,n1))*tfac
+r4 ( nx n1 ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs(v(n2,n1))+pvc2*v(n2,n1)*v(n2,n1))*tfac
+d1 ( body n2 ) nwdio area=mf*((w*factor-dw)*l*factor/5.0)  pj= mf*((w*factor-dw)+2.0*l*factor/5.0)
+d2 ( body nm ) nwdio area=mf*((w*factor-dw)*l*factor/5.0)  pj= mf*2.0*l*factor/5.0
+d3 ( body nn ) nwdio area=mf*((w*factor-dw)*l*factor/5.0)  pj= mf*2.0*l*factor/5.0
+d4 ( body nx ) nwdio area=mf*((w*factor-dw)*l*factor/5.0)  pj= mf*2.0*l*factor/5.0
+d5 ( body n1 ) nwdio area=mf*((w*factor-dw)*l*factor/5.0)  pj= mf*((w*factor-dw)+2.0*l*factor/5.0)
+ends gpdk045_resnwsti
+
+
+//*********************   resnwoxide_m       NW diff(under OD)   ********************* 
+subckt gpdk045_resnwoxide (n2 n1 body)
+parameters l=1e-6 w=1e-6 mf=1 factor=1
++ rsh=r_resnwoxide_m dw=0.319u ptc1=3.113e-03 ptc2=1.144e-05 pvc1=1.364e-02 pvc2=-3.278e-04 pt=temp
++ tfac=1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0)
+r1 ( n2 nm ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs(v(n2,n1))+pvc2*v(n2,n1)*v(n2,n1))*tfac
+r2 ( nm nn ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs(v(n2,n1))+pvc2*v(n2,n1)*v(n2,n1))*tfac
+r3 ( nn nx ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs(v(n2,n1))+pvc2*v(n2,n1)*v(n2,n1))*tfac
+r4 ( nx n1 ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs(v(n2,n1))+pvc2*v(n2,n1)*v(n2,n1))*tfac
+d1 ( body n2 ) nwdio area=mf*((w*factor-dw)*l*factor/5.0)  pj= mf*((w*factor-dw)+2.0*l*factor/5.0)
+d2 ( body nm ) nwdio area=mf*((w*factor-dw)*l*factor/5.0)  pj= mf*2.0*l*factor/5.0
+d3 ( body nn ) nwdio area=mf*((w*factor-dw)*l*factor/5.0)  pj= mf*2.0*l*factor/5.0
+d4 ( body nx ) nwdio area=mf*((w*factor-dw)*l*factor/5.0)  pj= mf*2.0*l*factor/5.0
+d5 ( body n1 ) nwdio area=mf*((w*factor-dw)*l*factor/5.0)  pj= mf*((w*factor-dw)+2.0*l*factor/5.0)
+ends gpdk045_resnwoxide
+
+
+//*********************       ressndiff_m       N+diff w/i silicide   ********************* 
+
+subckt gpdk045_ressndiff (n2 n1 body) 
+parameters l=1e-6 w=1e-6 mf=1 factor=1 
++ geo_fac = 1/sqrt(mf*l*factor*w*factor*1e12) 
++ rsh=r_ressndiff_m dw=0.00352u pvc1 = 5.247e-07   pvc2 = 8.393e-13   ptc1 = 3.41e-03   ptc2 = 4.356e-07 pt=temp
++ tfac= 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25)
+r1 ( n2 nm ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs((v(n2,n1)/l/factor))+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac 
+r2 ( nm nn ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs((v(n2,n1)/l/factor))+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac 
+r3 ( nn nx ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs((v(n2,n1)/l/factor))+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac 
+r4 ( nx n1 ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs((v(n2,n1)/l/factor))+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac 
+d1 ( body n2 ) ndio area=mf*((w*factor-dw)*l*factor/5.0) pj= mf*((w*factor-dw)+2.0*l*factor/5.0) 
+d2 ( body nm ) ndio area=mf*((w*factor-dw)*l*factor/5.0)  pj= mf*2.0*l*factor/5.0 
+d3 ( body nn ) ndio area=mf*((w*factor-dw)*l*factor/5.0)  pj= mf*2.0*l*factor/5.0 
+d4 ( body nx ) ndio area=mf*((w*factor-dw)*l*factor/5.0)  pj= mf*2.0*l*factor/5.0 
+d5 ( body n1 ) ndio area=mf*((w*factor-dw)*l*factor/5.0)  pj= mf*((w*factor-dw)+2.0*l*factor/5.0) 
+ends gpdk045_ressndiff
+
+  
+//*********************       resspdiff_m       P+diff w/i silicide    ********************* 
+subckt gpdk045_resspdiff (n2 n1 body) 
+parameters l=1e-6 w=1e-6 mf=1 factor=1 
++ geo_fac = 1/sqrt(mf*l*factor*w*factor*1e12) 
++ rsh=r_resspdiff_m dw=0.00726u pvc1 = 6.644e-07   pvc2 = 8.602e-13   ptc1 = 3.575e-03   ptc2 = -4.598e-07 pt=temp
++ tfac= 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25) 
+r1 ( n2 nm ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs((v(n2,n1)/l/factor))+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac 
+r2 ( nm nn ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs((v(n2,n1)/l/factor))+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac 
+r3 ( nn nx ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs((v(n2,n1)/l/factor))+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac 
+r4 ( nx n1 ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs((v(n2,n1)/l/factor))+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac 
+d1 ( n2 body ) pdio area=mf*((w*factor-dw)*l*factor/5.0)  pj= mf*((w*factor-dw)+2.0*l*factor/5.0) 
+d2 ( nm body ) pdio area=mf*((w*factor-dw)*l*factor/5.0)  pj= mf*2.0*l*factor/5.0 
+d3 ( nn body ) pdio area=mf*((w*factor-dw)*l*factor/5.0)  pj= mf*2.0*l*factor/5.0 
+d4 ( nx body ) pdio area=mf*((w*factor-dw)*l*factor/5.0)  pj= mf*2.0*l*factor/5.0 
+d5 ( n1 body ) pdio area=mf*((w*factor-dw)*l*factor/5.0)  pj= mf*((w*factor-dw)+2.0*l*factor/5.0) 
+ends gpdk045_resspdiff
+
+
+//*********************     ressnpoly_dis   N+Poly w/i silicide    ********************* 
+subckt gpdk045_ressnpoly (n2 n1 body)
+parameters l=1e-6 w=1e-6 mf=1 factor=1 
++ geo_fac = 1/sqrt(mf*l*factor*w*factor*1e12) 
++ rsh=r_ressnpoly_dis dw=0.02044u pvc1 = 1.661e-06   pvc2 = 1.243e-12   ptc1 = 3.432e-03   ptc2 = -2.101e-06 pt=temp
++ tfac= 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25) 
++ ca=1.024e-16 cf=4.136e-17 
+r1 ( n2 nm ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs((v(n2,n1)/l/factor))+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac 
+r2 ( nm nn ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs((v(n2,n1)/l/factor))+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac 
+r3 ( nn nx ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs((v(n2,n1)/l/factor))+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac 
+r4 ( nx n1 ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs((v(n2,n1)/l/factor))+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac 
+c1 ( body n2 )  capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+c2 ( body nm )  capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+c3 ( body nn )  capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+c4 ( body nx )  capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+c5 ( body n1 )  capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+ends gpdk045_ressnpoly
+
+
+
+//*********************      ressppoly_dis   P+Poly w/i silicide  ********************* 
+subckt gpdk045_ressppoly (n2 n1 body)
+parameters l=1e-6 w=1e-6 mf=1 factor=1 
++ geo_fac = 1/sqrt(mf*l*factor*w*factor*1e12) 
++ rsh=r_ressppoly_dis dw= 0.00583u  pvc1 = 2.002e-06   pvc2 = 1.353e-12   ptc1 = 3.388e-03   ptc2 = -1.529e-06 pt=temp
++ tfac= 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25) 
++ ca=1.024e-16 cf=4.136e-17
+r1 ( n2 nm ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs((v(n2,n1)/l/factor))+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac 
+r2 ( nm nn ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs((v(n2,n1)/l/factor))+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac 
+r3 ( nn nx ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs((v(n2,n1)/l/factor))+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac 
+r4 ( nx n1 ) bsource r=rsh/mf*l*factor/(4.0*(w*factor-dw))*(1+pvc1*abs((v(n2,n1)/l/factor))+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac 
+c1 ( body n2 )  capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+c2 ( body nm )  capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+c3 ( body nn )  capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+c4 ( body nx )  capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+c5 ( body n1 )  capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+ends gpdk045_ressppoly
+
+//*********************       resnsndiff_m      N+diff w/o silicide   ********************* 
+subckt gpdk045_resnsndiff (ns ne body) 
+parameters l=1e-6 w=1e-6 mf=1 factor=1 
++ geo_fac = 1/sqrt(mf*l*factor*w*factor*1e12) 
++ rsh=r_resnsndiff_m  rend0=r_rend_resnsndiff_m
++ dl=r_dxl_resnsndiff_m
++ dw=r_dxw_resnsndiff_m
++ pt=temp
++ pvce1=-7.579e-002 pvce2=1.221e+003 pvce3=-1.997e-001 ptce1=1.375e-003 ptce2=2.75e-006
++ pvcp1=-3.255e-001 pvcp2=-8.84e-006 pvcp3=-2.549 ptcp1=1.662e-003 ptcp2=1.2e-006
++ tface= 1.0+ptce1*(pt-25.0)+ptce2*(pt-25.0)*(pt-25.0) 
++ tfacp= 1.0+ptcp1*(pt-25.0)+ptcp2*(pt-25.0)*(pt-25.0) 
+rend1 ( ns n2 )  bsource r=rend0/mf/w/factor*tface*(1+pvce1*(tanh(pvce2*abs(v(ns,n2))+pvce3)-tanh(pvce3)))  
+r1 ( n2 nm ) bsource r=rsh/mf*(l*factor-dl)/(4.0*(w*factor-dw))*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(n2,n1)/(l*factor-dl))+pvcp3)-tanh(pvcp3))) 
+r2 ( nm nn ) bsource r=rsh/mf*(l*factor-dl)/(4.0*(w*factor-dw))*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(n2,n1)/(l*factor-dl))+pvcp3)-tanh(pvcp3))) 
+r3 ( nn nx ) bsource r=rsh/mf*(l*factor-dl)/(4.0*(w*factor-dw))*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(n2,n1)/(l*factor-dl))+pvcp3)-tanh(pvcp3))) 
+r4 ( nx n1 ) bsource r=rsh/mf*(l*factor-dl)/(4.0*(w*factor-dw))*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(n2,n1)/(l*factor-dl))+pvcp3)-tanh(pvcp3))) 
+rend2 ( n1 ne )  bsource r=rend0/mf/w/factor*tface*(1+pvce1*(tanh(pvce2*abs(v(n1,ne))+pvce3)-tanh(pvce3))) 
+d1 ( body n2 ) ndio area=mf*((w*factor-dw)*(l*factor-dl)/5.0)  pj= mf*((w*factor-dw)+2.0*(l*factor-dl)/5.0) 
+d2 ( body nm ) ndio area=mf*((w*factor-dw)*(l*factor-dl)/5.0)  pj= mf*(2.0*(l*factor-dl)/5.0) 
+d3 ( body nn ) ndio area=mf*((w*factor-dw)*(l*factor-dl)/5.0)  pj= mf*(2.0*(l*factor-dl)/5.0) 
+d4 ( body nx ) ndio area=mf*((w*factor-dw)*(l*factor-dl)/5.0)  pj= mf*(2.0*(l*factor-dl)/5.0) 
+d5 ( body n1 ) ndio area=mf*((w*factor-dw)*(l*factor-dl)/5.0)  pj= mf*((w*factor-dw)+2.0*(l*factor-dl)/5.0) 
+ends gpdk045_resnsndiff
+
+//*********************       resnspdiff_m      P+diff w/o silicide    ********************* 
+subckt gpdk045_resnspdiff (ns ne body) 
+parameters l=1e-6 w=1e-6 mf=1 factor=1
++ geo_fac = 1/sqrt(mf*l*factor*w*factor*1e12) 
++ rsh=r_resnspdiff_m rend0=r_rend_resnspdiff_m
++ dl=r_dxl_resnspdiff_m
++ dw=r_dxw_resnspdiff_m
++ pt=temp
++ pvce1=3.85e-002 pvce2=2.85e+002 pvce3=-10.92e-002 ptce1=-1.1e-003 ptce2=2.2e-006
++ pvcp1=-4.389e-001 pvcp2=-1.95e-006 pvcp3=-2.3 ptcp1=1.21e-003 ptcp2=4.537e-006
++ tface= 1.0+ptce1*(pt-25.0)+ptce2*(pt-25.0)*(pt-25.0) 
++ tfacp= 1.0+ptcp1*(pt-25.0)+ptcp2*(pt-25.0)*(pt-25.0) 
+rend1 ( ns n2 )  bsource r=rend0/mf/w/factor*tface*(1+pvce1*(tanh(pvce2*abs(v(ns,n2))+pvce3)-tanh(pvce3)))  
+r1 ( n2 nm ) bsource r=rsh/mf*(l*factor-dl)/(4.0*(w*factor-dw))*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(n2,n1)/(l*factor-dl))+pvcp3)-tanh(pvcp3))) 
+r2 ( nm nn ) bsource r=rsh/mf*(l*factor-dl)/(4.0*(w*factor-dw))*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(n2,n1)/(l*factor-dl))+pvcp3)-tanh(pvcp3))) 
+r3 ( nn nx ) bsource r=rsh/mf*(l*factor-dl)/(4.0*(w*factor-dw))*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(n2,n1)/(l*factor-dl))+pvcp3)-tanh(pvcp3))) 
+r4 ( nx n1 ) bsource r=rsh/mf*(l*factor-dl)/(4.0*(w*factor-dw))*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(n2,n1)/(l*factor-dl))+pvcp3)-tanh(pvcp3))) 
+rend2 ( n1 ne ) bsource r=rend0/mf/w/factor*tface*(1+pvce1*(tanh(pvce2*abs(v(n1,ne))+pvce3)-tanh(pvce3))) 
+d1 ( n2 body ) pdio area=mf*((w*factor-dw)*(l*factor-dl)/5.0)  pj= mf*((w*factor-dw)+2.0*(l*factor-dl)/5.0) 
+d2 ( nm body ) pdio area=mf*((w*factor-dw)*(l*factor-dl)/5.0)  pj= mf*(2.0*(l*factor-dl)/5.0) 
+d3 ( nn body ) pdio area=mf*((w*factor-dw)*(l*factor-dl)/5.0)  pj= mf*(2.0*(l*factor-dl)/5.0) 
+d4 ( nx body ) pdio area=mf*((w*factor-dw)*(l*factor-dl)/5.0)  pj= mf*(2.0*(l*factor-dl)/5.0) 
+d5 ( n1 body ) pdio area=mf*((w*factor-dw)*(l*factor-dl)/5.0)  pj= mf*((w*factor-dw)+2.0*(l*factor-dl)/5.0) 
+ends gpdk045_resnspdiff
+
+ 
+ 
+//*********************      resnsnpoly_dis  N+Poly w/o silicide   ********************* 
+subckt gpdk045_resnsnpoly (ns ne body) 
+parameters l=1e-6 w=1e-6 mf=1 factor=1 
++ geo_fac = 1/sqrt(mf*l*factor*w*factor*1e12) 
++ rsh=r_resnsnpoly_dis rend0=r_rend_resnsnpoly_dis 
++ dl=r_dxl_resnsnpoly_dis
++ dw=r_dxw_resnsnpoly_dis  
++ pt=temp
++ pvce1=-2.4e-002 pvce2=-7.138e+002 pvce3=8.259e-001 ptce1=3.3e-003 ptce2=8.8e-006
++ pvcp1=-8.582e-001 pvcp2=-10.703e-005 pvcp3=-2.693 ptcp1=1.95e-004 ptcp2=-6.042e-007
++ tface=1.0+ptce1*(pt-25.0)+ptce2*(pt-25.0)*(pt-25.0) 
++ tfacp=1.0+ptcp1*(pt-25.0)+ptcp2*(pt-25.0)*(pt-25.0) 
++ ca=1.024e-16 cf=4.477e-17
+rend1 ( ns n2 ) bsource r=rend0/mf/w/factor*tface*(1+pvce1*(tanh(pvce2*abs(v(ns,n2))+pvce3)-tanh(pvce3)))  
+r1 ( n2 nm ) bsource r=rsh/mf*(l*factor-dl)/(4.0*(w*factor-dw))*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(n2,n1)/(l*factor-dl))+pvcp3)-tanh(pvcp3))) 
+r2 ( nm nn ) bsource r=rsh/mf*(l*factor-dl)/(4.0*(w*factor-dw))*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(n2,n1)/(l*factor-dl))+pvcp3)-tanh(pvcp3))) 
+r3 ( nn nx ) bsource r=rsh/mf*(l*factor-dl)/(4.0*(w*factor-dw))*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(n2,n1)/(l*factor-dl))+pvcp3)-tanh(pvcp3))) 
+r4 ( nx n1 ) bsource r=rsh/mf*(l*factor-dl)/(4.0*(w*factor-dw))*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(n2,n1)/(l*factor-dl))+pvcp3)-tanh(pvcp3))) 
+rend2 ( n1 ne ) bsource r=rend0/mf/w/factor*tface*(1+pvce1*(tanh(pvce2*abs(v(n1,ne))+pvce3)-tanh(pvce3))) 
+c1 ( body n2 ) capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+c2 ( body nm ) capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+c3 ( body nn ) capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+c4 ( body nx ) capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+c5 ( body n1 ) capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+ends gpdk045_resnsnpoly
+
+
+
+//***********************************  resnsppoly_dis  P+Poly w/o silicide    ***********************************
+subckt gpdk045_resnsppoly (ns ne body) 
+parameters l=1e-6 w=1e-6 mf=1 factor=1 
++ geo_fac =1/sqrt(mf*l*factor*w*factor*1e12) 
++ rsh=r_resnsppoly_dis rend0=r_rend_resnsppoly_dis
++ dl=r_dxl_resnsppoly_dis 
++ dw=r_dxw_resnsppoly_dis
++ pt=temp
++ pvce1=1.140e-002 pvce2=-7.916 pvce3=1.92e-001 ptce1=-8.8e-004 ptce2=-5.5e-006
++ pvcp1=1.2e-003 pvcp2=-2.95e-005 pvcp3=3.37 ptcp1=-2.2e-004 ptcp2=1.106e-006
++ tface= 1.0+ptce1*(pt-25.0)+ptce2*(pt-25.0)*(pt-25.0) 
++ tfacp= 1.0+ptcp1*(pt-25.0)+ptcp2*(pt-25.0)*(pt-25.0) 
++ ca=1.024e-16 cf=4.477e-17
+rend1 ( ns n2 ) bsource r=rend0/mf/w/factor*tface*(1+pvce1*(tanh(pvce2*abs(v(ns,n2))+pvce3)-tanh(pvce3)))  
+r1 ( n2 nm ) bsource r=rsh/mf*(l*factor-dl)/(4.0*(w*factor-dw))*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(n2,n1)/(l*factor-dl))+pvcp3)-tanh(pvcp3))) 
+r2 ( nm nn ) bsource r=rsh/mf*(l*factor-dl)/(4.0*(w*factor-dw))*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(n2,n1)/(l*factor-dl))+pvcp3)-tanh(pvcp3))) 
+r3 ( nn nx ) bsource r=rsh/mf*(l*factor-dl)/(4.0*(w*factor-dw))*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(n2,n1)/(l*factor-dl))+pvcp3)-tanh(pvcp3))) 
+r4 ( nx n1 ) bsource r=rsh/mf*(l*factor-dl)/(4.0*(w*factor-dw))*tfacp*(1+pvcp1*(tanh(pvcp2*abs(v(n2,n1)/(l*factor-dl))+pvcp3)-tanh(pvcp3))) 
+rend2 ( n1 ne ) bsource r=rend0/mf/w/factor*tface*(1+pvce1*(tanh(pvce2*abs(v(n1,ne))+pvce3)-tanh(pvce3))) 
+c1 ( body n2 ) capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+c2 ( body nm ) capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+c3 ( body nn ) capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+c4 ( body nx ) capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+c5 ( body n1 ) capacitor c=mf*(ca*((w*factor-0.02u)*l*factor/5.0)*1e12+2*cf*l*factor/5.0*1e6) 
+ends gpdk045_resnsppoly
+
+
+
+//  *************************************************************
+//                       MODEL OF N+/PW DIODE                   *
+//                                                              *
+//  *************************************************************   
+
+model ndio diode  
++level = 1                     tlev = 1                      tlevc = 1 
++imax = 1e40                   minr = 1e-10                  ibv = 0.03                    
++ik = 8.007637E10              is = 1.985439E-7	             n = 1.241062                  
++rs = 8.701365E-11	        bv = 9.2                      area = 3.6E-8                 
++cjo = 1.177208E-3	        vj = 0.5                      m = 0.249998                      
++fc = 0                        cjsw = 6.561678E-11	     vjsw = 0.73
++mjsw = 9.48645E-3             tnom = 25                     eg = 1.16                     
++xti = 3                       cta = 8E-4                    ctp = 3.6E-4                  
++trs = 2.4E-3                  isw = 7.240096E-13	    perim = 7.32E-4               
++tbv1 = -1E-3                  pta = 1E-3                    ptp = 1.85E-3 
++allow_scaling=1    
+                                      
+//  *************************************************************
+//                       MODEL OF P+/NW DIODE                   *
+//                                                              *
+//  *************************************************************                                                                              
+
+model pdio diode
++level = 1                     tlev = 1                      tlevc = 1  
++imax = 1e40                   minr = 1e-10                  ibv = 0.03                    
++ik = 1.225265E10              is = 1.657517E-7	             n = 1.223746                   
++rs = 1.1E-10	               bv = 9.2                      area = 3.6E-8                 
++cjo = 1.308015E-3	       vj = 0.8                      m = 0.349995                      
++fc = 0                        cjsw = 7.604536E-11	     vjsw = 0.44
++mjsw = 9.369543E-3            tnom = 25                     eg = 1.17                     
++xti = 3                       cta = 8E-4                    ctp = 2.4E-4                  
++trs = 2.4E-3                  isw = 6.075E-13	            perim = 7.32E-4               
++tbv1 = -1E-3                  pta = 1.85E-3                 ptp = 1.8E-3               
++allow_scaling=1 
+
+model nwdio diode
++level = 1                     imax = 1e40                   is = 9.065751E-7              
++isw = 9.075E-13               n = 1.243746                  ik = 1.025265E10              
++area = 3.6E-8                 perim = 7.32E-4               allow_scaling = 1             
++cjo = 1.808015E-3             vj = 0.8                      m = 0.349997                  
++cjsw = 9.604536E-10           vjsw = 0.44                   mjsw = 9.369543E-3            
++fc = 0                        bv = 9.2                      ibv = 0.03                    
++rs = 6.8E-10                  minr = 1E-10                  tlev = 1                      
++tlevc = 1                     eg = 1.17                     xti = 3                       
++tbv1 = -1E-3                  tnom = 25                     trs = 2.4E-3                  
++cta = 8E-4                    ctp = 2.4E-4                  pta = 1.85E-3                 
++ptp = 1.8E-3     
+
+
+
+
+
+
+//  *********************************     3 terminal Metal 1      ***********************************               
+subckt resm1_m ( n1 n2 body) 
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 2.92e-3                ptc2 = -1.22e-7               
++rsh = r_resm1_m                 pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0) 
+r1 ( n1 n11 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+l1 (n11 n22 ) inductor l=0.06e-9*l/w/mf
+c1 (n22 body) capacitor c=4e-14*w*l*mf*1e12
+r2 ( n22 n2 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends resm1_m
+
+
+                      
+//  *********************************     3 terminal Metal 2      ***********************************   
+subckt resm2_m ( n1 n2  body)  
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.077e-3               ptc2 = -1.14e-7     
++rsh =  r_resm2_m                   pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0)
+r1 ( n1 n11 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+l1 (n11 n22 ) inductor l=0.05e-9*l/w/mf
+c1 (n22 body) capacitor c=4e-14*w*l*mf*1e12
+r2 ( n22 n2 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends resm2_m
+
+                      
+//  *********************************     3 terminal Metal 3      ***********************************   
+subckt resm3_m ( n1 n2  body)  
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.077e-3               ptc2 = -1.14e-7   
++rsh = r_resm3_m                    pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0)
+r1 ( n1 n11 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+l1 (n11 n22 ) inductor l=0.05e-9*l/w/mf
+c1 (n22 body) capacitor c=4e-14*w*l*mf*1e12
+r2 ( n22 n2 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends resm3_m
+
+
+//  *********************************     3 terminal Metal 4      ***********************************               
+subckt resm4_m ( n1 n2  body)  
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.077e-3               ptc2 = -1.14e-7               
++rsh = r_resm4_m                    pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0)
+r1 ( n1 n11 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+l1 (n11 n22 ) inductor l=0.05e-9*l/w/mf
+c1 (n22 body) capacitor c=4e-14*w*l*mf*1e12
+r2 ( n22 n2 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends resm4_m
+
+
+//  *********************************     3 terminal Metal 5      ***********************************                
+subckt resm5_m ( n1 n2  body) 
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.077e-3               ptc2 = -1.14e-7               
++rsh = r_resm5_m                    pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0)
+r1 ( n1 n11 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+l1 (n11 n22 ) inductor l=0.05e-9*l/w/mf
+c1 (n22 body) capacitor c=4e-14*w*l*mf*1e12
+r2 ( n22 n2 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends resm5_m
+
+
+                        
+//  *********************************     3 terminal Metal 6      ***********************************   
+subckt resm6_m ( n1 n2  body)  
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.077e-3               ptc2 = -1.14e-7 
++rsh = r_resm6_m                    pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0)
+r1 ( n1 n11 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+l1 (n11 n22 ) inductor l=0.05e-9*l/w/mf
+c1 (n22 body) capacitor c=4e-14*w*l*mf*1e12
+r2 ( n22 n2 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends resm6_m
+
+
+                          
+//  *********************************     3 terminal Metal 7      ***********************************   
+subckt resm7_m ( n1 n2  body)   
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.077e-3               ptc2 = -1.14e-7 
++rsh =r_resm7_m                    pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0)
+r1 ( n1 n11 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+l1 (n11 n22 ) inductor l=0.05e-9*l/w/mf
+c1 (n22 body) capacitor c=4e-14*w*l*mf*1e12
+r2 ( n22 n2 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends resm7_m
+
+
+                 
+//  *********************************     3 terminal Metal 8      ***********************************   
+subckt resm8_m ( n1 n2  body) 
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.506e-3               ptc2 = -3.6e-7 
++rsh =r_resm8_m                  pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0)
+r1 ( n1 n11 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+l1 (n11 n22 ) inductor l=0.02e-9*l/w/mf
+c1 (n22 body) capacitor c=4e-14*w*l*mf*1e12
+r2 ( n22 n2 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends resm8_m
+
+
+//  *********************************     3 terminal Metal 9      ***********************************   
+subckt resm9_m ( n1 n2  body) 
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.506e-3               ptc2 = -3.6e-7 
++rsh = r_resm9_m                 pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0)
+r1 ( n1 n11 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+l1 (n11 n22 ) inductor l=0.02e-9*l/w/mf
+c1 (n22 body) capacitor c=4e-14*w*l*mf*1e12
+r2 ( n22 n2 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends resm9_m
+
+
+                         
+//  *********************************     3 terminal Metal 10      ***********************************   
+subckt resm10_m ( n1 n2  body)  
+parameters l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.506e-3               ptc2 = -3.6e-7 
++rsh = r_resm10_m                pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0)
+r1 ( n1 n11 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+l1 (n11 n22 ) inductor l=0.02e-9*l/w/mf
+c1 (n22 body) capacitor c=4e-14*w*l*mf*1e12
+r2 ( n22 n2 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac
+ends resm10_m
+
+
+                             
+//  *********************************     3 terminal Metal 11      ***********************************   
+subckt resm11_m ( n1 n2  body)  
+parameters  l=1.0e-6 w=1.0e-6 factor=1.0 mf=1.0 
++dw = 0                        pvc1 = 0                      
++pvc2 = 0                      ptc1 = 3.89e-3                ptc2 = -1.5e-7 
++rsh = r_resm11_m                pt = temp                  tfac = 1.0+ptc1*(pt-25.0)+ptc2*(pt-25.0)*(pt-25.0) 
+r1 ( n1 n11 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac 
+l1 (n11 n22 ) inductor l=0.024e-9*l/w/mf
+c1 (n22 body) capacitor c=4e-14*w*l*mf*1e12
+r2 ( n22 n2 ) bsource r=0.5*rsh/mf*l*factor/(w*factor-dw)*(1+pvc1*(abs(v(n2,n1))/l/factor)+pvc2*(v(n2,n1)/l/factor)*(v(n2,n1)/l/factor))*tfac 
+ends resm11_m
+
+endsection res_3t
+ 
+endlibrary gpdk045 
+ 

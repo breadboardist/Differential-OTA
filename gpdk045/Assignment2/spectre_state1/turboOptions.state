@@ -1,0 +1,8 @@
+(turboOpts turboSwitch) nil
+(turboOpts psrOption) "Default"
+(turboOpts proc_affinity) ""
+(turboOpts mtOption) "Auto"
+(turboOpts numThreads) ""
+(turboOpts errorLevel) "Do not override"
+(turboOpts psrFmax) ""
+(turboOpts psrSwitch) nil

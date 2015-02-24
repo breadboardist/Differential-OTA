@@ -1,0 +1,20 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Rule Set File generated/modified by Assura Code on Aug 19 12:11:35 2010
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+ruleSet( "fill"
+     (DrcRules             "assuraFillMetal.rul" )
+     (DrcInclude           "fill.rsf" )
+)
+
+ruleSet( "default"
+     (DrcRules             "assuraDRC.rul" )
+     (DrcTemplateFile      ".drc_setup.tpl" )
+     (LvsExtractRules      "extract.rul" )
+     (LvsCompareRules      "compare.rul" )
+     (LvsTemplateFile      ".lvs_setup.tpl" )
+     (LvsAVCTemplateFile   ".avc_setup.tpl" )
+     (RcxSetupDir          "rcx" )
+     (RcxTemplateFile      ".rcx_setup.tpl" )
+)
+

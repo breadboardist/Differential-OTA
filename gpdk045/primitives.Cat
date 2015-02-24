@@ -1,0 +1,5 @@
+TDMCHECKPOINT="1.0"
+gpdk045/primRes2 type="cell"
+gpdk045/primRes3 type="cell"
+gpdk045/primRes3_inh_n type="cell"
+gpdk045/primRes3_inh_p type="cell"

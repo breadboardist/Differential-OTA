@@ -1,0 +1,665 @@
+<!DOCTYPE LAM_FILE>
+<LIBRARY_DATA>
+    <VERSION NUMBER="0.2" />
+    <LOGICAL>
+        <LIB NAME="gpdk045">
+            <CELL NAME="nmos1v">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="nmos1v_lvt">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="nmos1v_hvt">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="nmos1v_nat">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="nmos2v">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="nmos2v_nat">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="pmos1v">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="pmos1v_lvt">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="pmos1v_hvt">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="pmos2v">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="nmos1v_3">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="nmos1v_lvt_3">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="nmos1v_hvt_3">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="nmos1v_nat_3">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="nmos2v_3">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="nmos2v_nat_3">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="pmos1v_3">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="pmos1v_lvt_3">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="pmos1v_hvt_3">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="pmos2v_3">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="nmoscap1v">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="nmoscap2v">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="pmoscap1v">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="pmoscap2v">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>nrs nrd sa sb sc ld ls editAreaPerim ad as pd ps showSimParams switchSD mtlCvg tap leftTap rightTap bottomTap topTap connectGates connectSD leftAbut rightAbut</CHECK>
+                            <GEN>simM</GEN>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resnsndiff">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                    <TERMINALS>
+                        <IGNORE>
+                            <GEN>B</GEN>
+                            <CHECK>B</CHECK>
+                        </IGNORE>
+                    </TERMINALS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resnsnpoly">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                    <TERMINALS>
+                        <IGNORE>
+                            <GEN>B</GEN>
+                            <CHECK>B</CHECK>
+                        </IGNORE>
+                    </TERMINALS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resnspdiff">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                    <TERMINALS>
+                        <IGNORE>
+                            <GEN>B</GEN>
+                            <CHECK>B</CHECK>
+                        </IGNORE>
+                    </TERMINALS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resnsppoly">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                    <TERMINALS>
+                        <IGNORE>
+                            <GEN>B</GEN>
+                            <CHECK>B</CHECK>
+                        </IGNORE>
+                    </TERMINALS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resnwoxide">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                    <TERMINALS>
+                        <IGNORE>
+                            <GEN>B</GEN>
+                            <CHECK>B</CHECK>
+                        </IGNORE>
+                    </TERMINALS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resnwsti">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                    <TERMINALS>
+                        <IGNORE>
+                            <GEN>B</GEN>
+                            <CHECK>B</CHECK>
+                        </IGNORE>
+                    </TERMINALS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="ressndiff">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                    <TERMINALS>
+                        <IGNORE>
+                            <GEN>B</GEN>
+                            <CHECK>B</CHECK>
+                        </IGNORE>
+                    </TERMINALS> 
+                </VIEW>
+            </CELL>
+            <CELL NAME="ressnpoly">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                    <TERMINALS>
+                        <IGNORE>
+                            <GEN>B</GEN>
+                            <CHECK>B</CHECK>
+                        </IGNORE>
+                    </TERMINALS> 
+                </VIEW>
+            </CELL>
+            <CELL NAME="resspdiff">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                    <TERMINALS>
+                        <IGNORE>
+                            <GEN>B</GEN>
+                            <CHECK>B</CHECK>
+                        </IGNORE>
+                    </TERMINALS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="ressppoly">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                    <TERMINALS>
+                        <IGNORE>
+                            <GEN>B</GEN>
+                            <CHECK>B</CHECK>
+                        </IGNORE>
+                    </TERMINALS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resnsndiff_2">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resnsnpoly_2">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resnspdiff_2">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resnsppoly_2">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resnwoxide_2">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resnwsti_2">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="ressndiff_2">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="ressnpoly_2">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resspdiff_2">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="ressppoly_2">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams leftTap rightTap topTap bottomTap showTapParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resm1">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resm2">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resm3">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resm4">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resm5">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resm6">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resm7">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resm8">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resm9">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resm10">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="resm11">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>leftDummy rightDummy showOtherParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="mimcap">
+                <VIEW NAME="symbol">
+                    <PARAMETERS>
+                        <IGNORE>
+                            <CHECK>showSimParams</CHECK>
+                        </IGNORE>
+                    </PARAMETERS>
+                    <TERMINALS>
+                        <IGNORE>
+                            <GEN>B</GEN>
+                        </IGNORE>
+                    </TERMINALS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="ind_a">
+                <VIEW NAME="symbol">
+                    <TERMINALS>
+                        <IGNORE>
+                            <GEN>B</GEN>
+                        </IGNORE>
+                    </TERMINALS>
+                </VIEW>
+            </CELL>
+            <CELL NAME="ind_s">
+                <VIEW NAME="symbol">
+                    <TERMINALS>
+                        <IGNORE>
+                            <GEN>B</GEN>
+                        </IGNORE>
+                    </TERMINALS>
+                </VIEW>
+            </CELL>
+        </LIB>
+    </LOGICAL>
+    <PHYSICAL>
+        <COMPONENT_TYPE_GROUPS>
+            <LIB NAME="gpdk045">
+                <COMPONENT_TYPE_GROUP NAME="nmos">
+                    <COMP_CLASS>NMOS</COMP_CLASS>
+                    <WIDTH>fw</WIDTH>
+                    <ACTIVE_LP>Oxide drawing</ACTIVE_LP>
+                    <FOLD_THRESH>1e-06</FOLD_THRESH>
+                </COMPONENT_TYPE_GROUP>
+                <COMPONENT_TYPE_GROUP NAME="pmos">
+                    <COMP_CLASS>PMOS</COMP_CLASS>
+                    <WIDTH>fw</WIDTH>
+                    <ACTIVE_LP>Oxide drawing</ACTIVE_LP>
+                    <FOLD_THRESH>1e-06</FOLD_THRESH>
+                </COMPONENT_TYPE_GROUP>
+            </LIB>
+        </COMPONENT_TYPE_GROUPS>
+        <MAPPINGS>
+            <LIB NAME="gpdk045">
+                <CELL NAME="nmos1v">
+                    <COMPONENT_TYPE>
+                        <NAME>nmos</NAME>
+                        <LIB>gpdk045</LIB>
+                    </COMPONENT_TYPE>
+                </CELL>
+                <CELL NAME="nmos1v_3">
+                    <COMPONENT_TYPE>
+                        <NAME>nmos</NAME>
+                        <LIB>gpdk045</LIB>
+                    </COMPONENT_TYPE>
+                </CELL>
+                <CELL NAME="pmos1v">
+                    <COMPONENT_TYPE>
+                        <NAME>pmos</NAME>
+                        <LIB>gpdk045</LIB>
+                    </COMPONENT_TYPE>
+                </CELL>
+                <CELL NAME="pmos1v_3">
+                    <COMPONENT_TYPE>
+                        <NAME>pmos</NAME>
+                        <LIB>gpdk045</LIB>
+                    </COMPONENT_TYPE>
+                </CELL>
+            </LIB>
+        </MAPPINGS>
+    </PHYSICAL>
+</LIBRARY_DATA>

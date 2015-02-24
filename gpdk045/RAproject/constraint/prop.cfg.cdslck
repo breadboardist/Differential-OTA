@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      nang9016
+HostName                       eecad30.engr.sjsu.edu
+ProcessIdentifier              8783
+ProcessCreationTime_UTC        1397367351
+ProcessCreationTime_Readable   Sat Apr 12 22:35:51 2014 PDT
+AppIdentifier                  /apps/cadence/IC615/tools/dfII/bin/32bit/virtuoso
+OSType                         lnx86
+ReasonForPlacingEditLock       
+FilePathUsedToEditLock         /home/na/nang9016/newcad/gpdk045_RFIC/gpdk045/RAproject/constraint/prop.cfg
+TimeEditLocked                 Sat Apr 12 22:36:31 2014 PDT
